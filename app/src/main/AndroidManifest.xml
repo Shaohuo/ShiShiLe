@@ -18,13 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
+
         <activity android:name=".openprize.OpenPrizeActivity"
-            android:configChanges="orientation|keyboardHidden"
-            ></activity>
+            android:configChanges="orientation|keyboardHidden"></activity>
 
         <activity
             android:name=".LotteryActivity"
