@@ -32,21 +32,21 @@ public class MainActivity extends AppCompatActivity {
         alphaTabsIndicator.getTabView(0).showNumber(6);
         alphaTabsIndicator.getTabView(1).showNumber(888);
         alphaTabsIndicator.getTabView(2).showNumber(88);
-        alphaTabsIndicator.getTabView(3).showPoint();
+//        alphaTabsIndicator.getTabView(3).showPoint();
     }
 
 
     private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
 
         private List<Fragment> fragments = new ArrayList<>();
-        private String[] titles = {"消息", "圈子", "工作", "我的"};
+//        private String[] titles = {"首页", "开奖", "预测"};
 
         public MainAdapter(FragmentManager fm) {
             super(fm);
             fragments.add(new MZModeBannerFragment());
             fragments.add(new MZModeBannerFragment());
             fragments.add(new MZModeBannerFragment());
-            fragments.add(new MZModeBannerFragment());
+//            fragments.add(new MZModeBannerFragment());
         }
 
         @Override
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         public void onPageSelected(int position) {
             if (0 == position) {
                 alphaTabsIndicator.getTabView(0).showNumber(alphaTabsIndicator.getTabView(0).getBadgeNumber() - 1);
-            } else if (2 == position) {
+            } else if (1 == position) {
                 alphaTabsIndicator.getCurrentItemView().removeShow();
-            } else if (3 == position) {
+            } else if (2 == position) {
                 alphaTabsIndicator.removeAllBadge();
             }
         }
