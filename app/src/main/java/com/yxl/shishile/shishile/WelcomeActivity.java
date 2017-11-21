@@ -11,7 +11,7 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome2);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -22,3 +22,4 @@ public class WelcomeActivity extends Activity {
 
     }
 }
+
