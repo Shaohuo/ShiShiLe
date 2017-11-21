@@ -25,7 +25,7 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.mTextView.setText(""+position);
+        viewHolder.mTvPrizeName.setText(""+position);
     }
 
     @Override
@@ -35,10 +35,14 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
+        public TextView mTvPrizeName;
+        public TextView mTvPrizeStage;
+        public TextView mTvOpenTime;
         public ViewHolder(View view){
             super(view);
-            mTextView = (TextView) view.findViewById(R.id.textView);
+            mTvPrizeName = (TextView) view.findViewById(R.id.tvPrizename);
+            mTvPrizeStage = (TextView) view.findViewById(R.id.tvPrizeStage);
+            mTvOpenTime = (TextView) view.findViewById(R.id.tvOpenTime);
         }
     }
 }
