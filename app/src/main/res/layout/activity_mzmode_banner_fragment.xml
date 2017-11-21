@@ -5,22 +5,259 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yxl.shishile.shishile.widgets.MZModeBannerFragment">
+    tools:context="widgets.MZModeBannerFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="#BDBDBD"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <com.zhouwei.mzbanner.MZBannerView
         android:id="@+id/banner"
+        android:background="#FFF"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="1dp"
         app:open_mz_mode="true"
         app:canLoop="true"
         app:indicatorAlign="center"
         app:indicatorPaddingLeft="10dp"
         />
 
-    <ListView
-        android:paddingTop="10dp"
-        android:id="@android:id/list"
+    <TextView
+        android:text="热门彩票"
+        android:background="#FFF"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_marginBottom="1dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="40dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img4"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img4"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img4"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/img3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:text="重庆时时彩"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<ListView-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:id="@android:id/list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></ListView>-->
+    </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
