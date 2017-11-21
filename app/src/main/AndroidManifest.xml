@@ -24,6 +24,9 @@
             android:configChanges="orientation|keyboardHidden">
 
         </activity>
+        <activity
+            android:name=".LotteryActivity"
+            android:label="@string/title_activity_lottery"></activity>
     </application>
 
 </manifest>
