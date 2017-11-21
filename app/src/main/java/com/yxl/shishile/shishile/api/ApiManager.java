@@ -12,6 +12,7 @@ import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by ${Jianpan} on 2017/1/11.
@@ -82,6 +83,7 @@ public class ApiManager {
     private void initRetrofit() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(mClient)
                 .build();
     }

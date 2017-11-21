@@ -6,11 +6,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.api.ApiManager;
+import com.yxl.shishile.shishile.api.ApiServer;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -29,6 +38,8 @@ public class OpenPrizeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private MyPrizeAdapter mAdapter;
+    private RecyclerView mRecyclerView;
 
 
     public OpenPrizeFragment() {
@@ -68,16 +79,56 @@ public class OpenPrizeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_open_prize, container, false);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 //创建默认的线性LayoutManager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new MyPrizeAdapter());
-
-
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter = new MyPrizeAdapter();
+        mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mLotteryMaps.clear();
+        for (int i = 0; i < 11; i++) {
+            final int index = i + 1;
+            Call<Lottery> call = ApiManager.getInstance().create(ApiServer.class).getLottery(index, "qzcx72trd7ax5w90");
+            call.enqueue(new Callback<Lottery>() {
+                @Override
+                public void onResponse(Call<Lottery> call, Response<Lottery> response)  {
+                    if (response.isSuccessful()) {
+                        Lottery body = response.body();
+                        Log.e("OpenPrizeFragment", "" + index + " " + body);
+                        mLotteryMaps.put(index, body);
+                        if (mLotteryMaps.size() == 11) {
+                            mRecyclerView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mAdapter.setData(mLotteryMaps);
+                                    mAdapter.notifyDataSetChanged();
+                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
+                                }
+                            });
+                        }
+                    } else {
+                        Log.e("OpenPrizeFragment", "unsuccess");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Lottery> call, Throwable t) {
+                    Log.e("OpenPrizeFragment", "" + t.getMessage());
+                }
+            });
+        }
     }
 
     /**

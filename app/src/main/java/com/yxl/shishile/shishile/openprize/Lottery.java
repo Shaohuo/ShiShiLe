@@ -6,9 +6,18 @@ package com.yxl.shishile.shishile.openprize;
 
 public class Lottery {
 
-    public  int number;
+    public  String number;
 
-    public  int time;
+    public  String time;
 
     public  String data;
+
+    @Override
+    public String toString() {
+        return "Lottery{" +
+                "number=" + number +
+                ", time=" + time +
+                ", data='" + data + '\'' +
+                '}';
+    }
 }
