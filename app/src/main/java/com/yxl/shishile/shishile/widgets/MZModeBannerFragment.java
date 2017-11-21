@@ -5,6 +5,7 @@ package com.yxl.shishile.shishile.widgets;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.yxl.shishile.shishile.LotteryActivity;
 import com.yxl.shishile.shishile.R;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
@@ -117,6 +119,10 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
 
     }
 
+
+
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -126,6 +132,8 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
             case R.id.hubei:
                 break;
             case R.id.liuhecai:
+                Intent intent = new Intent(view.getContext(), LotteryActivity.class);
+                startActivity(intent);
                 break;
             case R.id.guangdong:
                 break;
