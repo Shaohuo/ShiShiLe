@@ -10,7 +10,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#D91F00"
+        android:background="#f83e3f"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
@@ -37,36 +37,36 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            app:tabIconNormal="@mipmap/home_normal"
-            app:tabIconSelected="@mipmap/home_selected"
+            app:tabIconNormal="@mipmap/main1"
+            app:tabIconSelected="@mipmap/main"
             app:tabText="首页"
             app:tabTextSize="13sp"
             app:textColorNormal="#999999"
-            app:textColorSelected="#56B5D3" />
+            app:textColorSelected="#f83e3f" />
 
         <com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            app:tabIconNormal="@mipmap/category_normal"
-            app:tabIconSelected="@mipmap/category_selected"
+            app:tabIconNormal="@mipmap/jiang1"
+            app:tabIconSelected="@mipmap/jiang"
             app:tabText="开奖"
             app:tabTextSize="13sp"
             app:textColorNormal="#999999"
-            app:textColorSelected="#56B5D3" />
+            app:textColorSelected="#f83e3f" />
 
         <com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            app:tabIconNormal="@mipmap/service_normal"
-            app:tabIconSelected="@mipmap/service_selected"
+            app:tabIconNormal="@mipmap/yuce1"
+            app:tabIconSelected="@mipmap/yuce"
             app:tabText="预测"
             app:tabTextSize="13sp"
             app:textColorNormal="#999999"
-            app:textColorSelected="#56B5D3" />
+            app:textColorSelected="#f83e3f" />
 
 
         <!--<com.yinglan.alphatabs.AlphaTabView-->

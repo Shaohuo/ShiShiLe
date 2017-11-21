@@ -62,7 +62,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img1" />
+                            android:src="@mipmap/ic_lottery_1" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -85,7 +85,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img2" />
+                            android:src="@mipmap/ic_lottery_2" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -113,7 +113,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img4" />
+                            android:src="@mipmap/ic_lottery_3" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -136,7 +136,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img3" />
+                            android:src="@mipmap/ic_lottery_4" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -164,7 +164,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img1" />
+                            android:src="@mipmap/ic_lottery_5" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -186,7 +186,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img2" />
+                            android:src="@mipmap/ic_lottery_6" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -214,7 +214,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img4" />
+                            android:src="@mipmap/ic_lottery_7" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -236,7 +236,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img3" />
+                            android:src="@mipmap/ic_lottery_8" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -264,7 +264,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img1" />
+                            android:src="@mipmap/ic_lottery_9" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -286,7 +286,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img2" />
+                            android:src="@mipmap/ic_lottery_10" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -314,7 +314,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@mipmap/img4" />
+                            android:src="@mipmap/ic_lottery_11" />
 
                         <TextView
                             android:layout_width="0dp"
