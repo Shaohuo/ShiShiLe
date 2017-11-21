@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
@@ -27,7 +28,7 @@ import java.util.List;
 
 
 
-public class MZModeBannerFragment extends Fragment {
+public class MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "MZModeBannerFragment";
     public static final int []BANNER = new int[]{R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3,R.mipmap.banner4,R.mipmap.banner5};
     private MZBannerView mMZBanner;
@@ -43,6 +44,29 @@ public class MZModeBannerFragment extends Fragment {
     }
 
     private void initView(View view) {
+
+        LinearLayout chongqingLiner = view.findViewById(R.id.chongqing);
+        LinearLayout hubeiLiner = view.findViewById(R.id.hubei);
+        LinearLayout liuhecaiLiner = view.findViewById(R.id.liuhecai);
+        LinearLayout guangdongLiner = view.findViewById(R.id.guangdong);
+        LinearLayout fucaiLiner = view.findViewById(R.id.fucai);
+        LinearLayout pailieLiner = view.findViewById(R.id.pailie);
+        LinearLayout xinjiangLiner = view.findViewById(R.id.xinjiang);
+        LinearLayout jiangsuLiner = view.findViewById(R.id.jiangsu);
+        LinearLayout jiangxiLiner = view.findViewById(R.id.jiangxi);
+        LinearLayout beijingLiner = view.findViewById(R.id.beijing);
+        LinearLayout shandongLiner = view.findViewById(R.id.shandong);
+        chongqingLiner.setOnClickListener(this);
+        hubeiLiner.setOnClickListener(this);
+        liuhecaiLiner.setOnClickListener(this);
+        guangdongLiner.setOnClickListener(this);
+        fucaiLiner.setOnClickListener(this);
+        pailieLiner.setOnClickListener(this);
+        xinjiangLiner.setOnClickListener(this);
+        jiangsuLiner.setOnClickListener(this);
+        jiangxiLiner.setOnClickListener(this);
+        beijingLiner.setOnClickListener(this);
+        shandongLiner.setOnClickListener(this);
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
         mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
@@ -90,6 +114,36 @@ public class MZModeBannerFragment extends Fragment {
 
 //        topicListView=view.findViewById(android.R.id.list);
 //        topicListViewAdapter = new TopicListViewAdapter(getContext(), menuitemBeans);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.chongqing:
+                Toast.makeText(getContext(), "测试点击事件", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.hubei:
+                break;
+            case R.id.liuhecai:
+                break;
+            case R.id.guangdong:
+                break;
+            case R.id.fucai:
+                break;
+            case R.id.pailie:
+                break;
+            case R.id.xinjiang:
+                break;
+            case R.id.jiangsu:
+                break;
+            case R.id.jiangxi:
+                break;
+            case R.id.beijing:
+                break;
+            case R.id.shandong:
+                break;
+        }
 
     }
 
