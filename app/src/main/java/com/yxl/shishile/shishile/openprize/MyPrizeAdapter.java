@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017/11/21 0021.
@@ -20,6 +21,13 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
     private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
     private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
 
+    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
+
+    public void setData(HashMap<Integer, Lottery> maps) {
+        mLotteryMaps.clear();
+        mLotteryMaps.putAll(maps);
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_prize, viewGroup, false);
@@ -27,10 +35,26 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         return vh;
     }
 
+    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06};
+
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.mTvPrizeName.setText("" + mNames[position]);
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
+        Lottery lottery = mLotteryMaps.get(position+1);
+        if (lottery != null) {
+            viewHolder.mTvOpenTime.setText("" + lottery.time);
+            viewHolder.mTvPrizeNum.setText("" + lottery.number);
+            String[] split = lottery.data.split(",");
+            for (int i = 0; i < 6; i++) {
+                TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
+                if (i < split.length) {
+                    mTvData.setText("" + split[i]);
+                }else{
+                    mTvData.setVisibility(View.GONE);
+                }
+            }
+        }
     }
 
     @Override
@@ -42,15 +66,17 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView mIvPrize;
         public TextView mTvPrizeName;
-        public TextView mTvPrizeStage;
+        public TextView mTvPrizeNum;
         public TextView mTvOpenTime;
+        public LinearLayout mLlData;
 
         public ViewHolder(View view) {
             super(view);
             mIvPrize = (ImageView) view.findViewById(R.id.ivPrize);
             mTvPrizeName = (TextView) view.findViewById(R.id.tvPrizename);
-            mTvPrizeStage = (TextView) view.findViewById(R.id.tvPrizeStage);
+            mTvPrizeNum = (TextView) view.findViewById(R.id.tvPrizeNum);
             mTvOpenTime = (TextView) view.findViewById(R.id.tvOpenTime);
+            mLlData = (LinearLayout) view.findViewById(R.id.llData);
         }
     }
 }
