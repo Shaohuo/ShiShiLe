@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
 
-        alphaTabsIndicator.getTabView(0).showNumber(6);
-        alphaTabsIndicator.getTabView(1).showNumber(888);
-        alphaTabsIndicator.getTabView(2).showNumber(88);
+//        alphaTabsIndicator.getTabView(0).showNumber(6);
+//        alphaTabsIndicator.getTabView(1).showNumber(888);
+//        alphaTabsIndicator.getTabView(2).showNumber(88);
 //        alphaTabsIndicator.getTabView(3).showPoint();
     }
 
@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if (0 == position) {
-                alphaTabsIndicator.getTabView(0).showNumber(alphaTabsIndicator.getTabView(0).getBadgeNumber() - 1);
-            } else if (1 == position) {
-                alphaTabsIndicator.getCurrentItemView().removeShow();
-            } else if (2 == position) {
-                alphaTabsIndicator.removeAllBadge();
-            }
+//            if (0 == position) {
+//                alphaTabsIndicator.getTabView(0).showNumber(alphaTabsIndicator.getTabView(0).getBadgeNumber() - 1);
+//            } else if (1 == position) {
+//                alphaTabsIndicator.getCurrentItemView().removeShow();
+//            } else if (2 == position) {
+//                alphaTabsIndicator.removeAllBadge();
+//            }
         }
 
         @Override
