@@ -11,7 +11,8 @@ import com.yinglan.alphatabs.AlphaTabsIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
-import widgets.MZModeBannerFragment;
+import com.yxl.shishile.shishile.openprize.OpenPrizeFragment;
+import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         public MainAdapter(FragmentManager fm) {
             super(fm);
             fragments.add(new MZModeBannerFragment());
-            fragments.add(new MZModeBannerFragment());
+            fragments.add(new OpenPrizeFragment());
             fragments.add(new MZModeBannerFragment());
 //            fragments.add(new MZModeBannerFragment());
         }

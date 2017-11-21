@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#CDCDCD"
+    tools:context="com.yxl.shishile.shishile.LotteryActivity">
+    <TextView
+        android:id="@+id/lottery_title"
+        android:text="香港六合彩"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#D91F00"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:background="#Ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#000000"
+            android:id="@+id/cycle_id"
+            android:layout_marginTop="20dp"
+            android:text="第179期"
+            android:textSize="20sp"
+            android:layout_marginLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:text="开奖时间："
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#000000"
+                android:id="@+id/lottery_time"
+                android:text="18:00"
+                android:textSize="30sp"
+                android:layout_marginTop="38dp"
+                android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:background="#ffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="开奖号码"
+            android:textSize="25sp"
+            android:layout_marginTop="110dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/six_num_01"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:width="30dp"
+                android:height="30dp"
+                android:background="@drawable/shape_textview" />
+            <TextView
+                android:id="@+id/six_num_02"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/six_num_03"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/six_num_04"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/six_num_05"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/six_num_06"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/black"
+                android:layout_marginLeft="15dp"
+                android:textSize="25sp"
+                android:text="+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/six_num_07"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:height="30dp"
+                android:width="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/shape_textview_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="3dp"
+        android:background="#ffff"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:background="#ffff"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_weight="1"
+            android:text="历史记录"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_weight="1"
+            android:text="走势预测"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
