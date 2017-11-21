@@ -7,6 +7,7 @@ package widgets;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -26,7 +27,7 @@ import java.util.List;
 
 
 
-public class MZModeBannerFragment extends ListFragment {
+public class MZModeBannerFragment extends Fragment {
     public static final String TAG = "MZModeBannerFragment";
     public static final int []BANNER = new int[]{R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3,R.mipmap.banner4,R.mipmap.banner5};
     private MZBannerView mMZBanner;
