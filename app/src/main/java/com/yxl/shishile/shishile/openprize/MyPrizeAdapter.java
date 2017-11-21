@@ -50,6 +50,7 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
                 TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
                 if (i < split.length) {
                     mTvData.setText("" + split[i]);
+                    mTvData.setVisibility(View.VISIBLE);
                 }else{
                     mTvData.setVisibility(View.GONE);
                 }
