@@ -29,4 +29,6 @@ dependencies {
     compile 'com.yinglan.alphatabs:library:1.0.5'
     compile 'com.github.pinguo-zhouwei:MZBannerView:v1.0.1'
     compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.google.code.gson:gson:2.7'
 }

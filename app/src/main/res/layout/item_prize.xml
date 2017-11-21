@@ -2,30 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivPrize"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
+        android:layout_marginLeft="10dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvPrizename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="17dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:text="TextView"
-        android:textSize="14dp"
+        android:layout_alignTop="@+id/ivPrize"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/ivPrize"
+        android:text="重庆时时彩"
+        android:textSize="16dp"
         android:textColor="@android:color/black"
         />
 
@@ -35,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvPrizename"
         android:layout_toRightOf="@+id/tvPrizename"
-        android:layout_marginLeft="20dp"
-        android:text="TextView"
-        android:textSize="10dp"
+        android:layout_marginLeft="8dp"
+        android:text="20171121061"
+        android:textSize="12dp"
         android:textColor="@android:color/darker_gray"
         />
 
@@ -45,13 +42,86 @@
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvPrizeStage"
-        android:layout_alignBottom="@+id/tvPrizeStage"
-        android:layout_marginLeft="19dp"
-        android:layout_marginStart="19dp"
-        android:layout_toEndOf="@+id/tvPrizeStage"
+        android:layout_alignTop="@+id/tvPrizeStage"
         android:layout_toRightOf="@+id/tvPrizeStage"
-        android:text="TextView"
+        android:layout_marginLeft="8dp"
+        android:text="2017-11-21 16:11:25"
         android:textColor="@android:color/darker_gray"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivPrize"
+        android:layout_marginLeft="12dp"
+        android:layout_alignBottom="@+id/ivPrize"
+        >
+
+        <TextView
+            android:id="@+id/six_num_01"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:width="20dp"
+            android:height="20dp"
+            android:background="@drawable/shape_textview_red" />
+        <TextView
+            android:id="@+id/six_num_02"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_03"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_04"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_05"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_06"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

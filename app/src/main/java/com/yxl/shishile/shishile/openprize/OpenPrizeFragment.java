@@ -75,6 +75,8 @@ public class OpenPrizeFragment extends Fragment {
 //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new MyPrizeAdapter());
+
+
         return view;
     }
 
