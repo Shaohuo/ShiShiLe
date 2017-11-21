@@ -11,6 +11,8 @@ import com.yinglan.alphatabs.AlphaTabsIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
+import widgets.MZModeBannerFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private AlphaTabsIndicator alphaTabsIndicator;
