@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.fragment.ForecastFragment;
 import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
 import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             super(fm);
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
-            fragments.add(new MZModeBannerFragment());
+            fragments.add(new ForecastFragment());
 //            fragments.add(new MZModeBannerFragment());
         }
 
