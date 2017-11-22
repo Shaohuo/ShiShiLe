@@ -83,6 +83,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -106,6 +107,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -133,6 +135,7 @@
                         android:id="@+id/liuhecai"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -156,6 +159,7 @@
                         android:id="@+id/guangdong"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -184,6 +188,7 @@
                         android:id="@+id/fucai"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -206,6 +211,7 @@
                         android:id="@+id/pailie"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -234,6 +240,7 @@
                         android:id="@+id/xinjiang"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -256,6 +263,7 @@
                         android:id="@+id/jiangsu"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -284,6 +292,7 @@
                         android:id="@+id/jiangxi"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -306,6 +315,7 @@
                         android:id="@+id/beijing"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -334,6 +344,7 @@
                         android:id="@+id/shandong"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -355,6 +366,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:background="@drawable/sex_selected_bg"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
