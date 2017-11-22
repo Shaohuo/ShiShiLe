@@ -3,10 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yxl.shishile.shishile.openprize.OpenPrizeFragment">
-
-
-
-    <RelativeLayout
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
@@ -14,7 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>
-
-    </RelativeLayout>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
 </FrameLayout>
