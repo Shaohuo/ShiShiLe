@@ -74,7 +74,27 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
         mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int position) {
-                Toast.makeText(getContext(),"click page:"+position,Toast.LENGTH_LONG).show();
+                if(position == 0)
+                {
+                    Toast.makeText(getContext(), "点击跳转a", Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 1)
+                {
+                    Toast.makeText(getContext(), "点击跳转b", Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 2)
+                {
+                    Toast.makeText(getContext(), "点击跳转c", Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 3)
+                {
+                    Toast.makeText(getContext(), "点击跳转d", Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 4)
+                {
+                    Toast.makeText(getContext(), "点击跳转e", Toast.LENGTH_SHORT).show();
+                }
+//                Toast.makeText(getContext(),"click page:"+position,Toast.LENGTH_LONG).show();
             }
         });
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
