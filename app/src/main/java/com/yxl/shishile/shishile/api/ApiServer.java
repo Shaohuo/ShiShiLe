@@ -1,6 +1,6 @@
 package com.yxl.shishile.shishile.api;
 
-import com.yxl.shishile.shishile.openprize.Lottery;
+import com.yxl.shishile.shishile.model.Lottery;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

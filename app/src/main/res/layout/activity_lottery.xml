@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#CDCDCD"
-    tools:context="com.yxl.shishile.shishile.LotteryActivity">
+    tools:context="com.yxl.shishile.shishile.activity.LotteryActivity">
     <TextView
         android:id="@+id/lottery_title"
         android:text="香港六合彩"

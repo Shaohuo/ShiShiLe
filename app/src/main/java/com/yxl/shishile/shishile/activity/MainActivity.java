@@ -1,4 +1,4 @@
-package com.yxl.shishile.shishile;
+package com.yxl.shishile.shishile.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
 import com.yinglan.alphatabs.AlphaTabsIndicator;
+import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
+import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.yxl.shishile.shishile.openprize.OpenPrizeFragment;
-import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
         >
-        <activity android:name=".WelcomeActivity"
+        <activity android:name=".activity.WelcomeActivity"
             android:theme="@style/WelcomeStyle"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
@@ -22,20 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             >
         </activity>
 
-        <activity android:name=".openprize.OpenPrizeActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            ></activity>
-
         <activity
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:name=".LotteryActivity"
+            android:name=".activity.LotteryActivity"
             android:label="@string/title_activity_lottery"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
