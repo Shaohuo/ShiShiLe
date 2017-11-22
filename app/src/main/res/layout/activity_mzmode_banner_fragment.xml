@@ -30,14 +30,42 @@
                 app:indicatorPaddingLeft="10dp"
                 app:open_mz_mode="true" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="1dp"
-                android:background="#FFF"
-                android:gravity="center"
-                android:text="热门彩票"
-                android:textColor="#000000" />
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:background="#FFF"
+                    android:gravity="end"
+                    android:text="—"
+                    android:textColor="#f83e3f" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFF"
+                    android:gravity="center"
+                    android:text="热门彩票"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:background="#FFF"
+                    android:gravity="start"
+                    android:text="—"
+                    android:textColor="#f83e3f" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -334,15 +362,13 @@
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@mipmap/img3" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="重庆时时彩" />
+                            android:gravity="center" />
                     </LinearLayout>
                 </LinearLayout>
 
