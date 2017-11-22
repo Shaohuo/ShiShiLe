@@ -1,7 +1,5 @@
 package com.yxl.shishile.shishile.openprize;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +12,13 @@ import android.view.ViewGroup;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.HashMap;
 
+import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
+import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +31,7 @@ import retrofit2.Response;
  * Use the {@link OpenPrizeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OpenPrizeFragment extends Fragment {
+public class OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +42,7 @@ public class OpenPrizeFragment extends Fragment {
     private String mParam2;
     private MyPrizeAdapter mAdapter;
     private RecyclerView mRecyclerView;
+    private BGARefreshLayout mRefreshLayout;
 
 
     public OpenPrizeFragment() {
@@ -79,12 +82,21 @@ public class OpenPrizeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_open_prize, container, false);
+
+        mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.rl_modulename_refresh);
+        // 为BGARefreshLayout 设置代理
+        mRefreshLayout.setDelegate(this);
+        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        BGARefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(getContext(), true);
+        // 设置下拉刷新和上拉加载更多的风格
+        mRefreshLayout.setRefreshViewHolder(refreshViewHolder);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-//创建默认的线性LayoutManager
+        //创建默认的线性LayoutManager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         mAdapter = new MyPrizeAdapter();
         mRecyclerView.setAdapter(mAdapter);
         return view;
@@ -92,23 +104,28 @@ public class OpenPrizeFragment extends Fragment {
 
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
 
-
+    public static int LOTTERY_LIST_COUNT = 11;
 
     @Override
     public void onResume() {
         super.onResume();
+        mRefreshLayout.beginRefreshing();
+    }
+
+    private void loadPrizeListData() {
         mLotteryMaps.clear();
         for (int i = 0; i < 11; i++) {
             final int index = i + 1;
             Call<Lottery> call = ApiManager.getInstance().create(ApiServer.class).getLottery(index, "qzcx72trd7ax5w90");
             call.enqueue(new Callback<Lottery>() {
                 @Override
-                public void onResponse(Call<Lottery> call, Response<Lottery> response)  {
+                public void onResponse(Call<Lottery> call, Response<Lottery> response) {
+                    mRefreshLayout.endRefreshing();
                     if (response.isSuccessful()) {
                         Lottery body = response.body();
                         Log.e("OpenPrizeFragment", "" + index + " " + body);
                         mLotteryMaps.put(index, body);
-                        if (mLotteryMaps.size() == 11) {
+                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
                             mRecyclerView.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -126,9 +143,20 @@ public class OpenPrizeFragment extends Fragment {
                 @Override
                 public void onFailure(Call<Lottery> call, Throwable t) {
                     Log.e("OpenPrizeFragment", "" + t.getMessage());
+                    mRefreshLayout.endRefreshing();
                 }
             });
         }
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        loadPrizeListData();
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        return false;
     }
 
     /**

@@ -35,23 +35,23 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         return vh;
     }
 
-    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06};
+    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07, R.id.six_num_08, R.id.six_num_09, R.id.six_num_10};
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.mTvPrizeName.setText("" + mNames[position]);
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
-        Lottery lottery = mLotteryMaps.get(position+1);
+        Lottery lottery = mLotteryMaps.get(position + 1);
         if (lottery != null) {
-            viewHolder.mTvOpenTime.setText("" + lottery.time);
-            viewHolder.mTvPrizeNum.setText("" + lottery.number);
+            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
+            viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
             String[] split = lottery.data.split(",");
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < mTvDataIds.length; i++) {
                 TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
                 if (i < split.length) {
                     mTvData.setText("" + split[i]);
                     mTvData.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     mTvData.setVisibility(View.GONE);
                 }
             }

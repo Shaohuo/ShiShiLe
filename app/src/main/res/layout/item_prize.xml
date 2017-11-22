@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="100dp">
 
     <ImageView
         android:id="@+id/ivPrize"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
@@ -18,7 +18,8 @@
         android:id="@+id/tvPrizename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivPrize"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="12dp"
         android:layout_toRightOf="@+id/ivPrize"
         android:text="重庆时时彩"
@@ -30,24 +31,27 @@
         android:id="@+id/tvPrizeNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvPrizename"
-        android:layout_toRightOf="@+id/tvPrizename"
-        android:layout_marginLeft="8dp"
-        android:text="20171121061"
+        android:text="第20171121061期"
         android:textSize="12dp"
         android:textColor="@android:color/darker_gray"
+        android:layout_alignTop="@+id/tvPrizename"
+        android:layout_toRightOf="@+id/tvPrizename"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="2dp"
         />
 
     <TextView
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvPrizeNum"
-        android:layout_toRightOf="@+id/tvPrizeNum"
-        android:layout_marginLeft="8dp"
-        android:text="2017-11-21 16:11:25"
+        android:text="开奖时间:2017-11-21 16:11:25"
         android:textColor="@android:color/darker_gray"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        android:layout_below="@+id/tvPrizename"
+        android:layout_toRightOf="@+id/ivPrize"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        />
 
     <LinearLayout
         android:id="@+id/llData"
@@ -57,7 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/ivPrize"
         android:layout_marginLeft="12dp"
-        android:layout_alignBottom="@+id/ivPrize"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         >
 
         <TextView
@@ -121,8 +126,47 @@
             android:background="@drawable/shape_textview_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_07"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_08"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_09"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_10"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
 
 </RelativeLayout>
