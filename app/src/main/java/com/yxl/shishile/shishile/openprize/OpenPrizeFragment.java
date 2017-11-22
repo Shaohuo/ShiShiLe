@@ -1,7 +1,5 @@
 package com.yxl.shishile.shishile.openprize;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -92,7 +90,7 @@ public class OpenPrizeFragment extends Fragment {
 
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
 
-
+    public static int LOTTERY_LIST_COUNT = 11;
 
     @Override
     public void onResume() {
@@ -103,12 +101,12 @@ public class OpenPrizeFragment extends Fragment {
             Call<Lottery> call = ApiManager.getInstance().create(ApiServer.class).getLottery(index, "qzcx72trd7ax5w90");
             call.enqueue(new Callback<Lottery>() {
                 @Override
-                public void onResponse(Call<Lottery> call, Response<Lottery> response)  {
+                public void onResponse(Call<Lottery> call, Response<Lottery> response) {
                     if (response.isSuccessful()) {
                         Lottery body = response.body();
                         Log.e("OpenPrizeFragment", "" + index + " " + body);
                         mLotteryMaps.put(index, body);
-                        if (mLotteryMaps.size() == 11) {
+                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
                             mRecyclerView.post(new Runnable() {
                                 @Override
                                 public void run() {
