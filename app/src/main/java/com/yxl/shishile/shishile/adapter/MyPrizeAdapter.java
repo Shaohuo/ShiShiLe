@@ -1,4 +1,4 @@
-package com.yxl.shishile.shishile.openprize;
+package com.yxl.shishile.shishile.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.model.Lottery;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.yxl.shishile.shishile.openprize;
+package com.yxl.shishile.shishile.model;
 
 /**
  * Created by Administrator on 2017/11/21 0021.

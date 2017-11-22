@@ -1,4 +1,4 @@
-package com.yxl.shishile.shishile.openprize;
+package com.yxl.shishile.shishile.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.HashMap;
