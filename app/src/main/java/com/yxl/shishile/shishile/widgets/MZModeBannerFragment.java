@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.ForecastActivity;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
@@ -149,6 +150,8 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
                 Toast.makeText(getContext(), "测试点击事件", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.hubei:
+                Intent intent1 = new Intent(view.getContext(), ForecastActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.liuhecai:
                 Intent intent = new Intent(view.getContext(), LotteryActivity.class);
