@@ -21,6 +21,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
 
     private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
     private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
+    private int[] mDataCounts = new int[]{5,3,7,5,3, 3, 5, 3, 5, 10,5};
 
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
 
@@ -42,19 +43,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.mTvPrizeName.setText("" + mNames[position]);
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
-        Lottery lottery = mLotteryMaps.get(position + 1);
-        if (lottery != null) {
-            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
-            viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
-            String[] split = lottery.data.split(",");
-            for (int i = 0; i < mTvDataIds.length; i++) {
-                TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
-                if (i < split.length) {
-                    mTvData.setText("" + split[i]);
-                    mTvData.setVisibility(View.VISIBLE);
-                } else {
-                    mTvData.setVisibility(View.GONE);
-                }
+        for (int i = 0; i < mTvDataIds.length; i++) {
+            TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
+            if (i < mDataCounts[position]) {
+                mTvData.setText("");
+                mTvData.setVisibility(View.VISIBLE);
+            } else {
+                mTvData.setVisibility(View.GONE);
             }
         }
     }

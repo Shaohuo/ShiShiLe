@@ -35,4 +35,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'cn.bingoogolapple:bga-refreshlayout:+@aar'
     compile 'com.github.iwgang:countdownview:2.1.6'
+    compile 'org.greenrobot:eventbus:3.1.1'
 }
