@@ -1,9 +1,4 @@
 package com.yxl.shishile.shishile.widgets;
-
-/**
- * Created by Administrator on 2017/11/21 0021.
- */
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;

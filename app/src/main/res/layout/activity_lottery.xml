@@ -9,11 +9,11 @@
     tools:context="com.yxl.shishile.shishile.activity.LotteryActivity">
     <TextView
         android:id="@+id/lottery_title"
-        android:text="香港六合彩"
+        android:text="重庆时时彩"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#D91F00"
+        android:background="#f83e3f"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
     <LinearLayout
@@ -22,13 +22,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_gravity="center"
-            android:textColor="#000000"
-            android:id="@+id/cycle_id"
-            android:layout_marginTop="20dp"
-            android:text="第179期"
-            android:textSize="14sp"
+
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -37,22 +31,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_gravity="center"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:text="开奖时间："
+                android:text="下期开奖时间："
                 android:layout_marginTop="35dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="35dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:visibility="gone"
+                android:id="@+id/KaiJiang"
+                android:textSize="17sp"
+                android:layout_gravity="center"
                 android:textColor="#000000"
-                android:id="@+id/lottery_time"
-                android:text="18:00"
-                android:textSize="30sp"
-                android:layout_marginTop="38dp"
-                android:layout_marginLeft="25dp"
+                android:text="正在开奖!!!"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="35dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <cn.iwgang.countdownview.CountdownView
+                android:layout_gravity="center"
+                android:id="@+id/cv_countdownViewTest1"
+                 android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isHideTimeBackground="true"
+                app:isShowDay="true"
+                app:isShowHour="true"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:isShowMillisecond="true"
+                app:timeTextColor="#000000"
+                app:timeTextSize="22sp"
+                app:isTimeTextBold="true"
+                app:suffixGravity="bottom"
+                app:suffixTextColor="#000000"
+                app:suffixTextSize="12sp"
+                app:suffixHour="时"
+                app:suffixMinute="分"
+                app:suffixSecond="秒"
+                app:suffixMillisecond="毫秒" />
         </LinearLayout>
     </LinearLayout>
 
@@ -64,6 +86,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:id="@+id/cycle_id"
+            android:text="第179期"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <TextView
             android:text="开奖号码"
             android:textColor="#000000"
@@ -92,16 +123,17 @@
                 android:width="30dp"
                 android:height="30dp"
                 android:background="@drawable/shape_textview" />
+
             <TextView
                 android:id="@+id/six_num_02"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:height="30dp"
-                android:width="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_textview"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:width="30dp"
+                android:height="30dp"
+                android:background="@drawable/shape_textview"
+                android:gravity="center"
+                android:textColor="@color/black" />
             <TextView
                 android:id="@+id/six_num_03"
                 android:textColor="@color/black"
@@ -142,14 +174,7 @@
                 android:background="@drawable/shape_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="@color/black"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="2dp"
-                android:textSize="25sp"
-                android:text="+"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/six_num_07"
                 android:textColor="@color/black"
