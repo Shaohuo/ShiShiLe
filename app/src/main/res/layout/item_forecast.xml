@@ -19,161 +19,161 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
         android:layout_toRightOf="@+id/ivPrize"
         android:text="重庆时时彩"
+        android:textSize="16dp"
         android:textColor="@android:color/black"
-        android:textSize="16dp" />
+        />
 
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/right_p" />
     <TextView
+
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvPrizename"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="4dp"
+        android:layout_alignBaseline="@+id/tvPrizename"
+        android:layout_alignBottom="@+id/tvPrizename"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_toEndOf="@+id/tvPrizename"
         android:layout_toRightOf="@+id/tvPrizename"
         android:text="下期开奖时间:2017-11-21 16:11:25"
         android:textColor="@android:color/darker_gray"
-        android:textSize="9dp" />
-
-    <LinearLayout
-        android:id="@+id/llData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="25dp"
-        android:layout_toRightOf="@+id/ivPrize"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/six_num_01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_04"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_05"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_06"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_07"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_08"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_09"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/six_num_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:width="20dp"
-            android:height="20dp"
-            android:background="@drawable/shape_textview"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-
-    </LinearLayout>
+        android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/llData"
         android:layout_alignStart="@+id/llData"
         android:layout_centerVertical="true"
-        android:text="下期预测结果如下:"
-        android:textColor="@android:color/holo_red_light"
-        android:textStyle="bold"
-        android:textSize="12dp"
-        />
+        android:text="下期开奖预测："
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        android:id="@+id/textView" />
 
+    <LinearLayout
+        android:id="@+id/llData"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivPrize"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/six_num_01"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:width="20dp"
+            android:height="20dp"
+            android:background="@drawable/shape_textview" />
+        <TextView
+            android:id="@+id/six_num_02"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_03"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_04"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_05"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_06"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_07"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_08"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_09"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/six_num_10"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:height="20dp"
+            android:width="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/shape_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </RelativeLayout>
