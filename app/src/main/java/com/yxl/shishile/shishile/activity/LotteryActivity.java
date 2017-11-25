@@ -29,7 +29,6 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
     int index = 1;
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
     int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07};
-    private TextView cycleId;
     private CountdownView mCvCountdownView;
     private TextView mTvOpenPrize;
 
@@ -39,7 +38,6 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
         setContentView(R.layout.activity_lottery);
         mCvCountdownView = (CountdownView) findViewById(R.id.cv_countdownViewTest1);
         mTvOpenPrize = findViewById(R.id.tvOpenPrize);
-        cycleId = findViewById(R.id.cycle_id);
         mCvCountdownView.setOnCountdownEndListener(this);
         loadLotteryData();//获得时间差
     }
@@ -82,11 +80,9 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
                 OpenCountDownEvent countDownEvent = new OpenCountDownEvent();
                 countDownEvent.setLottery(body);
                 EventBus.getDefault().post(countDownEvent);
-
                 String[] split = body.data.split(",");
                 String number = body.number;
                 String time = body.time;
-                cycleId.setText("第" + number + "期");
                 for (int i = 0; i < 7; i++) {
                     TextView mTvData = findViewById(mTvDataIds[i]);
                     if (i < split.length) {

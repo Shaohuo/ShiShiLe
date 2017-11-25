@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CDCDCD"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.yxl.shishile.shishile.activity.LotteryActivity">
 
@@ -15,202 +15,175 @@
         android:layout_gravity="center"
         android:background="#f83e3f"
         android:gravity="center"
-        android:text="重庆时时彩"
+        android:text="时时乐"
         android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#Ffffff"
         android:orientation="vertical">
 
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvOpenTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="35dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="35dp"
-                android:text="下期开奖时间："
-                android:textColor="#000000"
-                android:textSize="17sp" />
+                android:layout_gravity="center_horizontal"
+                android:text="下期开奖时间"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="20dp"
+                android:layout_marginTop="14dp"
+                />
 
-            <TextView
-                android:id="@+id/tvOpenPrize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/tvOpenTime"
-                android:text="正在开奖!!!"
-                android:textColor="#000000"
-                android:textSize="17sp"
-                android:visibility="invisible" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="14dp"
+                >
 
-            <cn.iwgang.countdownview.CountdownView
-                android:id="@+id/cv_countdownViewTest1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@+id/tvOpenTime"
-                app:isHideTimeBackground="true"
-                app:isShowDay="true"
-                app:isShowHour="true"
-                app:isShowMillisecond="true"
-                app:isShowMinute="true"
-                app:isShowSecond="true"
-                app:isTimeTextBold="true"
-                app:suffixGravity="bottom"
-                app:suffixHour="时"
-                app:suffixMillisecond="毫秒"
-                app:suffixMinute="分"
-                app:suffixSecond="秒"
-                app:suffixTextColor="#000000"
-                app:suffixTextSize="12sp"
-                app:timeTextColor="#000000"
-                app:timeTextSize="22sp" />
-        </RelativeLayout>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvOpenPrize"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="正在开奖!!!"
+                    android:textColor="#000000"
+                    android:textSize="17sp"
+                    android:visibility="invisible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="3dp"
-        android:background="#ffff"
-        android:orientation="vertical">
+                <cn.iwgang.countdownview.CountdownView
+                    android:id="@+id/cv_countdownViewTest1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:isHideTimeBackground="true"
+                    app:isShowDay="false"
+                    app:isShowHour="true"
+                    app:isShowMillisecond="false"
+                    app:isShowMinute="true"
+                    app:isShowSecond="true"
+                    app:isTimeTextBold="true"
+                    app:suffixGravity="bottom"
+                    app:suffixHour="时"
+                    app:suffixMinute="分"
+                    app:suffixSecond="秒"
+                    app:suffixTextColor="#000000"
+                    app:suffixTextSize="12sp"
+                    app:timeTextColor="#000000"
+                    app:timeTextSize="30dp" />
 
-        <TextView
-            android:id="@+id/cycle_id"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="第179期"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="109dp"
+                    android:layout_marginEnd="53dp"
+                    android:layout_marginRight="53dp"
+                    android:gravity="center"
+                    android:text="第20170505期"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="开奖号码"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/six_num_01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:text="15"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_05"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_06"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/six_num_07"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:width="30dp"
-                android:height="30dp"
-                android:background="@drawable/shape_textview_red"
-                android:gravity="center"
-                android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_height="5dp"
+        android:background="#e1e1e1">
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="开  奖  号  码"
+        android:textColor="@color/red"
+        android:textSize="34dp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="第2017050630期"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="14dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_corner"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="第20170505期"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            />
+        <include layout="@layout/layout_lotter_ball_small" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="第20170505期"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            />
+        <include layout="@layout/layout_lotter_ball_small"/>
+
+        <include layout="@layout/layout_lotter_ball_small"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <include layout="@layout/layout_lotter_ball_medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#ffff" />
+        ></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#e1e1e1"
+        android:orientation="horizontal"
+        ></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -222,20 +195,55 @@
         android:background="#ffff"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ffff"
-            android:text="历史记录"
-            android:textColor="#000000" />
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@mipmap/ic_histroy"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:text="历史记录"
+                android:textColor="#000000"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#e1e1e1"
+            android:orientation="vertical"
+            ></LinearLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ffff"
-            android:text="走势预测"
-            android:textColor="#000000" />
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@mipmap/ic_forecast"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:text="走势预测"
+                android:textColor="#000000"
+                />
+        </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
