@@ -1,253 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     tools:context="com.yxl.shishile.shishile.activity.LotteryActivity">
 
-    <TextView
-        android:id="@+id/lottery_title"
+    <RelativeLayout
+        android:id="@+id/rlBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="#f83e3f"
-        android:gravity="center"
-        android:text="时时乐"
-        android:textColor="#FFFFFF" />
+        android:layout_height="100dp"
+        android:background="@color/red_f83e3f">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_arrow_left" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/ivLotteryBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:src="@mipmap/bg_countdown_chongqing"
+            android:adjustViewBounds="true"
+            />
 
-            <TextView
-                android:id="@+id/tvOpenTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="下期开奖时间"
-                android:textColor="@android:color/holo_red_light"
-                android:textSize="20dp"
-                android:layout_marginTop="14dp"
-                />
+        <TextView
+            android:id="@+id/tvLotteryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="20dp"
+            android:text="重庆时时彩"
+            android:textColor="@color/red_f83e3f"
+            android:textSize="20dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="14dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="14dp"
-                >
 
-                <TextView
-                    android:id="@+id/tvOpenPrize"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="正在开奖!!!"
-                    android:textColor="#000000"
-                    android:textSize="17sp"
-                    android:visibility="invisible" />
 
-                <cn.iwgang.countdownview.CountdownView
-                    android:id="@+id/cv_countdownViewTest1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    app:isHideTimeBackground="true"
-                    app:isShowDay="false"
-                    app:isShowHour="true"
-                    app:isShowMillisecond="false"
-                    app:isShowMinute="true"
-                    app:isShowSecond="true"
-                    app:isTimeTextBold="true"
-                    app:suffixGravity="bottom"
-                    app:suffixHour="时"
-                    app:suffixMinute="分"
-                    app:suffixSecond="秒"
-                    app:suffixTextColor="#000000"
-                    app:suffixTextSize="12sp"
-                    app:timeTextColor="#000000"
-                    app:timeTextSize="30dp" />
+        <TextView
+            android:id="@+id/tvLotteryNum"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/tvLotteryName"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="第2017050630期"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="109dp"
-                    android:layout_marginEnd="53dp"
-                    android:layout_marginRight="53dp"
-                    android:gravity="center"
-                    android:text="第20170505期"
-                    android:textColor="@color/black" />
-            </RelativeLayout>
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/cv_countdownViewTest1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvLotteryName"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tvLotteryName"
+            app:isHideTimeBackground="true"
+            app:isShowDay="false"
+            app:isShowHour="true"
+            app:isShowMillisecond="false"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:isTimeTextBold="true"
+            app:suffixGravity="bottom"
+            app:suffixHour=":"
+            app:suffixMinute=":"
+            app:suffixSecond=""
+            app:suffixTextColor="@color/red_f83e3f"
+            app:suffixTextSize="12sp"
+            app:timeTextColor="@color/red_f83e3f"
+            app:timeTextSize="20dp" />
 
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvOpenPrize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cv_countdownViewTest1"
+            android:layout_alignStart="@+id/cv_countdownViewTest1"
+            android:layout_alignTop="@+id/tvLotteryNum"
+            android:gravity="center"
+            android:text="      即将开奖"
+            android:textColor="@color/red_f83e3f"
+            android:textSize="12dp" />
+    </RelativeLayout>
 
-    <LinearLayout
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#e1e1e1">
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="开  奖  号  码"
-        android:textColor="@color/red"
-        android:textSize="34dp"
-        android:textStyle="bold" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="第2017050630期"
-        android:textColor="@color/black"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:paddingBottom="14dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/shape_corner"
-        android:orientation="vertical"
-        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlBar"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="第20170505期"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            />
-        <include layout="@layout/layout_lotter_ball_small" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="第20170505期"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            />
-        <include layout="@layout/layout_lotter_ball_small"/>
-
-        <include layout="@layout/layout_lotter_ball_small"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <include layout="@layout/layout_lotter_ball_medium" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        ></LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#e1e1e1"
-        android:orientation="horizontal"
-        ></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#ffff"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-            <ImageView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@mipmap/ic_histroy"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#ffff"
-                android:text="历史记录"
-                android:textColor="#000000"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="2dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#e1e1e1"
-            android:orientation="vertical"
-            ></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@mipmap/ic_forecast"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#ffff"
-                android:text="走势预测"
-                android:textColor="#000000"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+            android:scrollbars="vertical" />
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+</RelativeLayout>

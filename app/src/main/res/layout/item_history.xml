@@ -1,58 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:orientation="vertical">
+    android:layout_height="80dp">
 
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+    <TextView
+        android:id="@+id/tvLotteryNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第20171130023期"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        />
 
-        <TextView
-            android:background="#D5D5D5"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/qishu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.2"
-            android:gravity="center"
-            android:text="第20171127065期"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:background="#D5D5D5"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-        <include layout="@layout/layout_lotter_ball_small"/>
-    </LinearLayout>
-
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvLotteryTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tvLotteryNum"
+        android:layout_marginRight="20dp"
+        android:text="2017-11-30 01:55:40开奖"
+        android:textSize="14dp"
+        android:textColor="@android:color/darker_gray"
+        />
+    <include layout="@layout/layout_lotter_ball_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLotteryNum"
+        android:layout_alignLeft="@+id/tvLotteryNum"
+        android:layout_marginTop="10dp"
+        />
+</RelativeLayout>

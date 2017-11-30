@@ -14,6 +14,7 @@ import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.model.Lottery;
+import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.HashMap;
@@ -118,32 +119,32 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
         mLotteryMaps.clear();
         for (int i = 0; i < 11; i++) {
             final int index = i + 1;
-            Call<Lottery> call = ApiManager.getInstance().create(ApiServer.class).getLottery(index, "qzcx72trd7ax5w90");
-            call.enqueue(new Callback<Lottery>() {
+            Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryList(index, "qzcx72trd7ax5w90");
+            call.enqueue(new Callback<LotteryList>() {
                 @Override
-                public void onResponse(Call<Lottery> call, Response<Lottery> response) {
+                public void onResponse(Call<LotteryList> call, Response<LotteryList> response) {
                     mRefreshLayout.endRefreshing();
                     if (response.isSuccessful()) {
-                        Lottery body = response.body();
+                        LotteryList body = response.body();
                         Log.e("OpenPrizeFragment", "" + index + " " + body);
-                        mLotteryMaps.put(index, body);
-                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
-                            mRecyclerView.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mAdapter.setData(mLotteryMaps);
-                                    mAdapter.notifyDataSetChanged();
-                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
-                                }
-                            });
-                        }
+//                        mLotteryMaps.put(index, body);
+//                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
+//                            mRecyclerView.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mAdapter.setData(mLotteryMaps);
+//                                    mAdapter.notifyDataSetChanged();
+//                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
+//                                }
+//                            });
+//                        }
                     } else {
                         Log.e("OpenPrizeFragment", "unsuccess");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Lottery> call, Throwable t) {
+                public void onFailure(Call<LotteryList> call, Throwable t) {
                     Log.e("OpenPrizeFragment", "" + t.getMessage());
                     mRefreshLayout.endRefreshing();
                 }
