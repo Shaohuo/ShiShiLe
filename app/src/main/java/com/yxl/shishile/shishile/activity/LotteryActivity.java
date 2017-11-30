@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,6 +71,12 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
         mTvLotteryName = findViewById(R.id.tvLotteryName);
         mIvLotteryBar = findViewById(R.id.ivLotteryBar);
         mTvOpenPrize = findViewById(R.id.tvOpenPrize);
+        findViewById(R.id.ivBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         mTvLotteryName.setText(mNames[mIndex - 1]);
         mIvLotteryBar.setImageResource(mImgs[mIndex - 1]);
         mCvCountdownView.setOnCountdownEndListener(this);
@@ -139,6 +146,7 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
             public void onResponse(Call<LotteryList> call, Response<LotteryList> response) {
                 mRefreshLayout.endRefreshing();
                 LotteryList body = response.body();
+                Log.d("LotteryActivity", "" + response.toString());
                 if (body.data != null && body.data.size() > 0) {
                     mLotteryList.clear();
                     mLotteryList.addAll(body.data);
@@ -166,6 +174,7 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
 
             @Override
             public void onFailure(Call<LotteryList> call, Throwable t) {
+                Log.d("LotteryActivity", "onFailure");
                 mRefreshLayout.endRefreshing();
             }
         });
