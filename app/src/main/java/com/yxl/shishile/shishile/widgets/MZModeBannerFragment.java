@@ -16,16 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gongwen.marqueen.MarqueeFactory;
+import com.gongwen.marqueen.SimpleMF;
+import com.gongwen.marqueen.SimpleMarqueeView;
 import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ForecastActivity;
+import com.yxl.shishile.shishile.activity.MainActivity;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -34,9 +40,8 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
     public static final String TAG = "MZModeBannerFragment";
     public static final int []BANNER = new int[]{R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3,R.mipmap.banner4,R.mipmap.banner5};
     private MZBannerView mMZBanner;
-    //    private ListView topicListView;
-//    private TopicListViewAdapter topicListViewAdapter;
-//    private List<TopicListViewItem.MenuitemBean> menuitemBeans = new ArrayList<>();
+    private final List<String> datas = Arrays.asList("《赋得古原草送别》", "离离原上草，一岁一枯荣。", "野火烧不尽，春风吹又生。", "远芳侵古道，晴翠接荒城。", "又送王孙去，萋萋满别情。");
+    private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
 
 
@@ -47,6 +52,7 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
 
     private void initView(View view) {
 
+        marqueeView = view.findViewById(R.id.marqueeView);
         LinearLayout chongqingLiner = view.findViewById(R.id.chongqing);
         LinearLayout hubeiLiner = view.findViewById(R.id.hubei);
         LinearLayout liuhecaiLiner = view.findViewById(R.id.liuhecai);
@@ -69,6 +75,8 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
         jiangxiLiner.setOnClickListener(this);
         beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
+
+        initMarqueeView();
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
         mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
@@ -125,21 +133,23 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
                 return new BannerViewHolder();
             }
         });
-
-//        mNormalBanner = (MZBannerView) view.findViewById(R.id.banner_normal);
-//        mNormalBanner.setPages(list, new MZHolderCreator<BannerViewHolder>() {
-//            @Override
-//            public BannerViewHolder createViewHolder() {
-//                return new BannerViewHolder();
-//            }
-//        });
-
-//        topicListView=view.findViewById(android.R.id.list);
-//        topicListViewAdapter = new TopicListViewAdapter(getContext(), menuitemBeans);
-
     }
 
-
+    /**
+     * 跑马灯数据初始化
+     */
+    private void initMarqueeView() {
+        SimpleMF<String> marqueeFactory = new SimpleMF(getContext());
+        marqueeFactory.setOnItemClickListener(new MarqueeFactory.OnItemClickListener<TextView, String>() {
+            @Override
+            public void onItemClickListener(MarqueeFactory.ViewHolder<TextView, String> holder) {
+                Toast.makeText(getContext(), holder.data, Toast.LENGTH_SHORT).show();
+            }
+        });
+        marqueeFactory.setData(datas);
+        marqueeView.setMarqueeFactory(marqueeFactory);
+        marqueeView.startFlipping();
+    }
 
 
 
@@ -176,29 +186,6 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
         }
 
     }
-
-//    private void initData() {
-//        // topicListView = getListView();
-//        // topicListView.setTextFilterEnabled(true);
-//        // topicListView = view.findViewById(R.id.topic_listview);
-////添加数据到listview中
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl(Url.url).addConverterFactory(GsonConverterFactory.create()).build();
-//        ApiService apiService = retrofit.create(ApiService.class);
-//        final Call<TopicListViewItem> list = apiService.getTopic_json();
-//        list.enqueue(new Callback<TopicListViewItem>() {
-//            @Override
-//            public void onResponse(Call<TopicListViewItem> call, Response<TopicListViewItem> response) {
-//                menuitemBeans.addAll(response.body().getMenuitem());
-//                topicListView.setAdapter(topicListViewAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<TopicListViewItem> call, Throwable t) {
-//                Toast.makeText(getContext(), "aaaaaa", Toast.LENGTH_LONG).show();
-//            }
-//
-//        });
-//    }
 
     public static class BannerViewHolder implements MZViewHolder<Integer> {
         private ImageView mImageView;
