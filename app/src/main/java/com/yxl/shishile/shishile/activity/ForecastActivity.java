@@ -11,7 +11,6 @@ import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
-import com.yxl.shishile.shishile.bean.historyBean;
 import com.yxl.shishile.shishile.event.OpenCountDownEvent;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.Url;

@@ -1,5 +1,6 @@
 package com.yxl.shishile.shishile.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
@@ -104,6 +107,14 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         mAdapter = new MyPrizeAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new MyPrizeAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view , int position){
+                Intent intent = new Intent(view.getContext(), LotteryActivity.class);
+                intent.putExtra("index", position + 1);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
