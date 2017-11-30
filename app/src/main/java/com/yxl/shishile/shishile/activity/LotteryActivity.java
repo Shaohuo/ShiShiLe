@@ -2,6 +2,7 @@ package com.yxl.shishile.shishile.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
@@ -38,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LotteryActivity extends Activity implements CountdownView.OnCountdownEndListener,
+public class LotteryActivity extends SwipeBackActivity implements CountdownView.OnCountdownEndListener,
         BGARefreshLayout.BGARefreshLayoutDelegate {
     int index = 1;
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
@@ -100,7 +102,7 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mRefreshLayout.postDelayed(new Runnable() {
             @Override
@@ -109,6 +111,7 @@ public class LotteryActivity extends Activity implements CountdownView.OnCountdo
             }
         }, 500);
     }
+
 
     @Override
     protected void onDestroy() {
