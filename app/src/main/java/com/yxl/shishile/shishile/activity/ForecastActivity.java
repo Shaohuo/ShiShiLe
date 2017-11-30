@@ -27,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ForecastActivity extends AppCompatActivity {
+public class ForecastActivity extends BaseActivity {
 
 //    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07};
 //    List<historyBean.MenuitemBean> menuitemBeans = new ArrayList<>();
