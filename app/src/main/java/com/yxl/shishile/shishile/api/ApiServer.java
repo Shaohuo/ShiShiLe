@@ -1,5 +1,6 @@
 package com.yxl.shishile.shishile.api;
 
+import com.yxl.shishile.shishile.bean.historyBean;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
 

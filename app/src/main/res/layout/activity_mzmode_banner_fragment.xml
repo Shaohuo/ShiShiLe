@@ -53,6 +53,82 @@
                     android:layout_weight="1"
                     android:background="#FFF"
                     android:gravity="center"
+                    android:text="精准预测"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:background="#FFF"
+                    android:gravity="start"
+                    android:text="—"
+                    android:textColor="#f83e3f" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_oval_radius"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/speaker" />
+
+                    <com.gongwen.marqueen.SimpleMarqueeView
+                        android:id="@+id/marqueeView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:flipInterval="2600"
+                        android:inAnimation="@anim/in_left"
+                        android:outAnimation="@anim/out_right"
+                        app:marqueeAnimDuration="2000"
+                        app:smvTextColor="#A1A1A1"
+                        app:smvTextGravity="center_vertical"
+                        app:smvTextSize="12sp"></com.gongwen.marqueen.SimpleMarqueeView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:background="#FFF"
+                    android:gravity="end"
+                    android:text="—"
+                    android:textColor="#f83e3f" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFF"
+                    android:gravity="center"
                     android:text="热门彩票"
                     android:textColor="#000000" />
 
@@ -75,29 +151,36 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/chongqing"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_1" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="重庆时时彩" />
 
                     </LinearLayout>
@@ -105,52 +188,66 @@
                     <LinearLayout
                         android:id="@+id/hubei"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_2" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="湖北快3" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/liuhecai"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_3" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="六合彩" />
 
                     </LinearLayout>
@@ -158,229 +255,292 @@
                     <LinearLayout
                         android:id="@+id/guangdong"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_4" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="广东11选5" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/fucai"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_5" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="福彩3D" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/pailie"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_6" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="排列3" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/xinjiang"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_7" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="新疆时时彩" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/jiangsu"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_8" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="江苏快3" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/jiangxi"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_9" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="江西11选5" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/beijing"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_10" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="北京PK10" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/shandong"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@mipmap/ic_lottery_11" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="2"
-                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:text="山东11选5" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/sex_selected_bg"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/sex_selected_bg"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="0.2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_weight="1" />
 
                         <TextView
+                            android:layout_marginLeft="10dp"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_vertical"
                             android:layout_weight="2"
-                            android:gravity="center" />
+                            android:gravity="center_vertical" />
                     </LinearLayout>
                 </LinearLayout>
 

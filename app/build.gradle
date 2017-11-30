@@ -36,4 +36,6 @@ dependencies {
     compile 'cn.bingoogolapple:bga-refreshlayout:+@aar'
     compile 'com.github.iwgang:countdownview:2.1.6'
     compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.gongwen:marqueelibrary:1.1.2'
+
 }

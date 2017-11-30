@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
-        mViewPger.setOffscreenPageLimit(4);
+        mViewPger.setOffscreenPageLimit(5);
 
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
             fragments.add(new ForecastFragment());
+            fragments.add(new OpenPrizeFragment());
 //            fragments.add(new MZModeBannerFragment());
         }
 
