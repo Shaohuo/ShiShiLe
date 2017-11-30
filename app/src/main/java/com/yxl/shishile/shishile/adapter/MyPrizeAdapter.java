@@ -70,7 +70,9 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         public TextView mTvPrizeName;
         public TextView mTvPrizeNum;
         public TextView mTvOpenTime;
+        public ImageView loveImg;
         public LinearLayout mLlData;
+        public int i = 0;
 
         public ViewHolder(View view) {
             super(view);
@@ -79,6 +81,20 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
             mTvPrizeNum = (TextView) view.findViewById(R.id.tvPrizeNum);
             mTvOpenTime = (TextView) view.findViewById(R.id.tvOpenTime);
             mLlData = (LinearLayout) view.findViewById(R.id.llData);
+            loveImg = view.findViewById(R.id.love_img);
+            loveImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (i == 0) {
+                        loveImg.setImageResource(R.mipmap.love1);
+                        i = 1;
+                    }
+                    else {
+                        loveImg.setImageResource(R.mipmap.love);
+                        i = 0;
+                    }
+                }
+            });
         }
     }
 }

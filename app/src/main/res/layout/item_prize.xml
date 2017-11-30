@@ -40,6 +40,17 @@
         android:layout_marginTop="2dp"
         />
 
+    <ImageView
+        android:id="@+id/love_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/llData"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="5dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:src="@mipmap/love" />
     <TextView
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"

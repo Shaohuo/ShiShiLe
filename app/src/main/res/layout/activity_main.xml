@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="时时彩"
+        android:text="时时乐"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"
@@ -75,7 +75,7 @@
             android:padding="5dp"
             app:tabIconNormal="@mipmap/person1"
             app:tabIconSelected="@mipmap/person"
-            app:tabText="我的"
+            app:tabText="个人中心"
             app:tabTextSize="13sp"
             app:textColorNormal="#999999"
             app:textColorSelected="#f83e3f" />

@@ -1,6 +1,7 @@
 package com.yxl.shishile.shishile.fragment;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
@@ -34,7 +36,7 @@ import retrofit2.Response;
  * Use the {@link OpenPrizeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
+public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,7 +48,6 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
     private MyPrizeAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private BGARefreshLayout mRefreshLayout;
-
 
     public OpenPrizeFragment() {
         // Required empty public constructor
@@ -85,6 +86,7 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_open_prize, container, false);
+
 
         mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.rl_modulename_refresh);
         // 为BGARefreshLayout 设置代理
@@ -161,6 +163,11 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
         return false;
     }
+
+//    @Override
+//    public void onClick(View view) {
+//
+//    }
 
     /**
      * This interface must be implemented by activities that contain this
