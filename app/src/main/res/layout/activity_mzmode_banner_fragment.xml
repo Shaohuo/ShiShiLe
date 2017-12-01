@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="widgets.MZModeBannerFragment">
 
+    <TextView
+        android:text="时时乐"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#f83e3f"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <ScrollView
         android:layout_width="match_parent"

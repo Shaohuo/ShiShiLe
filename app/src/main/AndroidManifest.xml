@@ -15,29 +15,26 @@
             android:name=".activity.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/WelcomeTheme"
-            >
+            android:theme="@style/WelcomeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/MainSwipeBackTheme"
-            ></activity>
+            android:theme="@style/MainSwipeBackTheme" />
         <activity
             android:name=".activity.LotteryActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_lottery"
             android:screenOrientation="portrait"
-            android:theme="@style/SwipeBackTheme"
-            />
-        <activity android:name=".activity.ForecastActivity"></activity>
+            android:theme="@style/SwipeBackTheme" />
+        <activity android:name=".activity.ForecastActivity" />
+        <activity android:name=".fragment.PersonFragment"></activity>
     </application>
 
 </manifest>
