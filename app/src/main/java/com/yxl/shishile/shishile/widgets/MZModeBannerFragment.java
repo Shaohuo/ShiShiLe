@@ -39,7 +39,7 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
     public static final String TAG = "MZModeBannerFragment";
     public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
     private MZBannerView mMZBanner;
-    private final List<String> datas = Arrays.asList("《赋得古原草送别》", "离离原上草，一岁一枯荣。", "野火烧不尽，春风吹又生。", "远芳侵古道，晴翠接荒城。", "又送王孙去，萋萋满别情。");
+    private final List<String> datas = Arrays.asList("恭喜用户：林建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "");
     private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
 

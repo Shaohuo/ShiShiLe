@@ -114,7 +114,8 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
 
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }

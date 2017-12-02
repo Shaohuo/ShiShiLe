@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity {
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
 
+
 //        alphaTabsIndicator.getTabView(0).showNumber(6);
 //        alphaTabsIndicator.getTabView(1).showNumber(888);
 //        alphaTabsIndicator.getTabView(2).showNumber(88);

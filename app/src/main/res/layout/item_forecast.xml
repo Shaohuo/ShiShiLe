@@ -34,17 +34,15 @@
         android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
         android:background="@mipmap/right_p" />
-    <TextView
 
+    <TextView
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvPrizename"
         android:layout_alignBottom="@+id/tvPrizename"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_toEndOf="@+id/tvPrizename"
-        android:layout_toRightOf="@+id/tvPrizename"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
         android:text="下期开奖时间:2017-11-21 16:11:25"
         android:textColor="@android:color/darker_gray"
         android:textSize="12dp" />

@@ -183,10 +183,12 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/bp"
             android:layout_marginTop="1dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+
             android:orientation="horizontal">
 
             <ImageView
@@ -216,6 +218,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/my"
             android:layout_marginTop="1dp"
             android:background="@color/white"
             android:layout_width="match_parent"
@@ -249,6 +252,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/sf"
             android:layout_marginTop="1dp"
             android:background="@color/white"
             android:layout_width="match_parent"
