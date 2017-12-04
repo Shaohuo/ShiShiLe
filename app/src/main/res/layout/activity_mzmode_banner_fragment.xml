@@ -78,7 +78,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="#ff3e3f">
+                android:background="@mipmap/mian_back_1">
 
                 <LinearLayout
                     android:layout_marginTop="10dp"

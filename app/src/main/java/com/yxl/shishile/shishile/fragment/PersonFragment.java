@@ -10,6 +10,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.widgets.ImageViewPlus;
 
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
@@ -17,6 +18,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_person, null);
+        ImageViewPlus viewById = view.findViewById(R.id.imgplus);
+        viewById.setImageResource(R.mipmap.person2);
         View  bp = view.findViewById(R.id.bp);
         View  my = view.findViewById(R.id.my);
         View  sf = view.findViewById(R.id.sf);
