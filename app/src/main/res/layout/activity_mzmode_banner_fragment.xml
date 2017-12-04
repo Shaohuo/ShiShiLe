@@ -39,6 +39,36 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#e1e1e1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/speaker" />
+
+                <com.gongwen.marqueen.SimpleMarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:flipInterval="2600"
+                    android:inAnimation="@anim/in_right"
+                    android:outAnimation="@anim/out_left"
+                    app:marqueeAnimDuration="2000"
+                    app:smvTextColor="#A1A1A1"
+                    app:smvTextGravity="center_vertical"
+                    app:smvTextSize="12sp"></com.gongwen.marqueen.SimpleMarqueeView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="#ffffff"
                 android:orientation="horizontal">
@@ -74,44 +104,22 @@
                     android:textColor="#f83e3f" />
             </LinearLayout>
 
+
             <LinearLayout
-                android:background="@mipmap/forcastimg"
+                android:background="#f3f3f3"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="90dp">
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                <ImageView
+                    android:id="@+id/forcastImg"
+                    android:src="@mipmap/forcastimg"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/bg_oval_radius"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/speaker" />
-
-                    <com.gongwen.marqueen.SimpleMarqueeView
-                        android:id="@+id/marqueeView"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="1"
-                        android:flipInterval="2600"
-                        android:inAnimation="@anim/in_right"
-                        android:outAnimation="@anim/out_left"
-                        app:marqueeAnimDuration="2000"
-                        app:smvTextColor="#A1A1A1"
-                        app:smvTextGravity="center_vertical"
-                        app:smvTextSize="12sp"></com.gongwen.marqueen.SimpleMarqueeView>
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
