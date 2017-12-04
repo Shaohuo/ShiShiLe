@@ -24,8 +24,7 @@ import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.activity.ForecastActivity;
-import com.yxl.shishile.shishile.activity.MainActivity;
+import com.yxl.shishile.shishile.activity.M_ForecastActivity;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
@@ -62,6 +61,7 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
         LinearLayout jiangxiLiner = view.findViewById(R.id.jiangxi);
         LinearLayout beijingLiner = view.findViewById(R.id.beijing);
         LinearLayout shandongLiner = view.findViewById(R.id.shandong);
+        View main_forecast = view.findViewById(R.id.main_forecast);
         chongqingLiner.setOnClickListener(this);
         hubeiLiner.setOnClickListener(this);
         liuhecaiLiner.setOnClickListener(this);
@@ -73,6 +73,7 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
         jiangxiLiner.setOnClickListener(this);
         beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
+        main_forecast.setOnClickListener(this);
 
         initMarqueeView();
 
@@ -192,7 +193,17 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
                 intent.putExtra("index", 11);
                 startActivity(intent);
                 break;
+            case R.id.main_forecast:
+             Intent intent1 = new Intent(view.getContext(), M_ForecastActivity.class);
+                startActivity(intent1);
+                break;
         }
+
+    }
+    public void gotoForecastFragment()
+    {
+
+
 
     }
 

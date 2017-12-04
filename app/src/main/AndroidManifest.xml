@@ -34,11 +34,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.ForecastActivity" />
-        <activity android:name=".fragment.PersonFragment"/>
-        <activity android:name=".activity.MyWalletActivity"
+        <activity android:name=".fragment.PersonFragment" />
+        <activity
+            android:name=".activity.MyWalletActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/SwipeBackTheme"></activity>
+            android:theme="@style/SwipeBackTheme" />
+        <activity android:name=".activity.M_ForecastActivity"></activity>
     </application>
 
 </manifest>
