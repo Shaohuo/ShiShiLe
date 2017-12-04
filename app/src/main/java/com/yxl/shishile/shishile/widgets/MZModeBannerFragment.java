@@ -39,7 +39,7 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
     public static final String TAG = "MZModeBannerFragment";
     public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
     private MZBannerView mMZBanner;
-    private final List<String> datas = Arrays.asList("恭喜用户：林建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "");
+    private final List<String> datas = Arrays.asList("恭喜用户：建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "恭喜用户：小郭 预测成功！奖励积分100");
     private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
 
@@ -136,6 +136,8 @@ public class MZModeBannerFragment extends Fragment implements View.OnClickListen
             @Override
             public void onItemClickListener(MarqueeFactory.ViewHolder<TextView, String> holder) {
                 Toast.makeText(getContext(), holder.data, Toast.LENGTH_SHORT).show();
+//                Intent intent1 = new Intent(getContext(), LotteryActivity.class);
+//                startActivity(intent1);
             }
         });
         marqueeFactory.setData(datas);

@@ -75,10 +75,9 @@
             </LinearLayout>
 
             <LinearLayout
-
+                android:background="@mipmap/forcastimg"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@mipmap/mian_back_1">
+                android:layout_height="120dp">
 
                 <LinearLayout
                     android:layout_marginTop="10dp"
@@ -106,8 +105,8 @@
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:flipInterval="2600"
-                        android:inAnimation="@anim/in_left"
-                        android:outAnimation="@anim/out_right"
+                        android:inAnimation="@anim/in_right"
+                        android:outAnimation="@anim/out_left"
                         app:marqueeAnimDuration="2000"
                         app:smvTextColor="#A1A1A1"
                         app:smvTextGravity="center_vertical"

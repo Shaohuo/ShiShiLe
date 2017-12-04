@@ -1,4 +1,5 @@
 package com.yxl.shishile.shishile.api;
+
 import com.yxl.shishile.shishile.model.LotteryList;
 
 import retrofit2.Call;
