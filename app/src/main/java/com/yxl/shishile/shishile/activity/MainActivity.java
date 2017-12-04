@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.fragment.ForecastFragment;
 import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
 import com.yxl.shishile.shishile.fragment.PersonFragment;
 import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
