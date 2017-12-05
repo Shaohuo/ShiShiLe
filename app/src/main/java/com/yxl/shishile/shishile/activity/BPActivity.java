@@ -24,6 +24,8 @@ public class BPActivity extends AppCompatActivity implements View.OnClickListene
         Button weixin_pay = findViewById(R.id.weixin_pay);
         Button zhifu_pay = findViewById(R.id.zhifu_pay);
         money_num = findViewById(R.id.money_num);
+        weixin_pay.setOnClickListener(this);
+        zhifu_pay.setOnClickListener(this);
         bp_r1.setOnClickListener(this);
         bp_r2.setOnClickListener(this);
         bp_r3.setOnClickListener(this);
