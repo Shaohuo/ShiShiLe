@@ -114,19 +114,19 @@
               android:id="@+id/bp_radio_1"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="100" />
+              android:text="100金币" />
           <RadioButton
               android:layout_marginTop="5dp"
               android:id="@+id/bp_radio_2"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="300" />
+              android:text="300金币" />
           <RadioButton
               android:layout_marginTop="5dp"
               android:id="@+id/bp_radio_3"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="500" />
+              android:text="500金币" />
       </RadioGroup>
 
 
@@ -208,13 +208,6 @@
             android:text=""
             android:layout_width="120dp"
             android:layout_height="40dp" />
-      <!--  <Button
-            android:layout_weight="1"
-            android:background="@mipmap/wangyin_pay"
-
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />-->
     </LinearLayout>
 
 
