@@ -55,7 +55,6 @@ public class MainActivity extends BaseActivity {
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
             fragments.add(new ChatRoomFragment());
-            fragments.add(new OpenPrizeFragment());
             fragments.add(new PersonFragment());
 //            fragments.add(new MZModeBannerFragment());
         }

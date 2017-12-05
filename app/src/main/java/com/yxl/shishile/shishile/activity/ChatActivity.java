@@ -11,7 +11,6 @@ import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.util.EasyUtils;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.fragment.ChatFragment;
-import com.yxl.shishile.shishile.fragment.ForecastFragment;
 
 public class ChatActivity extends FragmentActivity {
 
