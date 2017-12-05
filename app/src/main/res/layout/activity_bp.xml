@@ -196,13 +196,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/weixin_pay"
             android:layout_marginLeft="30dp"
             android:background="@mipmap/weixin_pay"
             android:text=""
             android:layout_width="150dp"
             android:layout_height="40dp" />
         <Button
-
+            android:id="@+id/zhifu_pay"
             android:layout_marginLeft="30dp"
             android:background="@mipmap/zhifu_pay"
             android:text=""
