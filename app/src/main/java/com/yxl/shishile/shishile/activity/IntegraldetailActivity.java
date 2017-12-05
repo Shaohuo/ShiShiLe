@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.yxl.shishile.shishile.R;
 
-public class IntegraldetailActivity extends AppCompatActivity {
+public class IntegraldetailActivity extends SwipeBackActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
