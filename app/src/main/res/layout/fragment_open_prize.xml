@@ -1,8 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.yxl.shishile.shishile.fragment.OpenPrizeFragment">
+
+    <TextView
+        android:text="开奖中心"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:background="#f83e3f"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rl_modulename_refresh"
@@ -15,4 +26,4 @@
             android:scrollbars="vertical"/>
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-</FrameLayout>
+</LinearLayout>
