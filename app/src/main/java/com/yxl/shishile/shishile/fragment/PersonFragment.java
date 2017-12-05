@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.BPActivity;
+import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
 import com.yxl.shishile.shishile.activity.MyWalletActivity;
 import com.yxl.shishile.shishile.widgets.ImageViewPlus;
 
@@ -42,6 +43,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.bp:
                 //积分明细
+                Intent intent2 = new Intent(getContext(), IntegraldetailActivity.class);
+                startActivity(intent2);
                 Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my:

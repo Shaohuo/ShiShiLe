@@ -87,8 +87,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.M_ForecastActivity" />
-        <activity android:name=".activity.BPActivity"></activity>
-
+        <activity android:name=".activity.BPActivity" />
+        <activity android:name=".activity.IntegraldetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/SwipeBackTheme"
+            />
     </application>
 
 </manifest>
