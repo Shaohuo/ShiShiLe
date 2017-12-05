@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yxl.shishile.shishile.activity.MyWalletActivity">
-
+    android:orientation="vertical"
+    tools:context="com.yxl.shishile.shishile.activity.IntegraldetailActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
@@ -15,7 +14,7 @@
         android:orientation="vertical">
 
         <com.yxl.shishile.shishile.widgets.ImageViewPlus
-            android:id="@+id/imgplus"
+            android:id="@+id/imgplus_bp"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="center"
@@ -58,7 +57,6 @@
 
         </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -87,11 +85,11 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1.2"
                 android:gravity="center_vertical"
-                android:text="余额：" />
+                android:text="积分：" />
 
             <TextView
                 android:gravity="center_vertical"
-                android:text="666666.66"
+                android:text="1500"
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
@@ -121,15 +119,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="充值" />
+                android:text="积分规则" />
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:background="#e1e1e1"
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -153,7 +145,7 @@
             android:layout_weight="1"
             android:background="#FFF"
             android:gravity="center"
-            android:text="充值记录"
+            android:text="积分记录"
             android:textColor="#000000" />
 
         <TextView
@@ -166,14 +158,10 @@
             android:text="—"
             android:textColor="#f83e3f" />
     </LinearLayout>
-
-    <TextView
-        android:background="#e1e1e1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-
     <ListView
-        android:id="@+id/chongzhi_lisr"
+        android:id="@+id/jifen_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+
+    </ListView>
 </LinearLayout>

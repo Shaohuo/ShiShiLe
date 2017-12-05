@@ -41,7 +41,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.M_ForecastActivity" />
-        <activity android:name=".activity.BPActivity"></activity>
+        <activity android:name=".activity.BPActivity" />
+        <activity android:name=".activity.IntegraldetailActivity"></activity>
     </application>
 
 </manifest>
