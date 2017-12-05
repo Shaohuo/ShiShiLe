@@ -35,7 +35,8 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MZModeBannerFragment extends Fragment implements View.OnClickListener {
+public class
+MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "MZModeBannerFragment";
     public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
     private MZBannerView mMZBanner;

@@ -11,13 +11,13 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:background="#f83e3f"
         android:gravity="center"
         android:text="彩民聊天室"
         android:textColor="#FFFFFF"
-        android:textSize="18dp" />
+        />
 
 
     <android.support.v7.widget.RecyclerView

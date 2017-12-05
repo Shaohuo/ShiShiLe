@@ -8,4 +8,7 @@
     <color name="white">#ffffff</color>
     <color name="red">#ff0000</color>
     <color name="red_f83e3f">#f83e3f</color>
+    <color name="common_bg">#fcfcfc</color>
+    <color name="top_bar_normal_bg">#00acff</color>
+    <color name="bottom_text_color_normal">#ffffff</color>
 </resources>

@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ChatActivity;
 
+import java.util.Random;
+
 /**
  * Created by Administrator on 2017/12/4 0004.
  */
@@ -21,7 +23,11 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
 
 
     public String[] mNames = new String[]{
-           "综合聊天室", "重庆时时彩", "北京PK10", "江苏快三"
+            "综合聊天室", "重庆时时彩", "北京PK10", "江苏快三"
+    };
+    public int[] mImgs = new int[]{
+            R.mipmap.ic_group, R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_10, R.mipmap
+            .ic_lottery_2
     };
 
     @Override
@@ -32,8 +38,8 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                parent.getContext().startActivity(new Intent(parent.getContext(), ChatActivity.class).putExtra("chatType", 3).
-                        putExtra("userId", 2));
+                parent.getContext().startActivity(new Intent(parent.getContext(), ChatActivity
+                        .class));
             }
         });
         return vh;
@@ -42,6 +48,10 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTvPrizeName.setText(mNames[position]);
+        holder.mIvPrize.setImageResource(mImgs[position]);
+        Random random = new Random();
+        int grounpNum = random.nextInt(200) + 100;
+        holder.mTvGrounpNum.setText(grounpNum + "人");
     }
 
     @Override
@@ -53,11 +63,13 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView mIvPrize;
         public TextView mTvPrizeName;
+        public TextView mTvGrounpNum;
 
         public ViewHolder(View view) {
             super(view);
             mIvPrize = (ImageView) view.findViewById(R.id.ivPrize);
             mTvPrizeName = (TextView) view.findViewById(R.id.tvPrizename);
+            mTvGrounpNum = (TextView) view.findViewById(R.id.tvGrounpNum);
         }
     }
 }

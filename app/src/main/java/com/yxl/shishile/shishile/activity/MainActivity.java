@@ -7,9 +7,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.fragment.ForecastFragment;
+import com.yxl.shishile.shishile.fragment.ChatFragment;
+import com.yxl.shishile.shishile.fragment.ChatRoomFragment;
 import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
 import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
 
@@ -50,7 +53,7 @@ public class MainActivity extends BaseActivity {
             super(fm);
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
-            fragments.add(new ForecastFragment());
+            fragments.add(new ChatRoomFragment());
             fragments.add(new OpenPrizeFragment());
 //            fragments.add(new MZModeBannerFragment());
         }
