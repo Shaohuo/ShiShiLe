@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.yxl.shishile.shishile.fragment.ForecastFragment">
+    android:orientation="vertical">
 
     <TextView
         android:text="专家预测"

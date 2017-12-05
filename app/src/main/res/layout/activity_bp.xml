@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yxl.shishile.shishile.activity.BPActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#f83e3f"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.yxl.shishile.shishile.widgets.ImageViewPlus
+            android:id="@+id/imgplus_bp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/person1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical|end"
+                android:text="ID:"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:text="20171202666"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="2"
+            android:background="#FFF"
+            android:gravity="end"
+            android:text="—"
+            android:textColor="#f83e3f" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:gravity="center"
+            android:text="充值订单"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="2"
+            android:background="#FFF"
+            android:gravity="start"
+            android:text="—"
+            android:textColor="#f83e3f" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="充值金额："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="80dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <RadioGroup
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+          <RadioButton
+              android:layout_marginTop="5dp"
+              android:id="@+id/bp_radio_1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="100" />
+          <RadioButton
+              android:layout_marginTop="5dp"
+              android:id="@+id/bp_radio_2"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="300" />
+          <RadioButton
+              android:layout_marginTop="5dp"
+              android:id="@+id/bp_radio_3"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="500" />
+      </RadioGroup>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="2"
+            android:background="#FFF"
+            android:gravity="end"
+            android:text="—"
+            android:textColor="#f83e3f" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:gravity="center"
+            android:text="支付方式"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="2"
+            android:background="#FFF"
+            android:gravity="start"
+            android:text="—"
+            android:textColor="#f83e3f" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="17sp"
+            android:text="应付金额："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/money_num"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="60dp"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/weixin_pay"
+            android:text=""
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+        <Button
+
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/zhifu_pay"
+            android:text=""
+            android:layout_width="120dp"
+            android:layout_height="40dp" />
+      <!--  <Button
+            android:layout_weight="1"
+            android:background="@mipmap/wangyin_pay"
+
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />-->
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

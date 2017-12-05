@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
             super(fm);
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
-            fragments.add(new ForecastFragment());
+            fragments.add(new OpenPrizeFragment());
             fragments.add(new PersonFragment());
 //            fragments.add(new MZModeBannerFragment());
         }

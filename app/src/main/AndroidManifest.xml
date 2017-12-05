@@ -40,7 +40,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
-        <activity android:name=".activity.M_ForecastActivity"></activity>
+        <activity android:name=".activity.M_ForecastActivity" />
+        <activity android:name=".activity.BPActivity"></activity>
     </application>
 
 </manifest>
