@@ -18,7 +18,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome2);
-        EMClient.getInstance().login("xzl2574735","2574735",new EMCallBack() {//回调
+        EMClient.getInstance().login("gbh2130734","2130734",new EMCallBack() {//回调
             @Override
             public void onSuccess() {
                 runOnUiThread(new Runnable() {

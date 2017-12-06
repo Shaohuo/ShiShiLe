@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ShiShiLe.iml" filepath="$PROJECT_DIR$/ShiShiLe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easeui/easeui.iml" filepath="$PROJECT_DIR$/easeui/easeui.iml" />
+      <module fileurl="file://E:\ShiShiLe\easeui\easeui.iml" filepath="E:\ShiShiLe\easeui\easeui.iml" />
     </modules>
   </component>
 </project>

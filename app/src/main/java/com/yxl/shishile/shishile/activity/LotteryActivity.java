@@ -175,7 +175,6 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
 //                    }
 //                }
             }
-
             @Override
             public void onFailure(Call<LotteryList> call, Throwable t) {
                 Log.d("LotteryActivity", "onFailure");
