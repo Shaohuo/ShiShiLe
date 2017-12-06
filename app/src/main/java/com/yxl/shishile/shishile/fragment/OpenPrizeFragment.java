@@ -20,6 +20,7 @@ import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
+import com.yxl.shishile.shishile.model.LotteryModel;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.HashMap;
@@ -39,7 +40,8 @@ import retrofit2.Response;
  * Use the {@link OpenPrizeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate{
+public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
+        .BGARefreshLayoutDelegate {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -104,12 +106,13 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
         mRecyclerView.setLayoutManager(mLayoutManager);
 //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager
+                .HORIZONTAL));
         mAdapter = new MyPrizeAdapter();
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new MyPrizeAdapter.OnItemClickListener(){
+        mAdapter.setOnItemClickListener(new MyPrizeAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view , int position){
+            public void onItemClick(View view, int position) {
                 Intent intent = new Intent(view.getContext(), LotteryActivity.class);
                 intent.putExtra("index", position + 1);
                 startActivity(intent);
@@ -132,32 +135,33 @@ public class  OpenPrizeFragment extends Fragment implements BGARefreshLayout.BGA
         mLotteryMaps.clear();
         for (int i = 0; i < 11; i++) {
             final int index = i + 1;
-            Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryList(index, "qzcx72trd7ax5w90");
-            call.enqueue(new Callback<LotteryList>() {
+            Call<LotteryModel> call = ApiManager.getInstance().create(ApiServer.class).getLottery
+                    ("first_data", "" + index);
+            call.enqueue(new Callback<LotteryModel>() {
                 @Override
-                public void onResponse(Call<LotteryList> call, Response<LotteryList> response) {
+                public void onResponse(Call<LotteryModel> call, Response<LotteryModel> response) {
                     mRefreshLayout.endRefreshing();
                     if (response.isSuccessful()) {
-                        LotteryList body = response.body();
+                        LotteryModel body = response.body();
                         Log.e("OpenPrizeFragment", "" + index + " " + body);
-//                        mLotteryMaps.put(index, body);
-//                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
-//                            mRecyclerView.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mAdapter.setData(mLotteryMaps);
-//                                    mAdapter.notifyDataSetChanged();
-//                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
-//                                }
-//                            });
-//                        }
+                        mLotteryMaps.put(index, body.data);
+                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
+                            mRecyclerView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mAdapter.setData(mLotteryMaps);
+                                    mAdapter.notifyDataSetChanged();
+                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
+                                }
+                            });
+                        }
                     } else {
                         Log.e("OpenPrizeFragment", "unsuccess");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<LotteryList> call, Throwable t) {
+                public void onFailure(Call<LotteryModel> call, Throwable t) {
                     Log.e("OpenPrizeFragment", "" + t.getMessage());
                     mRefreshLayout.endRefreshing();
                 }

@@ -40,6 +40,7 @@ public class WelcomeActivity extends Activity {
                 Log.d("main", "登录聊天服务器失败！");
             }
         });
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

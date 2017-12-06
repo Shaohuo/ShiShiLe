@@ -6,10 +6,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.fragment.ChatFragment;
 import com.yxl.shishile.shishile.fragment.ChatRoomFragment;
 import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
@@ -33,7 +35,6 @@ public class MainActivity extends BaseActivity {
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
         mViewPger.setOffscreenPageLimit(5);
-
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
 
@@ -89,5 +90,10 @@ public class MainActivity extends BaseActivity {
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
