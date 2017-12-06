@@ -1,30 +1,8 @@
 package com.yxl.shishile.shishile.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.adapter.HistoryAdapter;
-import com.yxl.shishile.shishile.api.ApiManager;
-import com.yxl.shishile.shishile.api.ApiServer;
-import com.yxl.shishile.shishile.event.OpenCountDownEvent;
-import com.yxl.shishile.shishile.model.Lottery;
-import com.yxl.shishile.shishile.model.Url;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForecastActivity extends BaseActivity {
 
