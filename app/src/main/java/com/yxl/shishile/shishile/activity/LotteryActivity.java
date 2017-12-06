@@ -1,38 +1,22 @@
 package com.yxl.shishile.shishile.activity;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
-import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
-import com.yxl.shishile.shishile.event.OpenCountDownEvent;
 import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
@@ -66,9 +50,18 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
     private TextView mTvLotteryName;
     private ImageView mIvLotteryBar;
 
+    @Override
+    public void setTheme(int resid) {
+        super.setTheme(resid);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
         mIndex = getIntent().getIntExtra("index", -1);
         setContentView(R.layout.activity_lottery);
         mCvCountdownView = (CountdownView) findViewById(R.id.cv_countdownViewTest1);
@@ -113,14 +106,10 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
             }
         }, 500);
     }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
-
     public void loadLotteryCountDown() {
         Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
                 .getLotteryCountDown("countdown", mIndex
@@ -136,14 +125,12 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                     mCvCountdownView.start(countDownData.countdown);
                 }
             }
-
             @Override
             public void onFailure(Call<CountDownModel> call, Throwable t) {
 
             }
         });
     }
-
     public void loadLotteryData() {
         Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryList
                 (mIndex, "qzcx72trd7ax5w90");
@@ -164,7 +151,6 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                 } else {
 
                 }
-
 //                String[] split = body.data.split(",");
 //                String number = body.number;
 //                String time = body.time;
