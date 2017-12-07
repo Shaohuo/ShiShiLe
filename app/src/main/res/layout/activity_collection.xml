@@ -1,23 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.yxl.shishile.shishile.activity.CollectionActivity">
 
     <TextView
-        android:text="专家预测"
+        android:text="我的收藏"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:background="#f83e3f"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-    <android.support.v7.widget.RecyclerView
-        android:background="#FFF"
-        android:id="@+id/my_recycler_view"
+
+   <android.support.v7.widget.RecyclerView
+        android:id="@+id/collectlistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>

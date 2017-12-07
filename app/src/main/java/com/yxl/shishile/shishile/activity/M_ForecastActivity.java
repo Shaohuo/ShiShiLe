@@ -1,9 +1,12 @@
 package com.yxl.shishile.shishile.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ForecastAdapter;
@@ -25,6 +28,15 @@ public class M_ForecastActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
         mAdapter = new ForecastAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new ForecastAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+                Toast.makeText(M_ForecastActivity.this, "这是" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(M_ForecastActivity.this,ForecastActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

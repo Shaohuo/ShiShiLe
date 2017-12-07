@@ -19,14 +19,13 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".app.MyApplication"
-        >
+        android:theme="@style/AppTheme">
 
         <!-- 设置环信应用的AppKey -->
         <meta-data
@@ -77,10 +76,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.ForecastActivity" />
-        <activity android:name=".activity.ChatActivity"
+        <activity
+            android:name=".activity.ChatActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MyWalletActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -88,11 +87,12 @@
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.M_ForecastActivity" />
         <activity android:name=".activity.BPActivity" />
-        <activity android:name=".activity.IntegraldetailActivity"
+        <activity
+            android:name=".activity.IntegraldetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/SwipeBackTheme"
-            />
+            android:theme="@style/SwipeBackTheme" />
+        <activity android:name=".activity.CollectionActivity"></activity>
     </application>
 
 </manifest>

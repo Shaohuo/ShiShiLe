@@ -23,11 +23,11 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
 
 
     public String[] mNames = new String[]{
-            "综合聊天室", "重庆时时彩", "北京PK10", "江苏快三"
+             "重庆时时彩", "北京PK10", "江苏快三","综合聊天室"
     };
     public int[] mImgs = new int[]{
-            R.mipmap.ic_group, R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_10, R.mipmap
-            .ic_lottery_2
+             R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_10, R.mipmap
+            .ic_lottery_2,R.mipmap.ic_group,
     };
 
     @Override

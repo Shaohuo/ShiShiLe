@@ -1,58 +1,38 @@
 package com.yxl.shishile.shishile.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
+import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
-public class ForecastActivity extends BaseActivity {
+import static com.baidu.mapapi.BMapManager.getContext;
 
-//    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07};
-//    List<historyBean.MenuitemBean> menuitemBeans = new ArrayList<>();
-//    private ListView listView;
-//    private TextView qishu;
-//    private HistoryAdapter historyAdapter;
+public class ForecastActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast);
+        setContentView(R.layout.activity_forecast_n);
+        RecyclerView mRecyclerView = findViewById(R.id.firecast_list);
+        Button send_forecast = findViewById(R.id.send_forecast);
+        send_forecast.setOnClickListener(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
+        mRecyclerView.setAdapter(new MyPrizeAdapter());
 
-//        qishu = findViewById(R.id.title_text);
-//        ImageView logoimg = findViewById(R.id.logo_image);
-//        listView = findViewById(R.id.history_list);
-//        LoadHistoryData();
+
     }
 
-//    private void LoadHistoryData() {
-//        Call<Lottery> list = ApiManager.getInstance().create(ApiServer.class).getLottery(1, "qzcx72trd7ax5w90");
-//        list.enqueue(new Callback<Lottery>() {
-//
-//            @Override
-//            public void onResponse(Call<Lottery> call, Response<Lottery> response) {
-//                Lottery body = response.body();
-//                //发送倒计时事件
-//                OpenCountDownEvent countDownEvent = new OpenCountDownEvent();
-//                countDownEvent.setLottery(body);
-//                EventBus.getDefault().post(countDownEvent);
-//                String[] split = body.data.split(",");
-//                String number = body.number;
-//                qishu.setText("第" + number + "期");
-//                String time = body.time;
-//                for (int i = 0; i < 7; i++) {
-//                    TextView mTvData = findViewById(mTvDataIds[i]);
-//                    if (i < split.length) {
-//                        mTvData.setText("" + split[i]);
-//                        mTvData.setVisibility(View.VISIBLE);
-//                    } else {
-//                        mTvData.setVisibility(View.GONE);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Lottery> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    @Override
+    public void onClick(View view) {
+
+
+    }
 }
