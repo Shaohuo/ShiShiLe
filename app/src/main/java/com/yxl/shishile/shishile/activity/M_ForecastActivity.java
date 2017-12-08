@@ -13,7 +13,7 @@ import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ForecastAdapter;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
-public class M_ForecastActivity extends AppCompatActivity implements View.OnClickListener {
+public class M_ForecastActivity extends SwipeBackActivity implements View.OnClickListener {
     private RecyclerView mRecyclerView;
     private ForecastAdapter mAdapter;
     @Override
