@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -205,6 +206,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
 
     protected void setUpView() {
         titleBar.setTitle(toChatUsername);
+        titleBar.setBackgroundColor(Color.parseColor("#f83e3f"));
         if (chatType == EaseConstant.CHATTYPE_SINGLE) {
             // set title
             if (EaseUserUtils.getUserInfo(toChatUsername) != null) {
@@ -569,7 +571,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                                 pd.dismiss();
                                 EMChatRoom room = EMClient.getInstance().chatroomManager()
                                         .getChatRoom
-                                        (toChatUsername);
+                                                (toChatUsername);
                                 if (room != null) {
                                     titleBar.setTitle(room.getName());
                                     EMLog.d(TAG, "join room success : " + room.getName());
