@@ -78,13 +78,12 @@
                 android:textColor="#f83e3f"
                 android:textSize="16sp" />
 
-            </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/history_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical" />
 
+            </LinearLayout>
     </ScrollView>
 </LinearLayout>

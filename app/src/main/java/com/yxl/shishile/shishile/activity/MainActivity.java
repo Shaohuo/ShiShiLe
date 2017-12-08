@@ -18,6 +18,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private AlphaTabsIndicator alphaTabsIndicator;
+    public static String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,14 @@ public class MainActivity extends BaseActivity {
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
         mViewPger.setOffscreenPageLimit(5);
+
+        username = getIntent().getStringExtra("nicknameTextView");
+//        FragmentManager fm = getSupportFragmentManager();  //使用FragmentManager，管理Activity中的fragment
+//        Bundle bundle = new Bundle();
+//        bundle.putString("userName",username);
+//        PersonFragment personFragment = new PersonFragment();
+//        personFragment.setArguments(bundle);                                     //通过setArguments传值
+//        fm.beginTransaction().replace(R.id.person_fragment,personFragment ).commit();        //通过add()将布局加入fragment容器中
 
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
@@ -52,7 +61,6 @@ public class MainActivity extends BaseActivity {
             fragments.add(new OpenPrizeFragment());
             fragments.add(new OpenPrizeFragment());
             fragments.add(new PersonFragment());
-//            fragments.add(new MZModeBannerFragment());
         }
 
         @Override
