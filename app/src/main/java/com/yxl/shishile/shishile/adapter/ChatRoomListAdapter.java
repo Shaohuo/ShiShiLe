@@ -1,15 +1,11 @@
 package com.yxl.shishile.shishile.adapter;
-
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ChatActivity;
 
@@ -58,13 +54,11 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
     public int getItemCount() {
         return mNames.length;
     }
-
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView mIvPrize;
         public TextView mTvPrizeName;
         public TextView mTvGrounpNum;
-
         public ViewHolder(View view) {
             super(view);
             mIvPrize = (ImageView) view.findViewById(R.id.ivPrize);

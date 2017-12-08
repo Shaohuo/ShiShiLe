@@ -16,6 +16,7 @@ import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ForecastActivity;
 import com.yxl.shishile.shishile.activity.BPActivity;
 import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
+import com.yxl.shishile.shishile.activity.LoginActivity;
 import com.yxl.shishile.shishile.activity.MyWalletActivity;
 import com.yxl.shishile.shishile.model.MessageEvent;
 import com.yxl.shishile.shishile.widgets.ImageViewPlus;
@@ -97,6 +98,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chongzhi_button:
+                //充值
                 Intent intent1 = new Intent(view.getContext(), BPActivity.class);
                 startActivity(intent1);
                 break;
