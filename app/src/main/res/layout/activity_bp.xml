@@ -167,12 +167,12 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginLeft="20dp"
         android:background="#FFF"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-
+            android:textSize="11sp"
            android:background="@drawable/buttonstyle"
             android:id="@+id/other_money"
             android:text="其他金额"
