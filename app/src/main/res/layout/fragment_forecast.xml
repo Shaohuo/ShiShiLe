@@ -2,20 +2,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     android:orientation="vertical">
-
+<RelativeLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
-        android:text="专家预测"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:background="#f83e3f"
+        android:id="@+id/zhuanjia_forecast"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:background="#f83e3f"
+        android:gravity="center"
+        android:text="专家预测"
+        android:textColor="#FFFFFF" />
+    <ImageView
+        android:id="@+id/main_forecast_back"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="#f83e3f"
+        android:src="@mipmap/ic_left" />
+</RelativeLayout>
     <android.support.v7.widget.RecyclerView
+        android:background="#FFF"
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"/>
-
 </LinearLayout>

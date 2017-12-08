@@ -24,6 +24,7 @@
         android:orientation="horizontal">
 
         <com.yinglan.alphatabs.AlphaTabView
+            android:background="#FFF"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -36,6 +37,7 @@
             app:textColorSelected="#f83e3f" />
 
         <com.yinglan.alphatabs.AlphaTabView
+            android:background="#FFF"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -48,6 +50,7 @@
             app:textColorSelected="#f83e3f" />
 
         <com.yinglan.alphatabs.AlphaTabView
+            android:background="#FFF"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -60,7 +63,7 @@
             app:textColorSelected="#f83e3f" />
 
         <com.yinglan.alphatabs.AlphaTabView
-            android:id="@+id/person_fragment"
+            android:background="#FFF"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

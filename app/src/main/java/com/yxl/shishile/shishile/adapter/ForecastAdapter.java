@@ -17,7 +17,8 @@ import java.util.HashMap;
  * Created by Administrator on 2017/11/21 0021.
  */
 
-public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> {
+public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> implements View.OnClickListener
+{
 
     private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
     private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
@@ -34,8 +35,21 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_forecast, viewGroup, false);
         ViewHolder vh = new ViewHolder(view);
+        view.setOnClickListener(this);
         return vh;
     }
+    private OnItemClickListener mOnItemClickListener = null;
+    public void onClick(View view) {
+        if (mOnItemClickListener != null) {
+            //注意这里使用getTag方法获取position
+            mOnItemClickListener.onItemClick(view,(int)view.getTag());
+        }
+    }
+    public static interface OnItemClickListener {
+        void onItemClick(View view , int position);
+    }
+
+
 
     int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07, R.id.six_num_08, R.id.six_num_09, R.id.six_num_10};
 
@@ -43,6 +57,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.mTvPrizeName.setText("" + mNames[position]);
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
+        viewHolder.itemView.setTag(position);
         for (int i = 0; i < mTvDataIds.length; i++) {
             TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
             if (i < mDataCounts[position]) {
@@ -52,6 +67,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
                 mTvData.setVisibility(View.GONE);
             }
         }
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
     }
 
     @Override

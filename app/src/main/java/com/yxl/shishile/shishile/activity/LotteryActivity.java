@@ -1,37 +1,22 @@
 package com.yxl.shishile.shishile.activity;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
-import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
-import com.yxl.shishile.shishile.event.OpenCountDownEvent;
+import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
@@ -40,7 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LotteryActivity extends SwipeBackActivity implements CountdownView.OnCountdownEndListener,
+public class LotteryActivity extends SwipeBackActivity implements CountdownView
+        .OnCountdownEndListener,
         BGARefreshLayout.BGARefreshLayoutDelegate {
     int index = 1;
     HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
@@ -64,9 +50,18 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
     private TextView mTvLotteryName;
     private ImageView mIvLotteryBar;
 
+    @Override
+    public void setTheme(int resid) {
+        super.setTheme(resid);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
         mIndex = getIntent().getIntExtra("index", -1);
         setContentView(R.layout.activity_lottery);
         mCvCountdownView = (CountdownView) findViewById(R.id.cv_countdownViewTest1);
@@ -111,39 +106,35 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
             }
         }, 500);
     }
-
-
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onOpenCountDownEvent(OpenCountDownEvent event) {
-        /* Do something */
-        if (event.getLottery() != null) {
-            Lottery lottery = event.getLottery();
-            String openTime = lottery.time;
-            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            try {
-                Date openDate = sDateFormat.parse(openTime);
-                Date currentDate = new Date();
-                //得出剩余时间
-                long remainTime = openDate.getTime() - currentDate.getTime();
-                mCvCountdownView.setVisibility(View.VISIBLE);
-                mTvOpenPrize.setVisibility(View.INVISIBLE);
-                mCvCountdownView.start(5000);
-            } catch (ParseException e) {
-                e.printStackTrace();
+    public void loadLotteryCountDown() {
+        Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
+                .getLotteryCountDown("countdown", mIndex
+                        + "");
+        call.enqueue(new Callback<CountDownModel>() {
+            @Override
+            public void onResponse(Call<CountDownModel> call, Response<CountDownModel> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().data !=
+                        null) {
+                    CountDownModel.CountDown countDownData = response.body().data;
+                    mCvCountdownView.setVisibility(View.VISIBLE);
+                    mTvOpenPrize.setVisibility(View.INVISIBLE);
+                    mCvCountdownView.start(countDownData.countdown);
+                }
             }
-        }
-    }
+            @Override
+            public void onFailure(Call<CountDownModel> call, Throwable t) {
 
+            }
+        });
+    }
     public void loadLotteryData() {
         Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryList
                 (mIndex, "qzcx72trd7ax5w90");
+
         call.enqueue(new Callback<LotteryList>() {
 
             @Override
@@ -151,17 +142,15 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
                 mRefreshLayout.endRefreshing();
                 LotteryList body = response.body();
                 Log.d("LotteryActivity", "" + response.toString());
-                if (body.data != null && body.data.size() > 0) {
+                if (response.isSuccessful() && response.body() != null && body.data != null &&
+
+                        body.data.size() > 0) {
                     mLotteryList.clear();
                     mLotteryList.addAll(body.data);
                     mAdapter.notifyDataSetChanged();
                 } else {
 
                 }
-                //发送倒计时事件
-//                OpenCountDownEvent countDownEvent = new OpenCountDownEvent();
-//                countDownEvent.setLottery(body);
-//                EventBus.getDefault().post(countDownEvent);
 //                String[] split = body.data.split(",");
 //                String number = body.number;
 //                String time = body.time;
@@ -175,7 +164,6 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView.
 //                    }
 //                }
             }
-
             @Override
             public void onFailure(Call<LotteryList> call, Throwable t) {
                 Log.d("LotteryActivity", "onFailure");

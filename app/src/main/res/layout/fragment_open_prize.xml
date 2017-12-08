@@ -1,12 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
     tools:context="com.yxl.shishile.shishile.fragment.OpenPrizeFragment">
 
     <TextView
-        android:text="时时乐"
+        android:text="开奖中心"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>
+
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
 </LinearLayout>

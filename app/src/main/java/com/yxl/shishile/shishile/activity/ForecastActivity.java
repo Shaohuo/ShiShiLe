@@ -1,15 +1,38 @@
 package com.yxl.shishile.shishile.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
+import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
-public class ForecastActivity extends SwipeBackActivity {
+import static com.baidu.mapapi.BMapManager.getContext;
+
+public class ForecastActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast);
+        setContentView(R.layout.activity_forecast_n);
+        RecyclerView mRecyclerView = findViewById(R.id.firecast_list);
+        Button send_forecast = findViewById(R.id.send_forecast);
+        send_forecast.setOnClickListener(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
+        mRecyclerView.setAdapter(new MyPrizeAdapter());
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+
     }
 }

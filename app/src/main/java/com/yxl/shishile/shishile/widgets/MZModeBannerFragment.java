@@ -34,9 +34,10 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MZModeBannerFragment extends Fragment implements View.OnClickListener {
+public class
+MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "MZModeBannerFragment";
-    public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
+    public static final int[] BANNER = new int[]{R.mipmap.banner_1, R.mipmap.banner_2,R.mipmap.banner_3};
     private MZBannerView mMZBanner;
     private final List<String> datas = Arrays.asList("恭喜用户：建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "恭喜用户：小郭 预测成功！奖励积分100");
     private SimpleMarqueeView marqueeView;
