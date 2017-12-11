@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFF"
     tools:context="com.yxl.shishile.shishile.activity.BPActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,13 +101,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout
+        android:background="#FFF"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="80dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-      <RadioGroup
+    <!--  <RadioGroup
           android:layout_width="wrap_content"
           android:layout_height="wrap_content">
           <RadioButton
@@ -127,12 +129,80 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="500金币" />
-      </RadioGroup>
+      </RadioGroup>-->
 
 
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:background="#FFF"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="@null"
+            android:src="@drawable/button_select_100"
+            android:id="@+id/bp_radio_1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:background="@null"
+            android:src="@drawable/button_select_300"
+            android:id="@+id/bp_radio_2"
+            android:layout_weight="1"
+            android:text="300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:src="@drawable/button_select_500"
+            android:background="@null"
+            android:id="@+id/bp_radio_3"
+            android:layout_weight="1"
+            android:text="500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textSize="11sp"
+           android:background="@drawable/buttonstyle"
+            android:id="@+id/other_money"
+            android:text="其他金额"
+            android:layout_width="80dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/fuhao"
+            android:visibility="gone"
+            android:textColor="#f83e3f"
+            android:layout_gravity="center"
+            android:textSize="27sp"
+            android:text="¥"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:theme="@style/MyEditText"
+            android:visibility="gone"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:id="@+id/money_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="最低充值金额（20元）"
+            android:inputType="number"
+            android:text="" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -170,6 +240,7 @@
             android:textColor="#f83e3f" />
     </LinearLayout>
     <LinearLayout
+        android:background="#FFF"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"

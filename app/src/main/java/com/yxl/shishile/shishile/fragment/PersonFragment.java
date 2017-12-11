@@ -97,6 +97,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chongzhi_button:
+                //充值
                 Intent intent1 = new Intent(view.getContext(), BPActivity.class);
                 startActivity(intent1);
                 break;

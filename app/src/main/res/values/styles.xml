@@ -35,5 +35,9 @@
     <style name="MainSwipeBackTheme" parent="SwipeBackTheme">
         <item name="android:windowIsTranslucent">false</item>
     </style>
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">#f83e3f</item>
+    </style>
 
 </resources>
