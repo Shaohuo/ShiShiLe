@@ -1,5 +1,6 @@
 package com.yxl.shishile.shishile.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,11 @@ public class ForecastActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-
-
+        switch (view.getId()){
+            case R.id.send_forecast:
+                Intent intent = new Intent(ForecastActivity.this,ForecastFragmentActivity.class);
+                intent.putExtra("id", 1);
+                startActivity(intent);
+        }
     }
 }

@@ -102,7 +102,7 @@
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/SwipeBackTheme"></activity>
+            android:theme="@style/SwipeBackTheme" />
 
         <!-- 注册SDKActivity -->
         <activity
@@ -127,7 +127,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
-        <activity android:name=".activity.CollectionActivity"></activity>
+        <activity android:name=".activity.CollectionActivity" />
+        <activity android:name=".activity.ForecastFragmentActivity"></activity>
     </application>
 
 </manifest>

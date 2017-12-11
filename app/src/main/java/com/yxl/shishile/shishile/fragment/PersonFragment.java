@@ -16,6 +16,7 @@ import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ForecastActivity;
 import com.yxl.shishile.shishile.activity.BPActivity;
 import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
+import com.yxl.shishile.shishile.activity.LoginActivity;
 import com.yxl.shishile.shishile.activity.MyWalletActivity;
 import com.yxl.shishile.shishile.model.MessageEvent;
 import com.yxl.shishile.shishile.widgets.ImageViewPlus;
@@ -77,7 +78,6 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 //积分明细
                 Intent intent2 = new Intent(getContext(), IntegraldetailActivity.class);
                 startActivity(intent2);
-                Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my:
                 //我的钱包
@@ -86,15 +86,15 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.sf:
                 //我的收藏
-                Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.kefu:
                 //客服
-                Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting:
                 //设置
-                Toast.makeText(getContext(),"功能即将开放！尽请期待",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chongzhi_button:
                 Intent intent1 = new Intent(view.getContext(), BPActivity.class);
