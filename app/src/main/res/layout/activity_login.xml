@@ -68,7 +68,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#00A2F4" />
+            android:background="#f83e3f" />
 
         <EditText
             android:id="@+id/et01"
@@ -110,7 +110,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#00A2F4" />
+            android:background="#f83e3f" />
 
         <EditText
             android:id="@+id/et02"
@@ -133,7 +133,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:background="#5BE79C"
+        android:background="#f83e3f"
         android:text="登陆"
         android:textColor="@color/white" />
 
@@ -170,7 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#00A2F4" />
+            android:background="#f83e3f" />
 
         <TextView
             android:layout_width="0dp"
@@ -188,7 +188,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#00A2F4" />
+            android:background="#f83e3f" />
     </LinearLayout>
 
     <RadioGroup
@@ -231,6 +231,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="#00A2F4" />
+        android:background="#f83e3f" />
 
 </LinearLayout>

@@ -1,331 +1,1009 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.yxl.shishile.shishile.fragment.BeijingPkshiFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:text="冠军"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:background="#f83e3f"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:gravity="center|start"
-        android:textColor="@color/black"
-        android:text="距离653125期截止还有2分钟55秒"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
-    <TextView
-        android:text="在冠军位置上选择1个预测号"
-        android:gravity="center|start"
-        android:layout_marginLeft="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/title_liner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#f83e3f"
+            android:gravity="center|end"
+            android:text="冠军"
+            android:textColor="#FFFFFF" />
 
-            <TextView
-                android:textColor="#f83e3f"
-                android:text="冠军"
-                android:gravity="center|start"
-                android:layout_marginLeft="10dp"
-                android:ems="1"
-                android:layout_width="20dp"
-                android:layout_height="40dp" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.1"
+            android:background="#f83e3f"
+            android:src="@mipmap/ic_down" />
 
-            <LinearLayout
-                android:layout_marginRight="20dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:background="@drawable/radius_liner"
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="全"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="大"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="小"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="单"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="双"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:text="清"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:id="@+id/ball1"
-                android:src="@mipmap/ball01"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball2"
-                android:src="@mipmap/ball02"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball3"
-                android:src="@mipmap/ball03"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball4"
-                android:src="@mipmap/ball04"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball5"
-                android:src="@mipmap/ball05"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball6"
-                android:src="@mipmap/ball06"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-            <TextView
-                android:text="2"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="6"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="0"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="19"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="24"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="3"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:id="@+id/ball7"
-                android:src="@mipmap/ball07"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball8"
-                android:src="@mipmap/ball08"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball9"
-                android:src="@mipmap/ball09"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball10"
-                android:src="@mipmap/ball010"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball11"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-
-            <ImageView
-                android:id="@+id/ball12"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="40dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-            <TextView
-                android:text="8"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="5"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="1"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:text="7"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-        </LinearLayout>
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.9"
+            android:background="#f83e3f" />
     </LinearLayout>
 
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/champion_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="距离653125期截止还有2分钟55秒"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="在冠军位置上选择1个预测号" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:ems="1"
+                            android:gravity="center|start"
+                            android:text="冠军"
+                            android:textColor="#f83e3f" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/radius_liner"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="全"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="大"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="小"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="单"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="双"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="清"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.yxl.shishile.shishile.widgets.KeyRadioGroupV2
+                        android:id="@+id/krg_main_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp">
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_1"
+                                style="@style/KeyRadioButton"
+                                android:text="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_2"
+                                style="@style/KeyRadioButton"
+                                android:text="2" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_3"
+                                style="@style/KeyRadioButton"
+                                android:text="3" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_4"
+                                style="@style/KeyRadioButton"
+                                android:text="4" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_5"
+                                style="@style/KeyRadioButton"
+                                android:text="5" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_6"
+                                style="@style/KeyRadioButton"
+                                android:text="6" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_7"
+                                style="@style/KeyRadioButton"
+                                android:text="7" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_8"
+                                style="@style/KeyRadioButton"
+                                android:text="8" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_9"
+                                style="@style/KeyRadioButton"
+                                android:text="9" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_10"
+                                style="@style/KeyRadioButton"
+                                android:text="10" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_11"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+
+                            <RadioButton
+                                android:id="@+id/rb1_main_12"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+                        </RadioGroup>
+
+                    </com.yxl.shishile.shishile.widgets.KeyRadioGroupV2>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/second_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="在亚军位置上选择1个预测号" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:ems="1"
+                            android:gravity="center|start"
+                            android:text="亚军"
+                            android:textColor="#f83e3f" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/radius_liner"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="全"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="大"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="小"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="单"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="双"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="清"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.yxl.shishile.shishile.widgets.KeyRadioGroupV2
+                        android:id="@+id/krg_main_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp">
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_1"
+                                style="@style/KeyRadioButton"
+                                android:text="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_2"
+                                style="@style/KeyRadioButton"
+                                android:text="2" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_3"
+                                style="@style/KeyRadioButton"
+                                android:text="3" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_4"
+                                style="@style/KeyRadioButton"
+                                android:text="4" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_5"
+                                style="@style/KeyRadioButton"
+                                android:text="5" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_6"
+                                style="@style/KeyRadioButton"
+                                android:text="6" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_7"
+                                style="@style/KeyRadioButton"
+                                android:text="7" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_8"
+                                style="@style/KeyRadioButton"
+                                android:text="8" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_9"
+                                style="@style/KeyRadioButton"
+                                android:text="9" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_10"
+                                style="@style/KeyRadioButton"
+                                android:text="10" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_11"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_main_12"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+                        </RadioGroup>
+
+                    </com.yxl.shishile.shishile.widgets.KeyRadioGroupV2>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/third_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="在季军位置上选择1个预测号" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:ems="1"
+                            android:gravity="center|start"
+                            android:text="季军"
+                            android:textColor="#f83e3f" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/radius_liner"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="全"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="大"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="小"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="单"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="双"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="清"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.yxl.shishile.shishile.widgets.KeyRadioGroupV2
+                        android:id="@+id/krg_main_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp">
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_1"
+                                style="@style/KeyRadioButton"
+                                android:text="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_2"
+                                style="@style/KeyRadioButton"
+                                android:text="2" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_3"
+                                style="@style/KeyRadioButton"
+                                android:text="3" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_4"
+                                style="@style/KeyRadioButton"
+                                android:text="4" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_5"
+                                style="@style/KeyRadioButton"
+                                android:text="5" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_6"
+                                style="@style/KeyRadioButton"
+                                android:text="6" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_7"
+                                style="@style/KeyRadioButton"
+                                android:text="7" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_8"
+                                style="@style/KeyRadioButton"
+                                android:text="8" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_9"
+                                style="@style/KeyRadioButton"
+                                android:text="9" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_10"
+                                style="@style/KeyRadioButton"
+                                android:text="10" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_11"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+
+                            <RadioButton
+                                android:id="@+id/rb3_main_12"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+                        </RadioGroup>
+
+                    </com.yxl.shishile.shishile.widgets.KeyRadioGroupV2>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fourth_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="在第四名位置上选择1个预测号" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:ems="1"
+                            android:gravity="center|start"
+                            android:text="四名"
+                            android:textColor="#f83e3f" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/radius_liner"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="全"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="大"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="小"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="单"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="双"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="清"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.yxl.shishile.shishile.widgets.KeyRadioGroupV2
+                        android:id="@+id/krg_main_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp">
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_1"
+                                style="@style/KeyRadioButton"
+                                android:text="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_2"
+                                style="@style/KeyRadioButton"
+                                android:text="2" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_3"
+                                style="@style/KeyRadioButton"
+                                android:text="3" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_4"
+                                style="@style/KeyRadioButton"
+                                android:text="4" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_5"
+                                style="@style/KeyRadioButton"
+                                android:text="5" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_6"
+                                style="@style/KeyRadioButton"
+                                android:text="6" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_7"
+                                style="@style/KeyRadioButton"
+                                android:text="7" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_8"
+                                style="@style/KeyRadioButton"
+                                android:text="8" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_9"
+                                style="@style/KeyRadioButton"
+                                android:text="9" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_10"
+                                style="@style/KeyRadioButton"
+                                android:text="10" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_11"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+
+                            <RadioButton
+                                android:id="@+id/rb4_main_12"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+                        </RadioGroup>
+
+                    </com.yxl.shishile.shishile.widgets.KeyRadioGroupV2>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fifth_liner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center|start"
+                    android:text="在第五名位置上选择1个预测号" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:ems="1"
+                            android:gravity="center|start"
+                            android:text="五名"
+                            android:textColor="#f83e3f" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/radius_liner"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="全"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="大"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="小"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="单"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="双"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="清"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.yxl.shishile.shishile.widgets.KeyRadioGroupV2
+                        android:id="@+id/krg_main_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp">
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_1"
+                                style="@style/KeyRadioButton"
+                                android:text="1" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_2"
+                                style="@style/KeyRadioButton"
+                                android:text="2" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_3"
+                                style="@style/KeyRadioButton"
+                                android:text="3" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_4"
+                                style="@style/KeyRadioButton"
+                                android:text="4" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_5"
+                                style="@style/KeyRadioButton"
+                                android:text="5" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_6"
+                                style="@style/KeyRadioButton"
+                                android:text="6" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_7"
+                                style="@style/KeyRadioButton"
+                                android:text="7" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_8"
+                                style="@style/KeyRadioButton"
+                                android:text="8" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_9"
+                                style="@style/KeyRadioButton"
+                                android:text="9" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_10"
+                                style="@style/KeyRadioButton"
+                                android:text="10" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_11"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+
+                            <RadioButton
+                                android:id="@+id/rb5_main_12"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:visibility="invisible" />
+                        </RadioGroup>
+
+                    </com.yxl.shishile.shishile.widgets.KeyRadioGroupV2>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#f83e3f"
+        android:gravity="center"
+        android:text="发起预测"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

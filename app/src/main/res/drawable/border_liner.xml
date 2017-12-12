@@ -5,7 +5,7 @@
     //这里是设置边框线的粗细和颜色
     <stroke
         android:width="0.3dp"
-        android:color="#00A2F4" />
+        android:color="#f83e3f" />
 
     <padding
         android:bottom="1dp"

@@ -1,15 +1,22 @@
 package com.yxl.shishile.shishile.fragment;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.widgets.KeyRadioGroupV2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,26 +28,15 @@ import com.yxl.shishile.shishile.R;
  */
 public class BeijingPkshiFragment extends Fragment implements View.OnClickListener {
 
-    private ImageView ball1;
-    private ImageView ball2;
-    private ImageView ball3;
-    private ImageView ball4;
-    private ImageView ball5;
-    private ImageView ball6;
-    private ImageView ball7;
-    private ImageView ball8;
-    private ImageView ball9;
-    private ImageView ball10;
-    private int a = 0;
-    private int b = 0;
-    private int c = 0;
-    private int d = 0;
-    private int e = 0;
-    private int f = 0;
-    private int g = 0;
-    private int h = 0;
-    private int i = 0;
-    private int j = 0;
+    private KeyRadioGroupV2 mKeyRadioGroupV2;
+    private PopupWindow mpopupWindow;
+    private LinearLayout linner;
+    private LinearLayout champion_liner;
+    private LinearLayout second_liner;
+    private LinearLayout third_liner;
+    private LinearLayout fourth_liner;
+    private LinearLayout fifth_liner;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,27 +80,14 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
     }
 
     private void initView(View view) {
-        ball1 = view.findViewById(R.id.ball1);
-        ball2 = view.findViewById(R.id.ball2);
-        ball3 = view.findViewById(R.id.ball3);
-        ball4 = view.findViewById(R.id.ball4);
-        ball5 = view.findViewById(R.id.ball5);
-        ball6 = view.findViewById(R.id.ball6);
-        ball7 = view.findViewById(R.id.ball7);
-        ball8 = view.findViewById(R.id.ball8);
-        ball9 = view.findViewById(R.id.ball9);
-        ball10 = view.findViewById(R.id.ball10);
-        ball1.setOnClickListener(this);
-        ball2.setOnClickListener(this);
-        ball3.setOnClickListener(this);
-        ball4.setOnClickListener(this);
-        ball5.setOnClickListener(this);
-        ball6.setOnClickListener(this);
-        ball7.setOnClickListener(this);
-        ball8.setOnClickListener(this);
-        ball9.setOnClickListener(this);
-        ball10.setOnClickListener(this);
-
+        champion_liner = view.findViewById(R.id.champion_liner);
+        second_liner = view.findViewById(R.id.second_liner);
+        third_liner = view.findViewById(R.id.third_liner);
+        fourth_liner = view.findViewById(R.id.fourth_liner);
+        fifth_liner = view.findViewById(R.id.fifth_liner);
+        linner = view.findViewById(R.id.title_liner);
+        linner.setOnClickListener(this);
+        mKeyRadioGroupV2 = (KeyRadioGroupV2) view.findViewById(R.id.krg_main_2);
     }
 
 
@@ -129,87 +112,49 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ball1:
-                if (a == 0) {
-                    ball1.setImageResource(R.mipmap.ball01);
-                    a = 1;
-                } else if (a == 1) {
-                    ball1.setImageResource(R.mipmap.ball1);
-                    a = 0;
-                }
-            case R.id.ball2:
-                if (b == 0) {
-                    ball2.setImageResource(R.mipmap.ball02);
-                    b = 1;
-                } else if (b == 1) {
-                    ball2.setImageResource(R.mipmap.ball2);
-                    b = 0;
-                }
-            case R.id.ball3:
-                if (c == 0) {
-                    ball3.setImageResource(R.mipmap.ball03);
-                    c = 1;
-                } else if (c == 1) {
-                    ball3.setImageResource(R.mipmap.ball3);
-                    c = 0;
-                }
-            case R.id.ball4:
-                if (d == 0) {
-                    ball4.setImageResource(R.mipmap.ball04);
-                    d = 1;
-                } else if (d == 1) {
-                    ball4.setImageResource(R.mipmap.ball4);
-                    d = 0;
-                }
-            case R.id.ball5:
-                if (e == 0) {
-                    ball5.setImageResource(R.mipmap.ball05);
-                    e = 1;
-                } else if (e == 1) {
-                    ball5.setImageResource(R.mipmap.ball5);
-                    e = 0;
-                }
-            case R.id.ball6:
-                if (f == 0) {
-                    ball6.setImageResource(R.mipmap.ball06);
-                    f = 1;
-                } else if (f == 1) {
-                    ball6.setImageResource(R.mipmap.ball6);
-                    f = 0;
-                }
-            case R.id.ball7:
-                if (g == 0) {
-                    ball7.setImageResource(R.mipmap.ball07);
-                    g = 1;
-                } else if (g == 1) {
-                    ball7.setImageResource(R.mipmap.ball7);
-                    g = 0;
-                }
-            case R.id.ball8:
-                if (h == 0) {
-                    ball8.setImageResource(R.mipmap.ball08);
-                    h = 1;
-                } else if (h == 1) {
-                    ball8.setImageResource(R.mipmap.ball8);
-                    h = 0;
-                }
-            case R.id.ball9:
-                if (i == 0) {
-                    ball9.setImageResource(R.mipmap.ball09);
-                    i = 1;
-                } else if (i == 1) {
-                    ball9.setImageResource(R.mipmap.ball9);
-                    i = 0;
-                }
-            case R.id.ball10:
-                if (j == 0) {
-                    ball10.setImageResource(R.mipmap.ball010);
-                    j = 1;
-                } else if (j == 1) {
-                    ball10.setImageResource(R.mipmap.ball10);
-                    j = 0;
-                }
-
+            case R.id.title_liner:
+                showPopupWindow();
+                break;
+            case R.id.champion:
+                mpopupWindow.dismiss();
+                champion_liner.setVisibility(View.VISIBLE);
+                second_liner.setVisibility(View.INVISIBLE);
+                third_liner.setVisibility(View.INVISIBLE);
+                fourth_liner.setVisibility(View.INVISIBLE);
+                fifth_liner.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.second_place:
+                mpopupWindow.dismiss();
+                champion_liner.setVisibility(View.VISIBLE);
+                second_liner.setVisibility(View.VISIBLE);
+                third_liner.setVisibility(View.INVISIBLE);
+                fourth_liner.setVisibility(View.INVISIBLE);
+                fifth_liner.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.third_place:
+                mpopupWindow.dismiss();
+                champion_liner.setVisibility(View.VISIBLE);
+                second_liner.setVisibility(View.VISIBLE);
+                third_liner.setVisibility(View.VISIBLE);
+                fourth_liner.setVisibility(View.INVISIBLE);
+                fifth_liner.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.fourth:
+                mpopupWindow.dismiss();
+                champion_liner.setVisibility(View.VISIBLE);
+                second_liner.setVisibility(View.VISIBLE);
+                third_liner.setVisibility(View.VISIBLE);
+                fourth_liner.setVisibility(View.VISIBLE);
+                fifth_liner.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.fifth:
+                mpopupWindow.dismiss();
+                champion_liner.setVisibility(View.VISIBLE);
+                second_liner.setVisibility(View.VISIBLE);
+                third_liner.setVisibility(View.VISIBLE);
+                fourth_liner.setVisibility(View.VISIBLE);
+                fifth_liner.setVisibility(View.VISIBLE);
+                break;
         }
 
     }
@@ -227,5 +172,50 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void showPopupWindow() {
+        View contentView = getActivity().getLayoutInflater().inflate(R.layout.pop_layout, null);
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+
+//这里就可自定义在上方和下方了 ，这种方式是为了确定在某个位置，某个控件的左边，右边，上边，下边都可以
+        mpopupWindow = new PopupWindow(contentView, 0, 0);
+        mpopupWindow.setBackgroundDrawable(new BitmapDrawable());//注意这里如果不设置，下面的setOutsideTouchable(true);允许点击外部消失会失效
+        mpopupWindow.setOutsideTouchable(true);   //设置外部点击关闭ppw窗口
+        mpopupWindow.setFocusable(true);
+// 获得目标控件位置
+        mpopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        mpopupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mpopupWindow.showAsDropDown(linner);
+        WindowManager windowManager = getActivity().getWindowManager();
+        WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
+        //当弹出Popupwindow时，背景变半透明
+        params.alpha = 0.7f;
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getActivity().getWindow().setAttributes(params);
+        //设置Popupwindow关闭监听，当Popupwindow关闭，背景恢复1f
+        mpopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
+                params.alpha = 1f;
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                getActivity().getWindow().setAttributes(params);
+            }
+        });
+        mpopupWindow.setAnimationStyle(R.style.AnimationFade);
+        mpopupWindow.update();
+
+        TextView champion = contentView.findViewById(R.id.champion);
+        TextView second_place = contentView.findViewById(R.id.second_place);
+        TextView third_place = contentView.findViewById(R.id.third_place);
+        TextView fourth = contentView.findViewById(R.id.fourth);
+        TextView fifth = contentView.findViewById(R.id.fifth);
+        champion.setOnClickListener(this);
+        second_place.setOnClickListener(this);
+        third_place.setOnClickListener(this);
+        fourth.setOnClickListener(this);
+        fifth.setOnClickListener(this);
+
     }
 }
