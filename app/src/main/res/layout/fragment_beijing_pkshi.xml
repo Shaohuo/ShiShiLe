@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/liner_title_text"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -67,7 +68,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center|start"
-                    android:text="在冠军位置上选择1个预测号" />
+                    android:text="在冠军位置上选择您的预测号" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -255,7 +256,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center|start"
-                    android:text="在亚军位置上选择1个预测号" />
+                    android:text="在前两名位置上选择您的预测号" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -443,7 +444,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center|start"
-                    android:text="在季军位置上选择1个预测号" />
+                    android:text="在前三名位置上选择您的预测号" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -631,7 +632,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center|start"
-                    android:text="在第四名位置上选择1个预测号" />
+                    android:text="在前四名位置上选择您的预测号" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -819,7 +820,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="center|start"
-                    android:text="在第五名位置上选择1个预测号" />
+                    android:text="在前五名位置上选择您的预测号" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -36,6 +36,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
     private LinearLayout third_liner;
     private LinearLayout fourth_liner;
     private LinearLayout fifth_liner;
+    private TextView liner_title;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -85,6 +86,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
         third_liner = view.findViewById(R.id.third_liner);
         fourth_liner = view.findViewById(R.id.fourth_liner);
         fifth_liner = view.findViewById(R.id.fifth_liner);
+        liner_title = view.findViewById(R.id.liner_title_text);
         linner = view.findViewById(R.id.title_liner);
         linner.setOnClickListener(this);
         mKeyRadioGroupV2 = (KeyRadioGroupV2) view.findViewById(R.id.krg_main_2);
@@ -117,6 +119,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.champion:
                 mpopupWindow.dismiss();
+                liner_title.setText("冠军");
                 champion_liner.setVisibility(View.VISIBLE);
                 second_liner.setVisibility(View.INVISIBLE);
                 third_liner.setVisibility(View.INVISIBLE);
@@ -125,6 +128,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.second_place:
                 mpopupWindow.dismiss();
+                liner_title.setText("前二名");
                 champion_liner.setVisibility(View.VISIBLE);
                 second_liner.setVisibility(View.VISIBLE);
                 third_liner.setVisibility(View.INVISIBLE);
@@ -133,6 +137,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.third_place:
                 mpopupWindow.dismiss();
+                liner_title.setText("前三名");
                 champion_liner.setVisibility(View.VISIBLE);
                 second_liner.setVisibility(View.VISIBLE);
                 third_liner.setVisibility(View.VISIBLE);
@@ -141,6 +146,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.fourth:
                 mpopupWindow.dismiss();
+                liner_title.setText("前四名");
                 champion_liner.setVisibility(View.VISIBLE);
                 second_liner.setVisibility(View.VISIBLE);
                 third_liner.setVisibility(View.VISIBLE);
@@ -149,6 +155,7 @@ public class BeijingPkshiFragment extends Fragment implements View.OnClickListen
                 break;
             case R.id.fifth:
                 mpopupWindow.dismiss();
+                liner_title.setText("前五名");
                 champion_liner.setVisibility(View.VISIBLE);
                 second_liner.setVisibility(View.VISIBLE);
                 third_liner.setVisibility(View.VISIBLE);

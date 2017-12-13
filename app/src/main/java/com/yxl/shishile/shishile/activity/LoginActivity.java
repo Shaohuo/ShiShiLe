@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.connect.UserInfo;
@@ -34,12 +35,15 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
 //    public static ImageView userlogo;
     Bitmap bitmap = null;
     public static String nicknameTextView;
+    private TextView zhuce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         View back_img = findViewById(R.id.back_img);
+        zhuce = findViewById(R.id.zhuce);
+        zhuce.setOnClickListener(this);
         back_img.setOnClickListener(this);
         //传入参数APPID和全局Context上下文
         mTencent = Tencent.createInstance(APP_ID,LoginActivity.this.getApplicationContext());
@@ -60,6 +64,9 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
             case R.id.back_img:
                 finish();
                 break;
+            case R.id.zhuce:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
         }
     }
 
