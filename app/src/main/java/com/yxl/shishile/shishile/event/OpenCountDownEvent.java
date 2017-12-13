@@ -9,7 +9,8 @@ import com.yxl.shishile.shishile.model.Lottery;
 public class OpenCountDownEvent {
     private Lottery mLottery;
 
-    public Lottery getLottery() {
+    public Lottery getLottery()
+    {
         return mLottery;
     }
 

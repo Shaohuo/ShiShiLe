@@ -75,10 +75,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
+            android:maxLength="20"
             android:cursorVisible="true"
             android:gravity="center|left"
             android:hint="请输入用户名"
-            android:inputType="number"
             android:singleLine="true" />
 
     </LinearLayout>
@@ -164,7 +164,7 @@
             android:cursorVisible="true"
             android:gravity="center|left"
             android:hint="请输入密码"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:singleLine="true" />
 
 
@@ -207,7 +207,7 @@
             android:cursorVisible="true"
             android:gravity="center|left"
             android:hint="请确认密码"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:singleLine="true" />
 
 

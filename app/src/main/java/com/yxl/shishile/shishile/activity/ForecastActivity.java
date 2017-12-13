@@ -13,10 +13,12 @@ import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import static com.baidu.mapapi.BMapManager.getContext;
 
-public class ForecastActivity extends BaseActivity implements View.OnClickListener {
+public class ForecastActivity extends BaseActivity implements View.OnClickListener
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast_n);
         RecyclerView mRecyclerView = findViewById(R.id.firecast_list);
@@ -27,8 +29,6 @@ public class ForecastActivity extends BaseActivity implements View.OnClickListen
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setAdapter(new MyPrizeAdapter());
-
-
     }
 
     @Override

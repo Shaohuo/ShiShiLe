@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <ImageView
+        android:id="@+id/ivPrize"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivPrize"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/ivPrize"
+        android:text="用户名" />
+    <TextView
+        android:gravity="center"
+        android:id="@+id/forecast_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/include"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/include"
+        android:layout_marginLeft="103dp"
+        android:layout_marginStart="103dp"
+        android:text="开奖期数" />
+    <include
+        layout="@layout/layout_lotter_ball_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/include" />
+</RelativeLayout>
