@@ -41,18 +41,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.zhuce:
 
-              if (isEmail(et02.getText().toString())==false)
+              if (!isEmail(et02.getText().toString()))
               {
                   Toast.makeText(RegisterActivity.this, "请输入正确的Email地址", Toast.LENGTH_SHORT).show();
               }
-              else if (et03.getText().toString().equals(et04.getText().toString())==false)
+              else if (!et03.getText().toString().equals(et04.getText().toString()))
               {
                   Toast.makeText(RegisterActivity.this, "两次输入的密码不同", Toast.LENGTH_SHORT).show();
               }
               else if (et01.getText().toString().equals(""))
               {
                   Toast.makeText(RegisterActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
-
               }
               else if (et03.getText().toString().equals(""))
               {
@@ -62,11 +61,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
               {
                   Toast.makeText(RegisterActivity.this, "提交", Toast.LENGTH_SHORT).show();
               }
-
-
-
-
-
                 //提交
                 break;
         }
