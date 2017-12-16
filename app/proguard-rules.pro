@@ -25,3 +25,6 @@
 -keep class org.jivesoftware.** {*;}
 -keep class org.apache.** {*;}
 -dontwarn  com.easemob.**
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+ -keep class android.support.**{*;}
