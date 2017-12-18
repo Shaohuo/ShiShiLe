@@ -24,7 +24,7 @@ public class ApiManager {
 
     private static final int DEFAULT_TIMEOUT = 10000;
     private static final int CACHE_SIZE = 10 * 1024 * 1024; // 10 MiB
-    public static String BASE_URL = "http://139.159.217.174/api/";//= BuildConfig.baseUrl;
+    public static String BASE_URL = "http://192.168.1.127/";//= BuildConfig.baseUrl;
     private static ApiManager sApiManager;
     private static Context sContext;
 

@@ -1,4 +1,5 @@
 package com.yxl.shishile.shishile.activity;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
     private TextView mTvOpenPrize;
     private BGARefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
+    private TextView tvLotteryNum;
     private HistoryAdapter mAdapter;
     private List<Lottery> mLotteryList = new ArrayList<>();
     private int[] mImgs = new int[]{R.mipmap.bg_countdown_chongqing, R.mipmap.bg_countdown_hubei,
@@ -66,6 +68,7 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
         setContentView(R.layout.activity_lottery);
         mCvCountdownView = (CountdownView) findViewById(R.id.cv_countdownViewTest1);
         mTvLotteryName = findViewById(R.id.tvLotteryName);
+        tvLotteryNum = findViewById(R.id.tvLotteryNum);
         mIvLotteryBar = findViewById(R.id.ivLotteryBar);
         mTvOpenPrize = findViewById(R.id.tvOpenPrize);
         findViewById(R.id.ivBack).setOnClickListener(new View.OnClickListener() {
@@ -132,8 +135,8 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
         });
     }
     public void loadLotteryData() {
-        Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryList
-                (mIndex, "qzcx72trd7ax5w90");
+        Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryHistoryList
+                (mIndex, "100");
 
         call.enqueue(new Callback<LotteryList>() {
 

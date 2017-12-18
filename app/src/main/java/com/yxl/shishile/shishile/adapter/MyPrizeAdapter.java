@@ -1,19 +1,21 @@
 package com.yxl.shishile.shishile.adapter;
 
-import android.content.Intent;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
 import com.yxl.shishile.shishile.model.Lottery;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,14 +24,15 @@ import java.util.HashMap;
 
 public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHolder> implements View.OnClickListener {
 
+    private final OpenPrizeFragment mContext;
     private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
     private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
 
-    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
+    List<Lottery> mLotteryList = new ArrayList<>();
 
-    public void setData(HashMap<Integer, Lottery> maps) {
-        mLotteryMaps.clear();
-        mLotteryMaps.putAll(maps);
+    public MyPrizeAdapter(OpenPrizeFragment context, List<Lottery> list) {
+        mContext = context;
+        mLotteryList = list;
     }
 
     private OnItemClickListener mOnItemClickListener = null;
@@ -62,7 +65,8 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
         viewHolder.itemView.setTag(position);
 
-        Lottery lottery = mLotteryMaps.get(position + 1);
+        if (mLotteryList.size() > 0){
+        Lottery lottery = mLotteryList.get(position);
         if (lottery != null) {
             viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
             viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
@@ -76,6 +80,10 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
                     mTvData.setVisibility(View.GONE);
                 }
             }
+        }
+        }
+        else {
+            Log.d("mLotteryList", "mLotteryList.size = 0");
         }
     }
 

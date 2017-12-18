@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.adapter.ForecastAdapter;
+import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
@@ -28,7 +30,7 @@ public class ForecastActivity extends BaseActivity implements View.OnClickListen
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
-        mRecyclerView.setAdapter(new MyPrizeAdapter());
+        mRecyclerView.setAdapter(new ForecastAdapter());
     }
 
     @Override

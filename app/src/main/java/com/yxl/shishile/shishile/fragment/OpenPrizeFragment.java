@@ -20,10 +20,12 @@ import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
-import com.yxl.shishile.shishile.model.LotteryModel;
+import com.yxl.shishile.shishile.model.LotteryListModel;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -53,6 +55,8 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
     private MyPrizeAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private BGARefreshLayout mRefreshLayout;
+    private List<Lottery> mLotteryList = new ArrayList<>();
+
 
     public OpenPrizeFragment() {
         // Required empty public constructor
@@ -92,7 +96,6 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
 
         View view = inflater.inflate(R.layout.fragment_open_prize, container, false);
 
-
         mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.rl_modulename_refresh);
         // 为BGARefreshLayout 设置代理
         mRefreshLayout.setDelegate(this);
@@ -108,7 +111,7 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager
                 .HORIZONTAL));
-        mAdapter = new MyPrizeAdapter();
+        mAdapter = new MyPrizeAdapter(this, mLotteryList);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new MyPrizeAdapter.OnItemClickListener() {
             @Override
@@ -121,7 +124,7 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
         return view;
     }
 
-    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
+//    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
 
     public static int LOTTERY_LIST_COUNT = 11;
 
@@ -132,42 +135,33 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
     }
 
     private void loadPrizeListData() {
-        mLotteryMaps.clear();
-        for (int i = 0; i < 11; i++) {
-            final int index = i + 1;
-            Call<LotteryModel> call = ApiManager.getInstance().create(ApiServer.class).getLottery
-                    ("first_data", "" + index);
-            call.enqueue(new Callback<LotteryModel>() {
-                @Override
-                public void onResponse(Call<LotteryModel> call, Response<LotteryModel> response) {
-                    mRefreshLayout.endRefreshing();
-                    if (response.isSuccessful()) {
-                        LotteryModel body = response.body();
-                        Log.e("OpenPrizeFragment", "" + index + " " + body);
-                        mLotteryMaps.put(index, body.data);
-                        if (mLotteryMaps.size() == LOTTERY_LIST_COUNT) {
-                            mRecyclerView.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mAdapter.setData(mLotteryMaps);
-                                    mAdapter.notifyDataSetChanged();
-                                    Log.e("OpenPrizeFragment", "" + mLotteryMaps);
-                                }
-                            });
-                        }
-                    } else {
+        Call<LotteryListModel> call = ApiManager.getInstance().create(ApiServer.class).getLotteryListModel();
+
+        call.enqueue(new Callback<LotteryListModel>() {
+
+            @Override
+            public void onResponse(Call<LotteryListModel> call, Response<LotteryListModel> response) {
+                mRefreshLayout.endRefreshing();
+                LotteryListModel body = response.body();
+                Log.d("OpenPrizeFragment", "" + response.toString());
+                if (response.isSuccessful() && response.body() != null && body.data != null &&
+
+                        body.data.size() > 0) {
+                    mLotteryList.clear();
+                    mLotteryList.addAll(body.data);
+                    mAdapter.notifyDataSetChanged();
+                } else {
                         Log.e("OpenPrizeFragment", "unsuccess");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<LotteryModel> call, Throwable t) {
+                public void onFailure(Call<LotteryListModel> call, Throwable t) {
                     Log.e("OpenPrizeFragment", "" + t.getMessage());
                     mRefreshLayout.endRefreshing();
                 }
             });
         }
-    }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {

@@ -18,8 +18,8 @@ public class CollectionActivity extends AppCompatActivity {
         //通过获取服务器传递过来的 我的收藏列表，对应我收藏的彩种开奖信息
         //显示方式与开奖界面相同
         RecyclerView collectListview = findViewById(R.id.collectlistview);
-        MyPrizeAdapter myPrizeAdapter = new MyPrizeAdapter();
-        collectListview.setAdapter(myPrizeAdapter);
+//        MyPrizeAdapter myPrizeAdapter = new MyPrizeAdapter();
+//        collectListview.setAdapter(myPrizeAdapter);
 
 
 
