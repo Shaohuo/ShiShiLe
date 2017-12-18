@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,16 +57,17 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07, R.id.six_num_08, R.id.six_num_09, R.id.six_num_10};
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position)
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position)
     {
         viewHolder.mTvPrizeName.setText("" + mNames[position]);
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
         viewHolder.itemView.setTag(position);
         viewHolder.changeBall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                //viewHolder.changeBall.setSelected(true);
                 SelfDialog selfDialog = new SelfDialog(view.getContext(), position,R.style.MyDialog);
-
                 selfDialog.show();
             }
         });
@@ -95,7 +97,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
         public TextView mTvPrizeNum;
         public TextView mTvOpenTime;
         public LinearLayout mLlData;
-        public  Button changeBall;
+        public Button changeBall;
 
         public ViewHolder(View view) {
             super(view);
@@ -105,6 +107,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
             mTvOpenTime = (TextView) view.findViewById(R.id.tvOpenTime);
             mLlData = (LinearLayout) view.findViewById(R.id.llData);
            changeBall = view.findViewById(R.id.changeBall);
+
         }
     }
 }

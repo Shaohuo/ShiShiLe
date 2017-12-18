@@ -35,11 +35,14 @@
         android:layout_alignParentRight="true"
         android:background="@mipmap/right_p" />-->
     <Button
+        android:background="@drawable/dialog_select"
+        android:layout_marginRight="7dp"
         android:id="@+id/changeBall"
-        android:text="摇"
+        android:text=""
+        android:textColor="@color/red"
         android:textSize="14sp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
