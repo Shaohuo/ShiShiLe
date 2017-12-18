@@ -17,12 +17,12 @@ public class M_ForecastActivity extends SwipeBackActivity implements View.OnClic
     private RecyclerView mRecyclerView;
     private ForecastAdapter mAdapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_forecast);
         mRecyclerView = findViewById(R.id.my_recycler_view);
         ImageView imgBack = findViewById(R.id.main_forecast_back);
-
         imgBack.setOnClickListener(this);
         //创建默认的线性LayoutManager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -32,7 +32,8 @@ public class M_ForecastActivity extends SwipeBackActivity implements View.OnClic
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
         mAdapter = new ForecastAdapter();
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new ForecastAdapter.OnItemClickListener() {
+
+        /*mAdapter.setOnItemClickListener(new ForecastAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position)
             {
@@ -40,7 +41,8 @@ public class M_ForecastActivity extends SwipeBackActivity implements View.OnClic
                 Intent intent = new Intent(M_ForecastActivity.this,ForecastActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
 
     }
 

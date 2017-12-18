@@ -146,8 +146,8 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                 LotteryList body = response.body();
                 Log.d("LotteryActivity", "" + response.toString());
                 if (response.isSuccessful() && response.body() != null && body.data != null &&
-
-                        body.data.size() > 0) {
+                        body.data.size() > 0)
+                {
                     mLotteryList.clear();
                     mLotteryList.addAll(body.data);
                     mAdapter.notifyDataSetChanged();

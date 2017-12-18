@@ -1,6 +1,7 @@
 package com.yxl.shishile.shishile.api;
 
 import com.yxl.shishile.shishile.model.CountDownModel;
+import com.yxl.shishile.shishile.model.ForecastModel;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.model.LotteryListModel;
 import com.yxl.shishile.shishile.model.LotteryModel;
@@ -23,6 +24,9 @@ public interface ApiServer {
 
     @GET("http://192.168.1.127/")
     Call<CountDownModel> getLotteryCountDown(@Query("a") String a, @Query("type") String type);
+    @GET("lottery/forecast_rand")
+    Call<ForecastModel>getForecast();
+
 
     @GET("/lottery/all")
     Call<LotteryListModel> getLotteryListModel();

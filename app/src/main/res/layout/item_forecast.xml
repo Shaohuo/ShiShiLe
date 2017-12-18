@@ -27,13 +27,22 @@
         android:textColor="@android:color/black"
         />
 
-    <ImageView
+<!--    <ImageView
         android:layout_width="17dp"
         android:layout_height="17dp"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
-        android:background="@mipmap/right_p" />
+        android:background="@mipmap/right_p" />-->
+    <Button
+        android:id="@+id/changeBall"
+        android:text="摇"
+        android:textSize="14sp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/tvOpenTime"

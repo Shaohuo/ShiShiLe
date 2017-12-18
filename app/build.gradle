@@ -54,5 +54,4 @@ dependencies {
     implementation files('libs/utdid4all-1.1.5.3_proguard.jar')
     compile project(':push')
 
-
 }

@@ -23,7 +23,7 @@
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -77,7 +77,6 @@
             android:label="@string/title_activity_lottery"
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
-        <activity android:name=".fragment.PersonFragment" />
         <activity
             android:name=".activity.ChatActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -111,11 +110,9 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="tencent1106575688" /> <!-- 开放平台获取的APPID -->
+                <data android:scheme="tencent1106575688" /><!-- 开放平台获取的APPID -->
             </intent-filter>
         </activity>
         <activity

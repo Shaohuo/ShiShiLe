@@ -6,15 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ForecastAdapter;
-import com.yxl.shishile.shishile.adapter.HistoryAdapter;
-import com.yxl.shishile.shishile.adapter.MyPrizeAdapter;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
-
-import static com.baidu.mapapi.BMapManager.getContext;
-
 public class ForecastActivity extends BaseActivity implements View.OnClickListener
 {
 
@@ -40,6 +34,7 @@ public class ForecastActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(ForecastActivity.this,ForecastFragmentActivity.class);
                 intent.putExtra("id", 1);
                 startActivity(intent);
+                break;
         }
     }
 }
