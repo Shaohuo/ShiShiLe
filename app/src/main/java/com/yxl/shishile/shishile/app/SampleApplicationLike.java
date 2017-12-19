@@ -8,10 +8,14 @@ import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMOptions;
+import com.hyphenate.easeui.EaseUI;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
+import com.umeng.commonsdk.UMConfigure;
 
 import java.util.Locale;
 
@@ -29,6 +33,24 @@ public class SampleApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
+        initUmeng();
+        initEMClient();
+        initBuglySDK();
+    }
+
+    private void initUmeng() {
+        /**
+         * 初始化common库
+         * 参数1:上下文，不能为空
+         * 参数2:友盟 app key
+         * 参数3:友盟 channel
+         * 参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
+         * 参数5:Push推送业务的secret
+         */
+        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "25a29d098573684108ccdba2d523ca7a");
+    }
+
+    private void initBuglySDK() {
         // 设置是否开启热更新能力，默认为true
         Beta.enableHotfix = true;
         // 设置是否自动下载补丁，默认为true
@@ -84,6 +106,22 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
         Bugly.init(getApplication(), "91ef00467f", true);
+    }
+
+    private void initEMClient() {
+        EMOptions options = new EMOptions();
+        // 默认添加好友时，是不需要验证的，改成需要验证
+        options.setAcceptInvitationAlways(false);
+        // 是否自动将消息附件上传到环信服务器，默认为True是使用环信服务器上传下载，如果设为 false，需要开发者自己处理附件消息的上传和下载
+        options.setAutoTransferMessageAttachments(true);
+        // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
+        options.setAutoDownloadThumbnail(true);
+        //初始化
+        EMClient.getInstance().init(getApplication().getApplicationContext(), options);
+        //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
+        EMClient.getInstance().setDebugMode(true);
+        //初始化EaseUI库
+        EaseUI.getInstance().init(getApplication().getApplicationContext(), options);
     }
 
 
