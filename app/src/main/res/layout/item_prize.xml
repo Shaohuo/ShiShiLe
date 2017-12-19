@@ -41,6 +41,7 @@
         />
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/love_img"
         android:layout_width="30dp"
         android:layout_height="30dp"
