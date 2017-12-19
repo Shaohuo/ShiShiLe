@@ -92,7 +92,7 @@
             android:layout_marginLeft="0dp"
             android:width="20dp"
             android:height="20dp"
-            android:background="@drawable/shape_textview_red" />
+            android:background="@drawable/shape_textview" />
         <TextView
             android:id="@+id/six_num_02"
             android:textColor="@android:color/white"
@@ -100,7 +100,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -110,7 +110,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -120,7 +120,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -130,7 +130,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -140,7 +140,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -150,7 +150,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -160,7 +160,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -170,7 +170,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -180,7 +180,7 @@
             android:height="20dp"
             android:width="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/shape_textview_red"
+            android:background="@drawable/shape_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
