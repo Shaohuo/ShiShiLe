@@ -8,8 +8,6 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
@@ -42,21 +40,21 @@ public class MyApplication extends Application {
          * 参数5:Push推送业务的secret
          */
         UMConfigure.init(this, "5a28dc6aa40fa33ba8000015", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "25a29d098573684108ccdba2d523ca7a");
-        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
 //注册推送服务，每次调用register方法都会回调该接口
-        mPushAgent.register(new IUmengRegisterCallback() {
-
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回device token
-                Log.i("my_token", deviceToken);
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-                Log.i("aaa", "onFailure: aaaa");
-
-            }
-        });
+//        mPushAgent.register(new IUmengRegisterCallback() {
+//
+//            @Override
+//            public void onSuccess(String deviceToken) {
+//                //注册成功会返回device token
+//                Log.i("my_token", deviceToken);
+//            }
+//
+//            @Override
+//            public void onFailure(String s, String s1) {
+//                Log.i("aaa", "onFailure: aaaa");
+//
+//            }
+//        });
     }
 }
