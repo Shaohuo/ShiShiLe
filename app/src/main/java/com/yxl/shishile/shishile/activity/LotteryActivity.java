@@ -154,18 +154,6 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                 } else {
 
                 }
-//                String[] split = body.data.split(",");
-//                String number = body.number;
-//                String time = body.time;
-//                for (int i = 0; i < 7; i++) {
-//                    TextView mTvData = findViewById(mTvDataIds[i]);
-//                    if (i < split.length) {
-//                        mTvData.setText("" + split[i]);
-//                        mTvData.setVisibility(View.VISIBLE);
-//                    } else {
-//                        mTvData.setVisibility(View.GONE);
-//                    }
-//                }
             }
             @Override
             public void onFailure(Call<LotteryList> call, Throwable t) {

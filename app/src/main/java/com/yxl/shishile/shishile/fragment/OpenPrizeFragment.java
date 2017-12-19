@@ -131,7 +131,12 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
     @Override
     public void onResume() {
         super.onResume();
-        mRefreshLayout.beginRefreshing();
+        mRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.beginRefreshing();
+            }
+        }, 500);
     }
 
     private void loadPrizeListData() {

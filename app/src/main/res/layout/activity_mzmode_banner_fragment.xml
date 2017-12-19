@@ -8,7 +8,7 @@
     tools:context="widgets.MZModeBannerFragment">
 
     <TextView
-        android:text="时时乐"
+        android:text="快赢彩票"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#FFFFFF"

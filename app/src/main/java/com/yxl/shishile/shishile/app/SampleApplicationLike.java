@@ -25,7 +25,6 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();

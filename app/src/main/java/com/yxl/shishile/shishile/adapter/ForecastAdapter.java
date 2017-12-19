@@ -1,6 +1,8 @@
 package com.yxl.shishile.shishile.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +14,12 @@ import android.widget.TextView;
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.dialog.SelfDialog;
+import com.yxl.shishile.shishile.model.Forecast;
 import com.yxl.shishile.shishile.model.Lottery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/11/21 0021.
@@ -25,13 +30,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
 
     private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
     private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
-    private int[] mDataCounts = new int[]{5,3,7,5,3, 3, 5, 3, 5, 10, 5};
     private  View view;
-    HashMap<Integer, Lottery> mLotteryMaps = new HashMap<>();
+    List<Forecast> mLotteryList = new ArrayList<>();
+    private final Context mContext;
 
-    public void setData(HashMap<Integer, Lottery> maps) {
-        mLotteryMaps.clear();
-        mLotteryMaps.putAll(maps);
+    public ForecastAdapter(Context context, List<Forecast> list) {
+        mContext = context;
+        mLotteryList = list;;
     }
 
     @Override
@@ -71,14 +76,24 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
                 selfDialog.show();
             }
         });
-        for (int i = 0; i < mTvDataIds.length; i++) {
-            TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
-            if (i < mDataCounts[position]) {
-                mTvData.setText("");
-                mTvData.setVisibility(View.VISIBLE);
-            } else {
-                mTvData.setVisibility(View.GONE);
+        if (mLotteryList.size() > 0){
+            Forecast forecast = mLotteryList.get(position);
+            if (forecast != null) {
+                viewHolder.mTvOpenTime.setText("开奖时间:" + forecast.nextopentime);
+//                viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
+                String[] split = forecast.data.split(",");
+                for (int i = 0; i < mTvDataIds.length; i++) {
+                    TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
+                    if (i < split.length) {
+                        mTvData.setText("" + split[i]);
+                        mTvData.setVisibility(View.VISIBLE);
+                    } else {
+                        mTvData.setVisibility(View.GONE);
+                    }
+                }
             }
+        } else {
+            Log.d("mLotteryList", "mLotteryList.size = 0");
         }
     }
     public void setOnItemClickListener(OnItemClickListener listener) {

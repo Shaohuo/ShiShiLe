@@ -115,19 +115,19 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
             mLlData = (LinearLayout) view.findViewById(R.id.llData);
 
             loveImg = view.findViewById(R.id.love_img);
-            loveImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (i == 0) {
-                        loveImg.setImageResource(R.mipmap.love);
-                        i = 1;
-                    }
-                    else {
-                        loveImg.setImageResource(R.mipmap.love1);
-                        i = 0;
-                    }
-                }
-            });
+//            loveImg.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (i == 0) {
+//                        loveImg.setImageResource(R.mipmap.love);
+//                        i = 1;
+//                    }
+//                    else {
+//                        loveImg.setImageResource(R.mipmap.love1);
+//                        i = 0;
+//                    }
+//                }
+//            });
         }
     }
 }
