@@ -55,7 +55,7 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
         no.setOnClickListener(this);
         yes.setOnClickListener(this);
         setCanceledOnTouchOutside(false);//按空白处不能取消动画
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.127").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://103.242.1.48:81").addConverterFactory(GsonConverterFactory.create()).build();
         apiServer  = retrofit.create(ApiServer.class);
        Call<ForecastModel> forecast = apiServer.getForecast();
         forecast.enqueue(new Callback<ForecastModel>() {

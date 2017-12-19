@@ -14,17 +14,13 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by ${Jianpan} on 2017/1/11.
- */
-
 public class ApiManager {
 
     private static final String TAG = ApiManager.class.getSimpleName();
 
     private static final int DEFAULT_TIMEOUT = 10000;
     private static final int CACHE_SIZE = 10 * 1024 * 1024; // 10 MiB
-    public static String BASE_URL = "http://192.168.1.127/";//= BuildConfig.baseUrl;
+    public static String BASE_URL = "http://103.242.1.48:81/";//= BuildConfig.baseUrl;
     private static ApiManager sApiManager;
     private static Context sContext;
 
