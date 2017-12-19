@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/Users/huangqianwen/StudioProjects/ShiShiLe/push/build/intermediates/res/merged/androidTest/debug/layout_upush_notification.xml.flat",
-        "source": "/Users/huangqianwen/StudioProjects/ShiShiLe/push/build/intermediates/bundles/debug/res/layout/upush_notification.xml"
-    },
-    {
-        "merged": "/Users/huangqianwen/StudioProjects/ShiShiLe/E:\\android\\ShiShiLe\\push\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_upush_notification.xml.flat",
-        "source": "/Users/huangqianwen/StudioProjects/ShiShiLe/E:\\android\\ShiShiLe\\push\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
+        "merged": "E:\\android\\ShiShiLe\\push\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_upush_notification.xml.flat",
+        "source": "E:\\android\\ShiShiLe\\push\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
     }
 ]
