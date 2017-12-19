@@ -9,6 +9,6 @@ public class CountDownModel extends BaseModel {
     public CountDown data;
 
     public static class CountDown {
-        public  long countdown;
+        public  long  countdown;
     }
 }
