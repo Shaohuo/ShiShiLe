@@ -18,7 +18,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome2);
-        EMClient.getInstance().login("gby123456","123456",new EMCallBack() {//回调
+        EMClient.getInstance().login("gby123456", "123456", new EMCallBack() {//回调
             @Override
             public void onSuccess() {
                 runOnUiThread(new Runnable() {
@@ -31,8 +31,7 @@ public class WelcomeActivity extends Activity {
             }
 
             @Override
-            public void onProgress(int progress, String status)
-            {
+            public void onProgress(int progress, String status) {
 
             }
 
@@ -45,10 +44,10 @@ public class WelcomeActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                 finish();
             }
-        },1000);
+        }, 1000);
 
     }
 }
