@@ -1,25 +1,30 @@
 package com.yxl.shishile.shishile.app;
 
-import android.annotation.TargetApi;
-import android.app.Application;
-import android.content.Context;
-import android.os.StrictMode;
-import android.support.multidex.MultiDex;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 /**
- * Created by Administrator on 2017/12/4 0004.
- * 因为集成了Bugly热修复，MyApplication废弃转而使用SampleApplication
+ * 自定义Application.
  *
+ * 注意：这个类集成TinkerApplication类，这里面不做任何操作，所有Application的代码都会放到ApplicationLike继承类当中<br/>
+ * <pre>
+ * 参数解析：
+ * 参数1：int tinkerFlags 表示Tinker支持的类型 dex only、library only or all suuport，default: TINKER_ENABLE_ALL
+ * 参数2：String delegateClassName Application代理类 这里填写你自定义的ApplicationLike
+ * 参数3：String loaderClassName  Tinker的加载器，使用默认即可
+ * 参数4：boolean tinkerLoadVerifyFlag  加载dex或者lib是否验证md5，默认为false
+ * </pre>
+ * @author wenjiewu
+ * @since 2016/11/15
  */
-
-public class MyApplication extends Application {
+public class SampleApplication extends TinkerApplication {
+    public SampleApplication() {
+        super(ShareConstants.TINKER_ENABLE_ALL, "com.yxl.shishile.shishile.app.SampleApplicationLike",
+                "com.tencent.tinker.loader.TinkerLoader", false);
+    }
 
     @Override
     public void onCreate() {
@@ -38,5 +43,4 @@ public class MyApplication extends Application {
         //初始化EaseUI库
         EaseUI.getInstance().init(getApplicationContext(), options);
     }
-
 }
