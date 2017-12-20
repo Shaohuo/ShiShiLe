@@ -1,16 +1,23 @@
 package com.yxl.shishile.shishile.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMGroupManager;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 import com.yxl.shishile.shishile.R;
+
+import java.util.List;
 
 public class WelcomeActivity extends Activity {
 
@@ -41,13 +48,42 @@ public class WelcomeActivity extends Activity {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
+        AndPermission.with(WelcomeActivity.this)
+                .requestCode(100)
+                .permission(Permission.STORAGE, Permission.CAMERA)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        AndPermission.rationaleDialog(WelcomeActivity.this, rationale).show();
+                    }
+
+
+
+                }).callback(new PermissionListener(){
+
             @Override
-            public void run() {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                finish();
+            public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        finish();
+                    }
+                }, 500);
             }
-        }, 1000);
+
+            @Override
+            public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        finish();
+                    }
+                }, 500);
+            }
+        }).start();
+
 
     }
 }

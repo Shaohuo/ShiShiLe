@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.Gravity;
@@ -56,6 +57,10 @@ import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.PathUtil;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.SettingService;
 
 import java.io.File;
 import java.util.List;
@@ -106,11 +111,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     static final int ITEM_PICTURE = 2;
     static final int ITEM_LOCATION = 3;
 
-    protected int[] itemStrings = {R.string.attach_take_pic, R.string.attach_picture, R.string
-            .attach_location};
-    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector, R.drawable
-            .ease_chat_image_selector,
-            R.drawable.ease_chat_location_selector};
+    protected int[] itemStrings = {R.string.attach_take_pic};
+    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector};
     protected int[] itemIds = {ITEM_TAKE_PICTURE, ITEM_PICTURE, ITEM_LOCATION};
     private boolean isMessageListInited;
     protected MyItemClickListener extendMenuItemClickListener;
@@ -171,6 +173,23 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
 
             @Override
             public boolean onPressToSpeakBtnTouch(View v, MotionEvent event) {
+                AndPermission.with(getContext()).requestCode(200).permission(Permission.MICROPHONE).callback(new PermissionListener() {
+
+
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+
+                    }
+
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                        // 是否有不再提示并拒绝的权限。
+                        if (AndPermission.hasAlwaysDeniedPermission(getActivity(), deniedPermissions)) {
+                            // 第一种：用AndPermission默认的提示语。
+                            AndPermission.defaultSettingDialog(getActivity(), 200).show();
+                        }
+                    }
+                }).start();
                 return voiceRecorderView.onPressToSpeakBtnTouch(v, event, new
                         EaseVoiceRecorderCallback() {
 
