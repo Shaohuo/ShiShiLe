@@ -81,7 +81,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
             if (forecast != null) {
                 viewHolder.mTvOpenTime.setText("开奖时间:" + forecast.nextopentime);
 //                viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
-                String[] split = forecast.data.split(",");
+                String[] split = forecast.forecast.split(",");
                 for (int i = 0; i < mTvDataIds.length; i++) {
                     TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
                     if (i < split.length) {

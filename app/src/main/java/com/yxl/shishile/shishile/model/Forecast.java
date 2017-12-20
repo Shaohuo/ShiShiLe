@@ -9,13 +9,13 @@ public class Forecast {
 
     public  String nextopentime;
 
-    public  String data;
+    public  String forecast;
 
     @Override
     public String toString() {
         return "Lottery{" +
                 ", nextopentime=" + nextopentime +
-                ", data='" + data + '\'' +
+                ", data='" + forecast + '\'' +
                 '}';
     }
 }
