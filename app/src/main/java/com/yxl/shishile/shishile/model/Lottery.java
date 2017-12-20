@@ -10,6 +10,8 @@ public class Lottery {
 
     public  String time;
 
+    public String opentime;
+
     public  String data;
 
     @Override
@@ -17,6 +19,7 @@ public class Lottery {
         return "Lottery{" +
                 "number=" + number +
                 ", time=" + time +
+                ", opentime=" + opentime +
                 ", data='" + data + '\'' +
                 '}';
     }

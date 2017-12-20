@@ -68,7 +68,7 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         if (mLotteryList.size() > 0){
         Lottery lottery = mLotteryList.get(position);
         if (lottery != null) {
-            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
+            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.opentime);
             viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
             String[] split = lottery.data.split(",");
             for (int i = 0; i < mTvDataIds.length; i++) {
