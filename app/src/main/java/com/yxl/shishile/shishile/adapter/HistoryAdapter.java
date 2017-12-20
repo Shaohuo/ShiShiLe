@@ -56,7 +56,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         if (lottery != null) {
             //viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
             viewHolder.mTvLotteryNum.setText("第" + lottery.number + "期");
-            viewHolder.mTvLotteryTime.setText(lottery.time + "开奖");
+            viewHolder.mTvLotteryTime.setText(lottery.opentime + "开奖");
             String[] split = lottery.data.split(",");
             for (int i = 0; i < mTvDataIds.length; i++) {
                 TextView mTvData = viewHolder.mRootView.findViewById(mTvDataIds[i]);
