@@ -111,8 +111,9 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     static final int ITEM_PICTURE = 2;
     static final int ITEM_LOCATION = 3;
 
-    protected int[] itemStrings = {R.string.attach_take_pic};
-    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector};
+    protected int[] itemStrings = {R.string.attach_take_pic, R.string.attach_picture};
+    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector, R.drawable
+            .ease_chat_image_selector};
     protected int[] itemIds = {ITEM_TAKE_PICTURE, ITEM_PICTURE, ITEM_LOCATION};
     private boolean isMessageListInited;
     protected MyItemClickListener extendMenuItemClickListener;
