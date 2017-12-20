@@ -68,7 +68,7 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         if (mLotteryList.size() > 0){
         Lottery lottery = mLotteryList.get(position);
         if (lottery != null) {
-            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.time);
+            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.opentime);
             viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
             String[] split = lottery.data.split(",");
             for (int i = 0; i < mTvDataIds.length; i++) {
@@ -115,19 +115,19 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
             mLlData = (LinearLayout) view.findViewById(R.id.llData);
 
             loveImg = view.findViewById(R.id.love_img);
-            loveImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (i == 0) {
-                        loveImg.setImageResource(R.mipmap.love);
-                        i = 1;
-                    }
-                    else {
-                        loveImg.setImageResource(R.mipmap.love1);
-                        i = 0;
-                    }
-                }
-            });
+//            loveImg.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (i == 0) {
+//                        loveImg.setImageResource(R.mipmap.love);
+//                        i = 1;
+//                    }
+//                    else {
+//                        loveImg.setImageResource(R.mipmap.love1);
+//                        i = 0;
+//                    }
+//                }
+//            });
         }
     }
 }

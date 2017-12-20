@@ -25,10 +25,18 @@
         android:background="#f83e3f"
         android:src="@mipmap/ic_left" />
 </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:background="#FFF"
-        android:id="@+id/my_recycler_view"
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:layout_below="@+id/rlBar"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 </LinearLayout>

@@ -24,7 +24,7 @@ public class ForecastActivity extends BaseActivity implements View.OnClickListen
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
-        mRecyclerView.setAdapter(new ForecastAdapter());
+//        mRecyclerView.setAdapter(new ForecastAdapter());
     }
 
     @Override

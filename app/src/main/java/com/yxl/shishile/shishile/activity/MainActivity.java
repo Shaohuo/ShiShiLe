@@ -13,6 +13,7 @@ import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
+//import com.umeng.message.PushAgent;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
@@ -76,7 +77,6 @@ public class MainActivity extends BaseActivity {
     private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
 
         private List<Fragment> fragments = new ArrayList<>();
-//        private String[] titles = {"首页", "开奖", "预测"};
 
         public MainAdapter(FragmentManager fm) {
             super(fm);
@@ -84,7 +84,6 @@ public class MainActivity extends BaseActivity {
             fragments.add(new OpenPrizeFragment());
             fragments.add(new ChatRoomFragment());
             fragments.add(new PersonFragment());
-//            fragments.add(new MZModeBannerFragment());
         }
 
         @Override

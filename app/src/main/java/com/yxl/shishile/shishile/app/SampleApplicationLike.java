@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
@@ -17,6 +18,8 @@ import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.umeng.commonsdk.UMConfigure;
+//import com.umeng.message.IUmengRegisterCallback;
+//import com.umeng.message.PushAgent;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.MainActivity;
 
@@ -31,7 +34,6 @@ public class SampleApplicationLike extends DefaultApplicationLike {
                                  long applicationStartMillisTime, Intent tinkerResultIntent) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
     }
-
 
     @Override
     public void onCreate() {
@@ -50,7 +52,23 @@ public class SampleApplicationLike extends DefaultApplicationLike {
          * 参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
          * 参数5:Push推送业务的secret
          */
-        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "25a29d098573684108ccdba2d523ca7a");
+        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015", "com_yxl_shishile_shishile", UMConfigure.DEVICE_TYPE_PHONE, "25a29d098573684108ccdba2d523ca7a");
+//        PushAgent mPushAgent = PushAgent.getInstance(getApplication());
+////注册推送服务，每次调用register方法都会回调该接口
+//        mPushAgent.register(new IUmengRegisterCallback() {
+//
+//            @Override
+//            public void onSuccess(String deviceToken) {
+//                //注册成功会返回device token
+//                Log.i("my_token", deviceToken);
+//            }
+//
+//            @Override
+//            public void onFailure(String s, String s1) {
+//                Log.i("no_token","注册失败");
+//
+//            }
+//        });
     }
 
     private void initBuglySDK() {
