@@ -28,78 +28,89 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
-            android:src="@mipmap/bg_countdown_chongqing"
             android:adjustViewBounds="true"
-            />
+            android:src="@mipmap/bg_countdown_chongqing" />
 
         <TextView
             android:id="@+id/tvLotteryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="110dp"
             android:text="重庆时时彩"
             android:textColor="@color/red_f83e3f"
             android:textSize="20dp" />
 
 
-
         <TextView
             android:id="@+id/tvLotteryNum"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignLeft="@+id/tvLotteryName"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:text="第2017050630期"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="距第2017050630期开奖"
             android:textColor="@android:color/darker_gray"
             android:textSize="12dp" />
 
-        <cn.iwgang.countdownview.CountdownView
-            android:id="@+id/cv_countdownViewTest1"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tvLotteryName"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/tvLotteryName"
-            app:isHideTimeBackground="true"
-            app:isShowDay="false"
-            app:isShowHour="true"
-            app:isShowMillisecond="false"
-            app:isShowMinute="true"
-            app:isShowSecond="true"
-            app:isTimeTextBold="true"
-            app:suffixGravity="bottom"
-            app:suffixHour=":"
-            app:suffixMinute=":"
-            app:suffixSecond=""
-            app:suffixTextColor="@color/red_f83e3f"
-            app:suffixTextSize="12sp"
-            app:timeTextColor="@color/red_f83e3f"
-            app:timeTextSize="20dp" />
+            android:layout_height="30dp"
+            android:layout_below="@id/tvLotteryNum"
+            android:layout_alignLeft="@id/tvLotteryNum"
+            android:layout_alignRight="@id/tvLotteryNum"
+            >
 
-        <TextView
-            android:id="@+id/tvOpenPrize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/cv_countdownViewTest1"
-            android:layout_alignStart="@+id/cv_countdownViewTest1"
-            android:layout_alignTop="@+id/tvLotteryNum"
-            android:gravity="center"
-            android:text="      即将开奖"
-            android:textColor="@color/red_f83e3f"
-            android:textSize="12dp" />
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/cv_countdownViewTest1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:isHideTimeBackground="true"
+                app:isShowDay="false"
+                app:isShowHour="true"
+                app:isShowMillisecond="false"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:isTimeTextBold="true"
+                app:suffixGravity="bottom"
+                app:suffixHour=":"
+                app:suffixMinute=":"
+                app:suffixSecond=""
+                app:suffixTextColor="@color/red_f83e3f"
+                app:suffixTextSize="12sp"
+                app:timeTextColor="@color/red_f83e3f"
+                app:timeTextSize="20dp"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/tvOpenPrize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:text="开奖中..."
+                android:textColor="@color/red_f83e3f"
+                android:textSize="16dp"
+                android:visibility="visible"
+                />
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlBar"
-        >
+        android:layout_below="@+id/rlBar">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"

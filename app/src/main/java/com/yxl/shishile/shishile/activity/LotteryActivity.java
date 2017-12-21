@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
@@ -15,9 +16,11 @@ import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
@@ -51,6 +54,7 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
     private int mIndex;
     private TextView mTvLotteryName;
     private ImageView mIvLotteryBar;
+    private long mCurrentNumber = -1;
 
     @Override
     public void setTheme(int resid) {
@@ -97,46 +101,59 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                 .HORIZONTAL));
         mAdapter = new HistoryAdapter(this, mLotteryList);
         mRecyclerView.setAdapter(mAdapter);
+        loadLotteryCountDown();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mRefreshLayout.beginRefreshing();
-            }
-        }, 500);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    boolean isHasLoadedHistoryData = false;
+
     public void loadLotteryCountDown() {
         Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
-                .getLotteryCountDown("countdown", mIndex
-                        + "");
+                .getLotteryCountDown(mIndex);
         call.enqueue(new Callback<CountDownModel>() {
             @Override
             public void onResponse(Call<CountDownModel> call, Response<CountDownModel> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().data !=
                         null) {
                     CountDownModel.CountDown countDownData = response.body().data;
-                    mCvCountdownView.setVisibility(View.VISIBLE);
-                    mTvOpenPrize.setVisibility(View.INVISIBLE);
-                    mCvCountdownView.start(countDownData.countdown);
+                    if (countDownData.countdown >= 0) {
+                        mCvCountdownView.setVisibility(View.VISIBLE);
+                        mTvOpenPrize.setVisibility(View.INVISIBLE);
+                        mCvCountdownView.start(countDownData.countdown * 1000);
+                        long number = Long.valueOf("" + countDownData.number);
+                        tvLotteryNum.setText("距第" + (number + 1) + "期开奖");
+                        mRefreshLayout.beginRefreshing();
+                    } else {
+                        mCvCountdownView.setVisibility(View.INVISIBLE);
+                        mTvOpenPrize.setVisibility(View.VISIBLE);
+                        loadLotteryCountDown();
+                        if (!isHasLoadedHistoryData) {
+                            loadLotteryHistoryData();
+                        }
+                    }
                 }
             }
+
             @Override
             public void onFailure(Call<CountDownModel> call, Throwable t) {
 
             }
         });
     }
-    public void loadLotteryData() {
-        Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class).getLotteryHistoryList
-                (mIndex, "100");
+
+    public void loadLotteryHistoryData() {
+        Call<LotteryList> call = ApiManager.getInstance().create(ApiServer.class)
+                .getLotteryHistoryList
+                        (mIndex, "100");
 
         call.enqueue(new Callback<LotteryList>() {
 
@@ -146,15 +163,16 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                 LotteryList body = response.body();
                 Log.d("LotteryActivity", "" + response.toString());
                 if (response.isSuccessful() && response.body() != null && body.data != null &&
-                        body.data.size() > 0)
-                {
+                        body.data.size() > 0) {
                     mLotteryList.clear();
                     mLotteryList.addAll(body.data);
                     mAdapter.notifyDataSetChanged();
+                    isHasLoadedHistoryData = true;
                 } else {
 
                 }
             }
+
             @Override
             public void onFailure(Call<LotteryList> call, Throwable t) {
                 Log.d("LotteryActivity", "onFailure");
@@ -170,19 +188,13 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
      */
     @Override
     public void onEnd(CountdownView cv) {
-        mCvCountdownView.setVisibility(View.INVISIBLE);
-        mTvOpenPrize.setVisibility(View.VISIBLE);
-        mCvCountdownView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadLotteryData();
-            }
-        }, 1000);
+        mCvCountdownView.restart();
+        loadLotteryCountDown();
     }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        loadLotteryData();//获得时间差
+        loadLotteryHistoryData();//获得时间差
     }
 
     @Override
