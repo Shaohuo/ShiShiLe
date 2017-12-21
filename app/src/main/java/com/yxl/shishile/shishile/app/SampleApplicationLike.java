@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
-import android.util.Log;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
@@ -16,6 +16,7 @@ import com.hyphenate.easeui.EaseUI;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.umeng.commonsdk.UMConfigure;
 //import com.umeng.message.IUmengRegisterCallback;
@@ -23,6 +24,9 @@ import com.umeng.commonsdk.UMConfigure;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.MainActivity;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Locale;
 
 public class SampleApplicationLike extends DefaultApplicationLike {
@@ -32,7 +36,8 @@ public class SampleApplicationLike extends DefaultApplicationLike {
     public SampleApplicationLike(Application application, int tinkerFlags,
                                  boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime,
                                  long applicationStartMillisTime, Intent tinkerResultIntent) {
-        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
+        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
+                applicationStartMillisTime, tinkerResultIntent);
     }
 
     @Override
@@ -52,7 +57,9 @@ public class SampleApplicationLike extends DefaultApplicationLike {
          * 参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
          * 参数5:Push推送业务的secret
          */
-        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015", "com_yxl_shishile_shishile", UMConfigure.DEVICE_TYPE_PHONE, "25a29d098573684108ccdba2d523ca7a");
+        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015",
+                "com_yxl_shishile_shishile", UMConfigure.DEVICE_TYPE_PHONE,
+                "25a29d098573684108ccdba2d523ca7a");
 //        PushAgent mPushAgent = PushAgent.getInstance(getApplication());
 ////注册推送服务，每次调用register方法都会回调该接口
 //        mPushAgent.register(new IUmengRegisterCallback() {
@@ -72,7 +79,11 @@ public class SampleApplicationLike extends DefaultApplicationLike {
     }
 
     private void initBuglySDK() {
+        initBuglyCrashSDK();
+        initBuglyUpgradeSDK();
+    }
 
+    private void initBuglyUpgradeSDK() {
         /**** Beta高级设置*****/
         /**
          * true表示app启动自动初始化升级模块；
@@ -114,7 +125,8 @@ public class SampleApplicationLike extends DefaultApplicationLike {
          * 设置sd卡的Download为更新资源保存目录;
          * 后续更新资源会保存在此目录，需要在manifest中添加WRITE_EXTERNAL_STORAGE权限;
          */
-        Beta.storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        Beta.storageDir = Environment.getExternalStoragePublicDirectory(Environment
+                .DIRECTORY_DOWNLOADS);
 
         /**
          * 点击过确认的弹窗在APP下次启动自动检查更新时会再次显示;
@@ -178,11 +190,25 @@ public class SampleApplicationLike extends DefaultApplicationLike {
 
             }
         };
+
         // 设置开发设备，默认为false，上传补丁如果下发范围指定为“开发设备”，需要调用此接口来标识开发设备
         Bugly.setIsDevelopmentDevice(getApplication(), true);
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
-        Bugly.init(getApplication(), "66ab68f095", true);
+        Bugly.init(getApplication(), "448e3c7622", true);
+    }
+
+    private void initBuglyCrashSDK() {
+        Context context = getApplication().getApplicationContext();
+        // 获取当前包名
+        String packageName = context.getPackageName();
+        // 获取当前进程名
+        String processName = getProcessName(android.os.Process.myPid());
+        // 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        CrashReport.initCrashReport(getApplication().getApplicationContext(), "448e3c7622", true,
+                strategy);
     }
 
     private void initEMClient() {
@@ -215,8 +241,38 @@ public class SampleApplicationLike extends DefaultApplicationLike {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public void registerActivityLifecycleCallback(Application.ActivityLifecycleCallbacks callbacks) {
+    public void registerActivityLifecycleCallback(Application.ActivityLifecycleCallbacks
+                                                          callbacks) {
         getApplication().registerActivityLifecycleCallbacks(callbacks);
+    }
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
 
 }
