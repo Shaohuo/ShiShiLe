@@ -10,5 +10,7 @@ public class CountDownModel extends BaseModel {
 
     public static class CountDown {
         public  long  countdown;
+        public  String  number;
+        public  String  data;
     }
 }

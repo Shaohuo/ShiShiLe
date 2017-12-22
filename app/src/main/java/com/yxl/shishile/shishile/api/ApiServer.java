@@ -23,8 +23,8 @@ public interface ApiServer {
     @GET("http://192.168.1.127/")
     Call<LotteryModel> getLottery(@Query("a") String a, @Query("type") String type);
 
-    @GET("http://192.168.1.127/")
-    Call<CountDownModel> getLotteryCountDown(@Query("a") String a, @Query("type") String type);
+    @GET("/lottery/countdown/{id}")
+    Call<CountDownModel> getLotteryCountDown(@Path("id") int id);
 
     @GET("lottery/forecast_rand")
     Call<ForecastModel> getForecast();
