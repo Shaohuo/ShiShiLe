@@ -36,16 +36,17 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
     }
 
     private OnItemClickListener mOnItemClickListener = null;
+
     @Override
     public void onClick(View view) {
         if (mOnItemClickListener != null) {
             //注意这里使用getTag方法获取position
-            mOnItemClickListener.onItemClick(view,(int)view.getTag());
+            mOnItemClickListener.onItemClick(view, (int) view.getTag());
         }
     }
 
     public static interface OnItemClickListener {
-        void onItemClick(View view , int position);
+        void onItemClick(View view, int position);
     }
 
     @Override
@@ -65,24 +66,23 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
         viewHolder.mIvPrize.setImageResource(mImgs[position]);
         viewHolder.itemView.setTag(position);
 
-        if (mLotteryList.size() > 0){
-        Lottery lottery = mLotteryList.get(position);
-        if (lottery != null) {
-            viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.opentime);
-            viewHolder.mTvPrizeNum.setText("第" + lottery.number+"期");
-            String[] split = lottery.data.split(",");
-            for (int i = 0; i < mTvDataIds.length; i++) {
-                TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
-                if (i < split.length) {
-                    mTvData.setText("" + split[i]);
-                    mTvData.setVisibility(View.VISIBLE);
-                } else {
-                    mTvData.setVisibility(View.GONE);
+        if (mLotteryList.size() > 0) {
+            Lottery lottery = mLotteryList.get(position);
+            if (lottery != null) {
+                viewHolder.mTvOpenTime.setText("开奖时间:" + lottery.opentime);
+                viewHolder.mTvPrizeNum.setText("第" + lottery.number + "期");
+                String[] split = lottery.data.split(",");
+                for (int i = 0; i < mTvDataIds.length; i++) {
+                    TextView mTvData = viewHolder.mLlData.findViewById(mTvDataIds[i]);
+                    if (i < split.length) {
+                        mTvData.setText("" + split[i]);
+                        mTvData.setVisibility(View.VISIBLE);
+                    } else {
+                        mTvData.setVisibility(View.GONE);
+                    }
                 }
             }
-        }
-        }
-        else {
+        } else {
             Log.d("mLotteryList", "mLotteryList.size = 0");
         }
     }
@@ -115,6 +115,8 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<MyPrizeAdapter.ViewHold
             mLlData = (LinearLayout) view.findViewById(R.id.llData);
 
             loveImg = view.findViewById(R.id.love_img);
+
+            /**收藏按钮点击事件*/
 //            loveImg.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {

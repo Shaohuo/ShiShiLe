@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,8 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     private final List<String> datas = Arrays.asList("恭喜用户：建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "恭喜用户：小郭 预测成功！奖励积分100");
     private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
-
+    NestedScrollView mNestedScrollView;
+    TextView mainText;
 
     public static MZModeBannerFragment newInstance() {
         return new MZModeBannerFragment();
@@ -63,6 +65,21 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         LinearLayout beijingLiner = view.findViewById(R.id.beijing);
         LinearLayout shandongLiner = view.findViewById(R.id.shandong);
         View main_forecast = view.findViewById(R.id.main_forecast);
+
+        /**设置下拉隐藏标题栏*/
+        mainText = view.findViewById(R.id.main_title);
+        mNestedScrollView = (NestedScrollView)view.findViewById(R.id.nested_scroll_view);
+        mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                int headerHeight = mMZBanner.getHeight();
+                int scrollDistance = Math.min(scrollY, headerHeight);
+                int statusAlpha = (int) ((float) scrollDistance / (float) headerHeight * 255F);
+                setAnyBarAlpha(statusAlpha);
+            }
+        });
+        setAnyBarAlpha(0);
+
         chongqingLiner.setOnClickListener(this);
         hubeiLiner.setOnClickListener(this);
         liuhecaiLiner.setOnClickListener(this);
@@ -93,7 +110,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 } else if (position == 4) {
                     Toast.makeText(getContext(), "点击跳转e", Toast.LENGTH_SHORT).show();
                 }
-//                Toast.makeText(getContext(),"click page:"+position,Toast.LENGTH_LONG).show();
             }
         });
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
@@ -126,7 +142,14 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-
+    private void setAnyBarAlpha(int alpha) {
+        if (alpha > 0 && alpha < 100){
+            mainText.setText("");
+        }else if (alpha >= 100 && alpha <255){
+            mainText.setText("快赢彩票");
+        }
+        mainText.getBackground().mutate().setAlpha(alpha);
+    }
 
 
 /**
@@ -199,12 +222,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
         }
-
-    }
-    public void gotoForecastFragment()
-    {
-
-
 
     }
 
