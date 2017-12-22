@@ -140,6 +140,10 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                             loadLotteryHistoryData();
                         }
                     }
+                    if (mIndex == 3) {//如果为六合彩则不显示倒计时
+                        mCvCountdownView.setVisibility(View.INVISIBLE);
+                        mTvOpenPrize.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
 
