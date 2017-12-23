@@ -16,7 +16,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMPageResult;
+import com.hyphenate.exceptions.HyphenateException;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -25,6 +28,7 @@ import com.yanzhenjie.permission.RationaleListener;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.model.PostEaseUserModel;
 
 import java.util.List;
@@ -81,6 +85,7 @@ public class WelcomeActivity extends Activity {
         }).start();
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getEaseUerInfo() {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission
@@ -112,6 +117,20 @@ public class WelcomeActivity extends Activity {
                                     Log.d("main", "登录聊天服务器成功！");
                                 }
                             });
+                            try {
+                                final EMPageResult<EMChatRoom> result = EMClient.getInstance().chatroomManager()
+                                        .fetchPublicChatRoomsFromServer(1, 99);
+                                if (result != null && result.getData() != null) {
+                                    for (int i = 0; i < result.getData().size(); i++) {
+                                        EMChatRoom chatRoom = result.getData().get(i);
+                                        Log.e("ChatRoomListFragment", "" + chatRoom.getName());
+                                    }
+                                    AppDataManager.getInstance().setEMChatRoomList(result.getData());
+                                }
+                            } catch (HyphenateException e) {
+                                Log.e("ChatRoomListFragment", "" + e);
+                                e.printStackTrace();
+                            }
                         }
 
                         @Override

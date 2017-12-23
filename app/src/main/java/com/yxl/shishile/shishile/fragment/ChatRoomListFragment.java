@@ -16,6 +16,7 @@ import com.hyphenate.chat.EMPageResult;
 import com.hyphenate.exceptions.HyphenateException;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ChatRoomListAdapter;
+import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.ArrayList;
@@ -85,35 +86,10 @@ public class ChatRoomListFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager
                 .HORIZONTAL));
+        mEMChatRoomList.clear();
+        mEMChatRoomList.addAll(AppDataManager.getInstance().getEMChatRoomList());
         mAdapter = new ChatRoomListAdapter(mEMChatRoomList);
         mRecyclerView.setAdapter(mAdapter);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    final EMPageResult<EMChatRoom> result = EMClient.getInstance().chatroomManager()
-                            .fetchPublicChatRoomsFromServer(1, 99);
-                    if (result != null && result.getData() != null) {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mEMChatRoomList.clear();
-                                mEMChatRoomList.addAll(result.getData());
-                                mAdapter.notifyDataSetChanged();
-                                for (int i = 0; i < result.getData().size(); i++) {
-                                    EMChatRoom chatRoom = result.getData().get(i);
-                                    Log.e("ChatRoomListFragment", "" + chatRoom.getName());
-                                }
-                            }
-                        });
-
-                    }
-                } catch (HyphenateException e) {
-                    Log.e("ChatRoomListFragment", "" + e);
-                    e.printStackTrace();
-                }
-            }
-        }).start();
         return view;
     }
 
