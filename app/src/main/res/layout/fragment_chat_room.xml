@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_bg"
     android:orientation="vertical"
-    tools:context="com.yxl.shishile.shishile.fragment.ChatRoomFragment">
+    tools:context="com.yxl.shishile.shishile.fragment.ChatRoomListFragment">
 
 
     <TextView

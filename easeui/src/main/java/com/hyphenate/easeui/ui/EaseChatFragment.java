@@ -89,6 +89,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     protected EaseChatMessageList messageList;
     protected EaseChatInputMenu inputMenu;
 
+
     protected EMConversation conversation;
 
     protected InputMethodManager inputManager;

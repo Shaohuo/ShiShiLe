@@ -1,13 +1,22 @@
 package com.yxl.shishile.shishile.activity;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
@@ -15,6 +24,7 @@ import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.Lottery;
 import com.yxl.shishile.shishile.model.LotteryList;
+import com.yxl.shishile.shishile.model.PostEaseUserModel;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.ArrayList;

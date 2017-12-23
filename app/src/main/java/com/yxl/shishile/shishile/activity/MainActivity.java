@@ -6,19 +6,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.ui.EaseChatFragment;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.UpgradeInfo;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 //import com.umeng.message.PushAgent;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.api.ApiManager;
-import com.yxl.shishile.shishile.fragment.ChatFragment;
-import com.yxl.shishile.shishile.fragment.ChatRoomFragment;
+import com.yxl.shishile.shishile.fragment.ChatRoomListFragment;
 import com.yxl.shishile.shishile.fragment.OpenPrizeFragment;
 import com.yxl.shishile.shishile.fragment.PersonFragment;
 import com.yxl.shishile.shishile.widgets.MZModeBannerFragment;
@@ -53,7 +46,7 @@ public class MainActivity extends BaseActivity {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
-        mViewPger.setOffscreenPageLimit(5);
+        mViewPger.setOffscreenPageLimit(0);
 
         username = getIntent().getStringExtra("nicknameTextView");
 //        FragmentManager fm = getSupportFragmentManager();  //使用FragmentManager，管理Activity中的fragment
@@ -82,7 +75,7 @@ public class MainActivity extends BaseActivity {
             super(fm);
             fragments.add(new MZModeBannerFragment());
             fragments.add(new OpenPrizeFragment());
-            fragments.add(new ChatRoomFragment());
+            fragments.add(new ChatRoomListFragment());
             fragments.add(new PersonFragment());
         }
 

@@ -6,9 +6,13 @@ import com.yxl.shishile.shishile.model.ForecastModel;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.model.LotteryListModel;
 import com.yxl.shishile.shishile.model.LotteryModel;
+import com.yxl.shishile.shishile.model.PostEaseUserModel;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -35,4 +39,7 @@ public interface ApiServer {
     @GET("/lottery/forecast_all")
     Call<ForecastListModel> getForecastListModel();
 
+    @POST("/user")
+    @FormUrlEncoded
+    Call<PostEaseUserModel> getEaseUser(@Field("imei") String imei);
 }

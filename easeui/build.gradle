@@ -41,4 +41,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.yanzhenjie:permission:1.1.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.iwgang:countdownview:2.1.6'
+
 }

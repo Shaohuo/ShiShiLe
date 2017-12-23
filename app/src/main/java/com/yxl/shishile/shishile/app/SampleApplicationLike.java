@@ -1,12 +1,14 @@
 package com.yxl.shishile.shishile.app;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.umeng.commonsdk.UMConfigure;
 //import com.umeng.message.PushAgent;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.MainActivity;
+import com.yxl.shishile.shishile.api.ApiManager;
+import com.yxl.shishile.shishile.api.ApiServer;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
