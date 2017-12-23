@@ -10,12 +10,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +36,9 @@ import com.zhouwei.mzbanner.holder.MZViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class
@@ -42,7 +49,8 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     private final List<String> datas = Arrays.asList("恭喜用户：建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "恭喜用户：小郭 预测成功！奖励积分100");
     private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
-
+    NestedScrollView mNestedScrollView;
+    TextView mainText;
 
     public static MZModeBannerFragment newInstance() {
         return new MZModeBannerFragment();
@@ -62,7 +70,23 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         LinearLayout jiangxiLiner = view.findViewById(R.id.jiangxi);
         LinearLayout beijingLiner = view.findViewById(R.id.beijing);
         LinearLayout shandongLiner = view.findViewById(R.id.shandong);
+        ScrollDisabledListView infor_list = view.findViewById(R.id.information_list);
         View main_forecast = view.findViewById(R.id.main_forecast);
+
+        /**设置下拉隐藏标题栏*/
+        mainText = view.findViewById(R.id.main_title);
+        mNestedScrollView = (NestedScrollView)view.findViewById(R.id.nested_scroll_view);
+        mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                int headerHeight = mMZBanner.getHeight();
+                int scrollDistance = Math.min(scrollY, headerHeight);
+                int statusAlpha = (int) ((float) scrollDistance / (float) headerHeight * 255F);
+                setAnyBarAlpha(statusAlpha);
+            }
+        });
+        setAnyBarAlpha(0);
+
         chongqingLiner.setOnClickListener(this);
         hubeiLiner.setOnClickListener(this);
         liuhecaiLiner.setOnClickListener(this);
@@ -77,6 +101,13 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         main_forecast.setOnClickListener(this);
 
         initMarqueeView();
+
+        SimpleAdapter adapter = new SimpleAdapter(getContext(),getData(),R.layout.item_information,
+                new String[]{"title","info"},
+                new int[]{R.id.title,R.id.info});
+        infor_list.setAdapter(adapter);
+        fixListViewHeight(infor_list);
+
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
         mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
@@ -93,7 +124,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 } else if (position == 4) {
                     Toast.makeText(getContext(), "点击跳转e", Toast.LENGTH_SHORT).show();
                 }
-//                Toast.makeText(getContext(),"click page:"+position,Toast.LENGTH_LONG).show();
             }
         });
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
@@ -126,7 +156,58 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    public void fixListViewHeight(ListView infor_list) {
+        // 如果没有设置数据适配器，则ListView没有子项，返回。
+        int i = -1;
+        ListAdapter listAdapter = infor_list.getAdapter();
+        int totalHeight = 0;
+        if (listAdapter == null) {
+            return;
+        }
+        for (int index = 0, len = listAdapter.getCount(); i < len; i++) {
+            View listViewItem = listAdapter.getView(index , null, infor_list);
+            // 计算子项View 的宽高
+            listViewItem.measure(0, 0);
+            // 计算所有子项的高度和
+            totalHeight += listViewItem.getMeasuredHeight();
+        }
 
+        ViewGroup.LayoutParams params = infor_list.getLayoutParams();
+//        infor_list.getDividerHeight();//获取子项间分隔符的高度
+        // params.height设置ListView完全显示需要的高度
+        params.height = totalHeight+ (infor_list.getDividerHeight() * (listAdapter.getCount() + 1));
+        infor_list.setLayoutParams(params);
+    }
+
+    private List<Map<String, Object>> getData() {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("title", "时时彩投注技巧之观冷定胆");
+        map1.put("info", "时时彩共设“星彩玩法”和“大小单双玩法”，玩法简单");
+        list.add(map1);
+
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("title", "小伙2元即中720万大奖");
+        map2.put("info", "他的方法竟如此简单，100%中奖");
+        list.add(map2);
+
+        Map<String, Object> map3 = new HashMap<String, Object>();
+        map3.put("title", "福彩3D选和值把握好这两点");
+        map3.put("info", "一千个彩民就有一千种选号方法，但是总会有几种方法是");
+        list.add(map3);
+
+        return list;
+    }
+
+    private void setAnyBarAlpha(int alpha) {
+        if (alpha > 0 && alpha < 100){
+            mainText.setText("");
+        }else if (alpha >= 100 && alpha <255){
+            mainText.setText("快赢彩票");
+        }
+        mainText.getBackground().mutate().setAlpha(alpha);
+    }
 
 
 /**
@@ -199,12 +280,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
         }
-
-    }
-    public void gotoForecastFragment()
-    {
-
-
 
     }
 

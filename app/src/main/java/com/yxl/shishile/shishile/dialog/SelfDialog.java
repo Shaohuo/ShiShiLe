@@ -30,22 +30,22 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
     int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id.six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07, R.id.six_num_08, R.id.six_num_09, R.id.six_num_10};
     private int position;
 
-   private ApiServer apiServer;
-    public SelfDialog(@NonNull Context context)
-    {
+    private ApiServer apiServer;
+
+    public SelfDialog(@NonNull Context context) {
         super(context);
     }
 
-    public SelfDialog(@NonNull Context context,int position)
-    {
+    public SelfDialog(@NonNull Context context, int position) {
         super(context);
-      this.position=  position;
+        this.position = position;
     }
-    public SelfDialog(@NonNull Context context,int position,int theme)
-    {
-        super(context,theme);
-        this.position=  position;
+
+    public SelfDialog(@NonNull Context context, int position, int theme) {
+        super(context, theme);
+        this.position = position;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +56,13 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
         yes.setOnClickListener(this);
         setCanceledOnTouchOutside(false);//按空白处不能取消动画
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://103.242.1.48:81").addConverterFactory(GsonConverterFactory.create()).build();
-        apiServer  = retrofit.create(ApiServer.class);
-       Call<ForecastModel> forecast = apiServer.getForecast();
+        apiServer = retrofit.create(ApiServer.class);
+        Call<ForecastModel> forecast = apiServer.getForecast();
         forecast.enqueue(new Callback<ForecastModel>() {
             @Override
-            public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response)
-            {
+            public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response) {
                 List<String> result = response.body().getData().getResult();
-                String []split = result.get(position).split(",");
+                String[] split = result.get(position).split(",");
                 for (int i = 0; i < mTvDataIds.length; i++) {
                     TextView mTvData = findViewById(mTvDataIds[i]);
                     if (i < split.length) {
@@ -73,11 +72,6 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
                         mTvData.setVisibility(View.GONE);
                     }
                 }
-
-
-
-
-
             }
 
             @Override
@@ -88,8 +82,7 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.no:
                 cancel();
@@ -98,10 +91,9 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
                 Call<ForecastModel> forecast = apiServer.getForecast();
                 forecast.enqueue(new Callback<ForecastModel>() {
                     @Override
-                    public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response)
-                    {
+                    public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response) {
                         List<String> result = response.body().getData().getResult();
-                        String []split = result.get(position).split(",");
+                        String[] split = result.get(position).split(",");
                         for (int i = 0; i < mTvDataIds.length; i++) {
                             TextView mTvData = findViewById(mTvDataIds[i]);
                             if (i < split.length) {
@@ -111,11 +103,6 @@ public class SelfDialog extends Dialog implements View.OnClickListener {
                                 mTvData.setVisibility(View.GONE);
                             }
                         }
-
-
-
-
-
                     }
 
                     @Override
