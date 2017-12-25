@@ -76,7 +76,10 @@
                     app:suffixTextColor="#f83e3f"
                     app:suffixTextSize="12sp"
                     app:timeTextColor="#f83e3f"
-                    app:timeTextSize="20dp" />
+                    app:timeTextSize="20dp"
+                    android:padding="4dp"
+                    />
+
             </RelativeLayout>
         </LinearLayout>
 
