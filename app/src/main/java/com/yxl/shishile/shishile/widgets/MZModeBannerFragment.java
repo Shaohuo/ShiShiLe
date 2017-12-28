@@ -244,12 +244,12 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 if (response.isSuccessful() && response.body() != null && body.data != null &&
 
                         body.data.size() > 0) {
-                    datas = Arrays.asList("下期重庆时时彩预测：" + body.data.get(0).forecast,"下期湖北快3预测：" + body.data.get(1).forecast,
-                            "下期六合彩预测：" + body.data.get(2).forecast,"下期广东11选5预测：" + body.data.get(3).forecast,
-                            "下期福彩3D预测：" + body.data.get(4).forecast,"下期排列3预测：" + body.data.get(5).forecast,
-                            "下期新疆时时彩预测：" + body.data.get(6).forecast,"下期江苏快3预测：" + body.data.get(7).forecast,
-                            "下期江西11选5预测：" + body.data.get(8).forecast,"下期北京PK10预测：" + body.data.get(9).forecast,
-                            "下期山东11选5预测：" + body.data.get(10).forecast);
+                    datas = Arrays.asList("下期重庆时时彩预测号：" + body.data.get(0).forecast,"下期湖北快3预测号：" + body.data.get(1).forecast,
+                            "下期六合彩预测号：" + body.data.get(2).forecast,"下期广东11选5预测号：" + body.data.get(3).forecast,
+                            "下期福彩3D预测号：" + body.data.get(4).forecast,"下期排列3预测号：" + body.data.get(5).forecast,
+                            "下期新疆时时彩预测号：" + body.data.get(6).forecast,"下期江苏快3预测号：" + body.data.get(7).forecast,
+                            "下期江西11选5预测号：" + body.data.get(8).forecast,"下期北京PK10预测号：" + body.data.get(9).forecast,
+                            "下期山东11选5预测号：" + body.data.get(10).forecast);
                     if (datas != null){
                         initMarqueeView();
                     }else {
