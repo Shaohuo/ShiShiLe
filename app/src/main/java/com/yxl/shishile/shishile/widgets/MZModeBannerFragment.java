@@ -119,7 +119,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
         main_forecast.setOnClickListener(this);
-
         initMarqueeView();
 
         /**
@@ -286,6 +285,11 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         marqueeView.setMarqueeFactory(marqueeFactory);
         marqueeView.startFlipping();
     }
+
+    /**
+     * 点击事件
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(view.getContext(), LotteryActivity.class);
