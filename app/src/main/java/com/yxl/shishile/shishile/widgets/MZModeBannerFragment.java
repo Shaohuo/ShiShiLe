@@ -31,7 +31,9 @@ import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.M_ForecastActivity;
 import com.yxl.shishile.shishile.adapter.InformationAdapter;
+import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.model.ForecastListModel;
 import com.yxl.shishile.shishile.model.InformationModel;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
@@ -47,6 +49,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.umeng.analytics.pro.i.a.i;
 
 
 public class
@@ -54,7 +57,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "MZModeBannerFragment";
     public static final int[] BANNER = new int[]{R.mipmap.banner_1, R.mipmap.banner_2,R.mipmap.banner_3};
     private MZBannerView mMZBanner;
-    private final List<String> datas = Arrays.asList("恭喜用户：建东 预测成功！奖励积分100", "恭喜用户：阿志 预测成功！奖励积分100", "恭喜用户：阿彪 预测成功！奖励积分100", "恭喜用户：小郭 预测成功！奖励积分100");
+    private List<String> datas;
     private SimpleMarqueeView marqueeView;
     private boolean isViewPrepared=false;//是否初始化完成
     NestedScrollView mNestedScrollView;
@@ -119,7 +122,9 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
         main_forecast.setOnClickListener(this);
-        initMarqueeView();
+
+
+
 
         /**
          * 热门资讯
@@ -223,6 +228,41 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
             @Override
             public BannerViewHolder createViewHolder() {
                 return new BannerViewHolder();
+            }
+        });
+    }
+
+    private void loadPrizeListData() {
+        Call<ForecastListModel> call = ApiManager.getInstance().create(ApiServer.class).getForecastListModel();
+
+        call.enqueue(new Callback<ForecastListModel>() {
+
+            @Override
+            public void onResponse(Call<ForecastListModel> call, Response<ForecastListModel> response) {
+                ForecastListModel body = response.body();
+                Log.d("OpenPrizeFragment", "" + response.toString());
+                if (response.isSuccessful() && response.body() != null && body.data != null &&
+
+                        body.data.size() > 0) {
+                    datas = Arrays.asList("下期重庆时时彩预测：" + body.data.get(0).forecast,"下期湖北快3预测：" + body.data.get(1).forecast,
+                            "下期六合彩预测：" + body.data.get(2).forecast,"下期广东11选5预测：" + body.data.get(3).forecast,
+                            "下期福彩3D预测：" + body.data.get(4).forecast,"下期排列3预测：" + body.data.get(5).forecast,
+                            "下期新疆时时彩预测：" + body.data.get(6).forecast,"下期江苏快3预测：" + body.data.get(7).forecast,
+                            "下期江西11选5预测：" + body.data.get(8).forecast,"下期北京PK10预测：" + body.data.get(9).forecast,
+                            "下期山东11选5预测：" + body.data.get(10).forecast);
+                    if (datas != null){
+                        initMarqueeView();
+                    }else {
+
+                    }
+                } else {
+                    Log.e("OpenPrizeFragment", "unsuccess");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ForecastListModel> call, Throwable t) {
+                Log.e("OpenPrizeFragment", "" + t.getMessage());
             }
         });
     }
@@ -371,7 +411,8 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
 
         initView(view);
         if (!isViewPrepared && getUserVisibleHint()) {//尚未初始化view,不能执行initData()方法[会报空指针]
-//
+          loadPrizeListData();
+
 //            initData();
 //            topicListViewAdapter.notifyDataSetChanged();
 
@@ -383,6 +424,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         // 判断该Fragment时候已经正在前台显示，就可以知道什么时候去加载数据了
         if (isVisibleToUser && isViewPrepared) {
+            loadPrizeListData();
 //            menuitemBeans.clear();
 //            initData();
         }
