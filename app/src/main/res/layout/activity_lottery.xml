@@ -85,6 +85,7 @@
                 app:timeTextColor="@color/red_f83e3f"
                 app:timeTextSize="20dp"
                 android:visibility="invisible"
+                android:padding="4dp"
                 />
 
             <TextView
