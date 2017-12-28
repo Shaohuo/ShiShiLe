@@ -18,7 +18,10 @@ import com.yxl.shishile.shishile.activity.BPActivity;
 import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
 import com.yxl.shishile.shishile.activity.LoginActivity;
 import com.yxl.shishile.shishile.activity.MyWalletActivity;
+import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.model.MessageEvent;
+import com.yxl.shishile.shishile.model.PostUserModel;
+import com.yxl.shishile.shishile.util.ObjectSaveUtil;
 import com.yxl.shishile.shishile.widgets.ImageViewPlus;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,10 +33,13 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
     private TextView nicknameTextView;
     private ImageViewPlus userlogo;
+    private TextView mTvLogout;
+
     @SuppressLint("ResourceType")
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_person, null);
         View setting = view.findViewById(R.id.setting);
         View kf = view.findViewById(R.id.kefu);
@@ -54,8 +60,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 //        if (userlogo.getId() == R.mipmap.person1) {
 //            nicknameTextView.setText("登录 / 注册");
 //        }
-
-
+        mTvLogout = view.findViewById(R.id.tvLogout);
 
 //        Bundle bundle = getArguments();             //getArguments()获取Activity通过setArguments传递的值
 //        if (bundle != null) {
@@ -66,11 +71,27 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil.readObject
+                (getContext());
+        if (userModel != null) {
+            nicknameTextView.setText("" + userModel.getNickname());
+            mTvLogout.setVisibility(View.VISIBLE);
+        }else {
+            mTvLogout.setVisibility(View.INVISIBLE);
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         nicknameTextView.setText(event.getUserName());
         userlogo.setImageBitmap(event.getBitmap());
-        /* Do something */};
+        /* Do something */
+    }
+
+    ;
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -102,8 +123,13 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.nicknameTextView:
-                Intent intent3 = new Intent(view.getContext(), LoginActivity.class);
-                startActivity(intent3);
+                PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil
+                        .readObject
+                                (getContext());
+                if (userModel == null) {
+                    Intent intent3 = new Intent(view.getContext(), LoginActivity.class);
+                    startActivity(intent3);
+                }
                 break;
         }
 

@@ -23,6 +23,8 @@ public class Constant extends com.hyphenate.easeui.EaseConstant {
     public static final String EXTRA_CONFERENCE_ID = "confId";
     public static final String EXTRA_CONFERENCE_PASS = "password";
     public static final String EXTRA_CONFERENCE_IS_CREATOR = "is_creator";
+    public static final int REQUEST_CODE_REGISTER = 1000;
+    public static final int REQUEST_CODE_LOGIN = 1001;
 
 
 }
