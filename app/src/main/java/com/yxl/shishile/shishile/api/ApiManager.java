@@ -2,6 +2,7 @@ package com.yxl.shishile.shishile.api;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -66,12 +68,17 @@ public class ApiManager {
 
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-        if (mInterceptors != null && !mInterceptors.isEmpty()) {
-            for (Interceptor interceptor : mInterceptors) {
-                builder.addInterceptor(interceptor);
+        //日志显示级别
+        HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.BODY;
+        //新建log拦截器
+        HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                Log.d("zcb","OkHttp====Message:"+message);
             }
-        }
-
+        });
+        loggingInterceptor.setLevel(level);
+//        builder.addNetworkInterceptor(loggingInterceptor);
         mClient = builder.cache(cache)
                 .build();
     }
@@ -98,4 +105,5 @@ public class ApiManager {
             mInterceptors.add(interceptor);
         }
     }
+
 }
