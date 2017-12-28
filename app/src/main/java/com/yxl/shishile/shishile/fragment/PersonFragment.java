@@ -61,6 +61,14 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 //            nicknameTextView.setText("登录 / 注册");
 //        }
         mTvLogout = view.findViewById(R.id.tvLogout);
+        mTvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nicknameTextView.setText("登录 / 注册");
+                ObjectSaveUtil.saveObject(getContext(), null);
+                mTvLogout.setVisibility(View.INVISIBLE);
+            }
+        });
 
 //        Bundle bundle = getArguments();             //getArguments()获取Activity通过setArguments传递的值
 //        if (bundle != null) {
@@ -79,7 +87,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         if (userModel != null) {
             nicknameTextView.setText("" + userModel.getNickname());
             mTvLogout.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mTvLogout.setVisibility(View.INVISIBLE);
         }
     }
