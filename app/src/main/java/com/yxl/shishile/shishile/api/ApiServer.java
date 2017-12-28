@@ -44,6 +44,6 @@ public interface ApiServer {
     @FormUrlEncoded
     Call<PostEaseUserModel> getEaseUser(@Field("imei") String imei);
 
-    @GET("article?page=1&pagesize=3")
+    @GET("article?page=1&pagesize=5")
     Call<InformationModel> getInformation();
 }

@@ -167,6 +167,14 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                         intent1.putExtra("info","http://103.242.1.48:81/article/detail/3");
                         startActivity(intent1);
                         break;
+                    case 3:
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/4");
+                        startActivity(intent1);
+                        break;
+                    case 4:
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/5");
+                        startActivity(intent1);
+                        break;
                 }
             }
         });
