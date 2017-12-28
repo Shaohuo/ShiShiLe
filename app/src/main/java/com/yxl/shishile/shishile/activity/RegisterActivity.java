@@ -27,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         back_img.setOnClickListener(this);
         Button zhuce = findViewById(R.id.zhuce);
          et01 = findViewById(R.id.et01);//用户名
-         et02 = findViewById(R.id.et02);//邮箱
+       //  et02 = findViewById(R.id.et02);//邮箱
          et03 = findViewById(R.id.et03);//密码1
          et04 = findViewById(R.id.et04);//密码2
         zhuce.setOnClickListener(this);
@@ -41,11 +41,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.zhuce:
 
-              if (!isEmail(et02.getText().toString()))
+             /* if (!isEmail(et02.getText().toString()))
               {
                   Toast.makeText(RegisterActivity.this, "请输入正确的Email地址", Toast.LENGTH_SHORT).show();
-              }
-              else if (!et03.getText().toString().equals(et04.getText().toString()))
+              }*/
+               if (!et03.getText().toString().equals(et04.getText().toString()))
               {
                   Toast.makeText(RegisterActivity.this, "两次输入的密码不同", Toast.LENGTH_SHORT).show();
               }
@@ -59,9 +59,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
               }
               else
               {
+                  //提交 注册信息
                   Toast.makeText(RegisterActivity.this, "提交", Toast.LENGTH_SHORT).show();
               }
-                //提交
+
                 break;
         }
     }

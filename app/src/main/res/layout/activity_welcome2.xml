@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yxl.shishile.shishile.activity.WelcomeActivity"
-    android:background="@mipmap/bg_welcome"
+    android:background="#f83e3f"
     >
+
+    <ImageView
+        android:src="@mipmap/bg_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>

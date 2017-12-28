@@ -67,7 +67,7 @@ public class WelcomeActivity extends Activity {
                         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                         finish();
                     }
-                }, 500);
+                }, 2000);
             }
 
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -80,7 +80,7 @@ public class WelcomeActivity extends Activity {
                         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                         finish();
                     }
-                }, 500);
+                }, 2000);
             }
         }).start();
     }
