@@ -40,7 +40,7 @@ public interface ApiServer {
     @GET("/lottery/forecast_all")
     Call<ForecastListModel> getForecastListModel();
 
-    @POST("/user")
+    @POST("/user/tourist")
     @FormUrlEncoded
     Call<PostEaseUserModel> getEaseUser(@Field("imei") String imei);
 
