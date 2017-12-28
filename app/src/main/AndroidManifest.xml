@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />`
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    `
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -20,7 +21,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
 
     <application
         android:name=".app.SampleApplication"
@@ -104,12 +104,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
-        <!--环信图片预览Activity-->
+        <!-- 环信图片预览Activity -->
         <activity
             android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
 
         <!-- 注册SDKActivity -->
         <activity
@@ -118,9 +117,11 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent1106575688" /><!-- 开放平台获取的APPID -->
+
+                <data android:scheme="tencent1106575688" /> <!-- 开放平台获取的APPID -->
             </intent-filter>
         </activity>
         <activity
@@ -134,15 +135,19 @@
             android:theme="@style/SwipeBackTheme" />
         <activity android:name=".activity.CollectionActivity" />
         <activity android:name=".activity.ForecastFragmentActivity" />
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
 
-        <meta-data android:value="5a28dc6aa40fa33ba8000015" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="com_yxl_shishile_shishile" android:name="UMENG_CHANNEL"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a28dc6aa40fa33ba8000015" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="com_yxl_shishile_shishile" />
 
-        <!-- Bugly升级SDK配置开始  -->
+        <!-- Bugly升级SDK配置开始 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
-            android:theme="@android:style/Theme.Translucent"/>
+            android:theme="@android:style/Theme.Translucent" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -151,7 +156,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <meta-data
@@ -161,6 +166,8 @@
         <meta-data
             android:name="BUGLY_APP_VERSION"
             android:value="1.0" />
+
+        <activity android:name=".activity.InformationDetailActivity"></activity>
     </application>
 
 </manifest>

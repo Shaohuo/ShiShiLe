@@ -15,30 +15,38 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gongwen.marqueen.MarqueeFactory;
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
+import com.yxl.shishile.shishile.activity.InformationDetailActivity;
 import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.M_ForecastActivity;
+import com.yxl.shishile.shishile.adapter.InformationAdapter;
+import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.model.InformationModel;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 
 public class
@@ -51,6 +59,13 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     private boolean isViewPrepared=false;//是否初始化完成
     NestedScrollView mNestedScrollView;
     TextView mainText;
+    private ApiServer apiServer;
+    private List<InformationModel.DataBean> informationList=new ArrayList<>();
+    private ScrollDisabledListView infor_list;
+    private InformationAdapter informationAdapter;
+    private TextView title;
+    private TextView info;
+
 
     public static MZModeBannerFragment newInstance() {
         return new MZModeBannerFragment();
@@ -70,8 +85,13 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         LinearLayout jiangxiLiner = view.findViewById(R.id.jiangxi);
         LinearLayout beijingLiner = view.findViewById(R.id.beijing);
         LinearLayout shandongLiner = view.findViewById(R.id.shandong);
-        ScrollDisabledListView infor_list = view.findViewById(R.id.information_list);
+        infor_list = view.findViewById(R.id.information_list);
+        informationAdapter = new InformationAdapter(this, informationList);
+        infor_list.setAdapter(informationAdapter);
         View main_forecast = view.findViewById(R.id.main_forecast);
+
+        title = view.findViewById(R.id.title);
+        info = view.findViewById(R.id.info);
 
         /**设置下拉隐藏标题栏*/
         mainText = view.findViewById(R.id.main_title);
@@ -102,12 +122,54 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
 
         initMarqueeView();
 
-        SimpleAdapter adapter = new SimpleAdapter(getContext(),getData(),R.layout.item_information,
-                new String[]{"title","info"},
-                new int[]{R.id.title,R.id.info});
-        infor_list.setAdapter(adapter);
-        fixListViewHeight(infor_list);
+        /**
+         * 热门资讯
+         */
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://103.242.1.48:81").addConverterFactory(GsonConverterFactory.create()).build();
+        apiServer = retrofit.create(ApiServer.class);
+        final Call<InformationModel> list = apiServer.getInformation();
+        list.enqueue(new Callback<InformationModel>() {
+            @Override
+            public void onResponse(Call<InformationModel> call, Response<InformationModel> response) {
+                InformationModel body = response.body();
+                if (response.isSuccessful() && response.body() != null && body.getData() != null &&
+                        body.getData().size() > 0) {
+                    informationList.clear();
+                    informationList.addAll(body.getData());
+                    informationAdapter.notifyDataSetChanged();
+                } else {
 
+                }
+                fixListViewHeight(infor_list);
+
+            }
+
+            @Override
+            public void onFailure(Call<InformationModel> call, Throwable t) {
+
+            }
+        });
+
+        infor_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent1 = new Intent(view.getContext(), InformationDetailActivity.class);
+                switch (i){
+                    case 0:
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/1");
+                        startActivity(intent1);
+                        break;
+                    case 1:
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/2");
+                        startActivity(intent1);
+                        break;
+                    case 2:
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/3");
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
         mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
@@ -118,6 +180,8 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 } else if (position == 1) {
                     Toast.makeText(getContext(), "点击跳转b", Toast.LENGTH_SHORT).show();
                 } else if (position == 2) {
+
+
                     Toast.makeText(getContext(), "点击跳转c", Toast.LENGTH_SHORT).show();
                 } else if (position == 3) {
                     Toast.makeText(getContext(), "点击跳转d", Toast.LENGTH_SHORT).show();
@@ -156,6 +220,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    /**
+     * scrollView下嵌套ListView
+     * @param infor_list
+     */
     public void fixListViewHeight(ListView infor_list) {
         // 如果没有设置数据适配器，则ListView没有子项，返回。
         int i = -1;
@@ -179,27 +247,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         infor_list.setLayoutParams(params);
     }
 
-    private List<Map<String, Object>> getData() {
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
-        Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("title", "时时彩投注技巧之观冷定胆");
-        map1.put("info", "时时彩共设“星彩玩法”和“大小单双玩法”，玩法简单");
-        list.add(map1);
-
-        Map<String, Object> map2 = new HashMap<String, Object>();
-        map2.put("title", "小伙2元即中720万大奖");
-        map2.put("info", "他的方法竟如此简单，100%中奖");
-        list.add(map2);
-
-        Map<String, Object> map3 = new HashMap<String, Object>();
-        map3.put("title", "福彩3D选和值把握好这两点");
-        map3.put("info", "一千个彩民就有一千种选号方法，但是总会有几种方法是");
-        list.add(map3);
-
-        return list;
-    }
-
+    /**
+     * 下拉隐藏标题栏
+     * @param alpha
+     */
     private void setAnyBarAlpha(int alpha) {
         if (alpha > 0 && alpha < 100){
             mainText.setText("");

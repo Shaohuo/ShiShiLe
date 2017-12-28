@@ -3,6 +3,7 @@ package com.yxl.shishile.shishile.api;
 import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.ForecastListModel;
 import com.yxl.shishile.shishile.model.ForecastModel;
+import com.yxl.shishile.shishile.model.InformationModel;
 import com.yxl.shishile.shishile.model.LotteryList;
 import com.yxl.shishile.shishile.model.LotteryListModel;
 import com.yxl.shishile.shishile.model.LotteryModel;
@@ -42,4 +43,7 @@ public interface ApiServer {
     @POST("/user")
     @FormUrlEncoded
     Call<PostEaseUserModel> getEaseUser(@Field("imei") String imei);
+
+    @GET("article?page=1&pagesize=3")
+    Call<InformationModel> getInformation();
 }
