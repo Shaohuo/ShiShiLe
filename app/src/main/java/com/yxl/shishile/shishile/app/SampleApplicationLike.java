@@ -196,10 +196,10 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         };
 
         // 设置开发设备，默认为false，上传补丁如果下发范围指定为“开发设备”，需要调用此接口来标识开发设备
-        Bugly.setIsDevelopmentDevice(getApplication(), true);
+        Bugly.setIsDevelopmentDevice(getApplication(), false);
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
-        Bugly.init(getApplication(), "448e3c7622", true);
+        Bugly.init(getApplication(), "448e3c7622", false);
     }
 
     private void initBuglyCrashSDK() {
@@ -211,7 +211,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         // 设置是否为上报进程
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        CrashReport.initCrashReport(getApplication().getApplicationContext(), "448e3c7622", true,
+        CrashReport.initCrashReport(getApplication().getApplicationContext(), "448e3c7622", false,
                 strategy);
     }
 
@@ -226,7 +226,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         //初始化
         EMClient.getInstance().init(getApplication().getApplicationContext(), options);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
-        EMClient.getInstance().setDebugMode(true);
+        EMClient.getInstance().setDebugMode(false);
         //初始化EaseUI库
         EaseUI.getInstance().init(getApplication().getApplicationContext(), options);
     }
