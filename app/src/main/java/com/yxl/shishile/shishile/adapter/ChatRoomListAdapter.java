@@ -17,6 +17,7 @@ import com.yxl.shishile.shishile.model.ChatRoomModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
@@ -55,12 +56,15 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
             final ChatRoomModel chatRoom = mChatRoomList.get(position);
             holder.mTvPrizeName.setText(chatRoom.chatName);
             holder.mIvPrize.setImageResource(mImgIds[position]);
+            Random random = new Random();
+            int num = random.nextInt(200);
+            holder.mTvGrounpNum.setText((num + 100) + "人");
             holder.mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ChatActivity.class);
                     intent.putExtra(EaseConstant.EXTRA_USER_ID, "" + chatRoom.chatId);
-                    intent.putExtra("lotteryId",  chatRoom.lotteryId);
+                    intent.putExtra("lotteryId", chatRoom.lotteryId);
                     mContext.startActivity(intent);
                 }
             });

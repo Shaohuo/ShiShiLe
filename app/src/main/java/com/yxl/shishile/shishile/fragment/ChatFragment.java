@@ -215,10 +215,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
         //use the menu in base class
         super.registerExtendMenuItem();
         //extend menu items
-        inputMenu.registerExtendMenuItem(R.string.attach_video, R.drawable
-                .em_chat_video_selector, ITEM_VIDEO, extendMenuItemClickListener);
-        inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector,
-                ITEM_FILE, extendMenuItemClickListener);
+//        inputMenu.registerExtendMenuItem(R.string.attach_video, R.drawable
+//                .em_chat_video_selector, ITEM_VIDEO, extendMenuItemClickListener);
+//        inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector,
+//                ITEM_FILE, extendMenuItemClickListener);
         if (chatType == Constant.CHATTYPE_SINGLE) {
             inputMenu.registerExtendMenuItem(R.string.attach_video_call, R.drawable
                     .em_chat_video_call_selector, ITEM_VIDEO_CALL, extendMenuItemClickListener);
