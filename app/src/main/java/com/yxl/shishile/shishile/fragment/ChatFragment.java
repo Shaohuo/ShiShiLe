@@ -101,6 +101,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 loadLotteryCountDown();
             }
         });
+        for (int i = 0; i < mTvDataIds.length; i++) {
+            TextView mTvData = view.findViewById(mTvDataIds[i]);
+            mTvData.setVisibility(View.INVISIBLE);
+        }
         loadLotteryCountDown();
         return view;
     }

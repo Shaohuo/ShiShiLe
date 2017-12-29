@@ -21,7 +21,6 @@
         android:background="#FFF"
         android:orientation="horizontal"
         android:layout_gravity="center_vertical"
-        android:visibility="invisible"
         >
 
         <TextView
