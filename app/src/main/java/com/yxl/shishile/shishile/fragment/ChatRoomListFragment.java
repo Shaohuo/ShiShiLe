@@ -5,18 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hyphenate.chat.EMChatRoom;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMPageResult;
-import com.hyphenate.exceptions.HyphenateException;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ChatRoomListAdapter;
 import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.model.ChatRoomModel;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
 import java.util.ArrayList;
@@ -40,7 +36,14 @@ public class ChatRoomListFragment extends Fragment {
     private String mParam2;
     private RecyclerView mRecyclerView;
     private ChatRoomListAdapter mAdapter;
-    public List<EMChatRoom> mEMChatRoomList = new ArrayList<>();
+    public List<ChatRoomModel> mChatRoomList = new ArrayList<>();
+    public String[] mNames = new String[]{"重庆时时彩", "新疆时时彩", "北京PK10", "湖北快3", "江苏快3", "福彩3D",
+            "排列3", "江西11选5", "广东11选5", "山东11选5", "六合彩"};
+    public String[] mChatRoomIds = new String[]{"36131168124930", "36131172319233",
+            "36131173367810", "36131169173505", "36131172319236", "36131171270657",
+            "36131171270660", "36131173367809", "36131170222083", "36131174416385",
+            "36131169173506"};
+    public int[] mLotteryIds = new int[]{1, 7, 10, 2, 8, 5, 6, 9, 4, 11, 3};
 
     public ChatRoomListFragment() {
         // Required empty public constructor
@@ -71,6 +74,14 @@ public class ChatRoomListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mChatRoomList.clear();
+        for (int i = 0; i < mNames.length; i++) {
+            ChatRoomModel chatRoomModel = new ChatRoomModel();
+            chatRoomModel.chatName = mNames[i];
+            chatRoomModel.chatId = mChatRoomIds[i];
+            chatRoomModel.lotteryId = mLotteryIds[i];
+            mChatRoomList.add(chatRoomModel);
+        }
     }
 
     @Override
@@ -86,9 +97,7 @@ public class ChatRoomListFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager
                 .HORIZONTAL));
-        mEMChatRoomList.clear();
-        mEMChatRoomList.addAll(AppDataManager.getInstance().getEMChatRoomList());
-        mAdapter = new ChatRoomListAdapter(mEMChatRoomList);
+        mAdapter = new ChatRoomListAdapter(mChatRoomList);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }

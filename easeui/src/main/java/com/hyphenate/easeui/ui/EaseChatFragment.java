@@ -175,7 +175,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
 
             @Override
             public boolean onPressToSpeakBtnTouch(View v, MotionEvent event) {
-                AndPermission.with(getContext()).requestCode(200).permission(Permission.MICROPHONE).callback(new PermissionListener() {
+                AndPermission.with(getContext()).requestCode(200).permission(Permission
+                        .MICROPHONE).callback(new PermissionListener() {
 
 
                     @Override
@@ -186,7 +187,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                     @Override
                     public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
                         // 是否有不再提示并拒绝的权限。
-                        if (AndPermission.hasAlwaysDeniedPermission(getActivity(), deniedPermissions)) {
+                        if (AndPermission.hasAlwaysDeniedPermission(getActivity(),
+                                deniedPermissions)) {
                             // 第一种：用AndPermission默认的提示语。
                             AndPermission.defaultSettingDialog(getActivity(), 200).show();
                         }

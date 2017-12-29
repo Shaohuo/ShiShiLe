@@ -13,10 +13,10 @@ import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.easeui.EaseConstant;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.ChatActivity;
+import com.yxl.shishile.shishile.model.ChatRoomModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
@@ -24,13 +24,19 @@ import java.util.Random;
 
 public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapter.ViewHolder> {
 
-    public List<EMChatRoom> mEMChatRoomList = new ArrayList<>();
+    public List<ChatRoomModel> mChatRoomList = new ArrayList<>();
     private Context mContext;
+    public int[] mImgIds = new int[]{R.mipmap.ic_lottery_1, R.mipmap
+            .ic_lottery_7, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_2, R
+            .mipmap.ic_lottery_8, R.mipmap.ic_lottery_5, R.mipmap
+            .ic_lottery_6, R.mipmap.ic_lottery_9, R.mipmap
+            .ic_lottery_4, R.mipmap.ic_lottery_11, R.mipmap
+            .ic_lottery_3};
 
-    public ChatRoomListAdapter(List<EMChatRoom> list) {
+    public ChatRoomListAdapter(List<ChatRoomModel> list) {
         if (list != null) {
-            mEMChatRoomList.clear();
-            mEMChatRoomList.addAll(list);
+            mChatRoomList.clear();
+            mChatRoomList.addAll(list);
         }
     }
 
@@ -45,16 +51,16 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (mEMChatRoomList != null && mEMChatRoomList.size() > position) {
-            final EMChatRoom chatRoom = mEMChatRoomList.get(position);
-            holder.mTvPrizeName.setText(chatRoom.getName());
-//            holder.mIvPrize.setImageResource(mImgs[position]);
-            holder.mTvGrounpNum.setText(chatRoom.getMemberCount() + "人");
+        if (mChatRoomList != null && mChatRoomList.size() > position) {
+            final ChatRoomModel chatRoom = mChatRoomList.get(position);
+            holder.mTvPrizeName.setText(chatRoom.chatName);
+            holder.mIvPrize.setImageResource(mImgIds[position]);
             holder.mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ChatActivity.class);
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID, "" + chatRoom.getId());
+                    intent.putExtra(EaseConstant.EXTRA_USER_ID, "" + chatRoom.chatId);
+                    intent.putExtra("lotteryId",  chatRoom.lotteryId);
                     mContext.startActivity(intent);
                 }
             });
@@ -64,7 +70,7 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
 
     @Override
     public int getItemCount() {
-        return mEMChatRoomList.size();
+        return mChatRoomList.size();
     }
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素

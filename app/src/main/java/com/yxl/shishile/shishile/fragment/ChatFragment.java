@@ -106,8 +106,9 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     }
 
     public void loadLotteryCountDown() {
+        int lotteryId = getArguments().getInt("lotteryId", -1);
         Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
-                .getLotteryCountDown(1);
+                .getLotteryCountDown(lotteryId);
         call.enqueue(new Callback<CountDownModel>() {
             @Override
             public void onResponse(Call<CountDownModel> call, Response<CountDownModel> response) {

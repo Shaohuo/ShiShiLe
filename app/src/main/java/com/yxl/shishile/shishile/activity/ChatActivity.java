@@ -33,6 +33,7 @@ public class ChatActivity extends FragmentActivity {
         //传入参数
         Bundle args = new Bundle();
         args.putInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_CHATROOM);
+        args.putInt("lotteryId", getIntent().getIntExtra("lotteryId", -1));
         args.putString(EaseConstant.EXTRA_USER_ID, "" + getIntent().getStringExtra(EaseConstant
                 .EXTRA_USER_ID));
         chatFragment.setArguments(args);

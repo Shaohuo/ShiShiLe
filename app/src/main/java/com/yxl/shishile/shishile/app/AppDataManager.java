@@ -1,6 +1,6 @@
 package com.yxl.shishile.shishile.app;
 
-import com.hyphenate.chat.EMChatRoom;
+import com.yxl.shishile.shishile.model.ChatRoomModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +16,17 @@ public class AppDataManager {
         return ourInstance;
     }
 
-    public List<EMChatRoom> mEMChatRoomList = new ArrayList<>();
+    public List<ChatRoomModel> mChatRoomList = new ArrayList<>();
 
     private AppDataManager() {
 
     }
 
-    public void setEMChatRoomList(List<EMChatRoom> list) {
-        mEMChatRoomList = list;
+    public void setChatRoomList(List<ChatRoomModel> list) {
+        mChatRoomList = list;
     }
 
-    public List<EMChatRoom> getEMChatRoomList() {
-        return mEMChatRoomList;
+    public List<ChatRoomModel> getChatRoomList() {
+        return mChatRoomList;
     }
 }

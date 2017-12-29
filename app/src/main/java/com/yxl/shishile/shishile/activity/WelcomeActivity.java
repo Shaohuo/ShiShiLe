@@ -117,20 +117,22 @@ public class WelcomeActivity extends Activity {
                                     Log.d("main", "登录聊天服务器成功！");
                                 }
                             });
-                            try {
-                                final EMPageResult<EMChatRoom> result = EMClient.getInstance().chatroomManager()
-                                        .fetchPublicChatRoomsFromServer(1, 99);
-                                if (result != null && result.getData() != null) {
-                                    for (int i = 0; i < result.getData().size(); i++) {
-                                        EMChatRoom chatRoom = result.getData().get(i);
-                                        Log.e("ChatRoomListFragment", "" + chatRoom.getName());
-                                    }
-                                    AppDataManager.getInstance().setEMChatRoomList(result.getData());
-                                }
-                            } catch (HyphenateException e) {
-                                Log.e("ChatRoomListFragment", "" + e);
-                                e.printStackTrace();
-                            }
+//                            try {
+//                                final EMPageResult<EMChatRoom> result = EMClient.getInstance()
+// .chatroomManager()
+//                                        .fetchPublicChatRoomsFromServer(1, 99);
+//                                if (result != null && result.getData() != null) {
+//                                    for (int i = 0; i < result.getData().size(); i++) {
+//                                        EMChatRoom chatRoom = result.getData().get(i);
+//                                        Log.e("ChatRoomListFragment", "" + chatRoom.getName());
+//                                    }
+//                                    AppDataManager.getInstance().setChatRoomList(result.getData
+// ());
+//                                }
+//                            } catch (HyphenateException e) {
+//                                Log.e("ChatRoomListFragment", "" + e);
+//                                e.printStackTrace();
+//                            }
                         }
 
                         @Override
