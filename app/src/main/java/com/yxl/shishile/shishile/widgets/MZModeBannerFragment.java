@@ -184,7 +184,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         });
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
-        mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+       /* mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int position) {
                 if (position == 0) {
@@ -201,7 +201,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "点击跳转e", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
