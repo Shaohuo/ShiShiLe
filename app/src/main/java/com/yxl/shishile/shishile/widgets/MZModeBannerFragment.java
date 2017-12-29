@@ -122,37 +122,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
         main_forecast.setOnClickListener(this);
+        loadInformationData();
 
 
 
-
-        /**
-         * 热门资讯
-         */
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://103.242.1.48:81").addConverterFactory(GsonConverterFactory.create()).build();
-        apiServer = retrofit.create(ApiServer.class);
-        final Call<InformationModel> list = apiServer.getInformation();
-        list.enqueue(new Callback<InformationModel>() {
-            @Override
-            public void onResponse(Call<InformationModel> call, Response<InformationModel> response) {
-                InformationModel body = response.body();
-                if (response.isSuccessful() && response.body() != null && body.getData() != null &&
-                        body.getData().size() > 0) {
-                    informationList.clear();
-                    informationList.addAll(body.getData());
-                    informationAdapter.notifyDataSetChanged();
-                } else {
-
-                }
-                fixListViewHeight(infor_list);
-
-            }
-
-            @Override
-            public void onFailure(Call<InformationModel> call, Throwable t) {
-
-            }
-        });
 
         infor_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -160,23 +133,23 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 Intent intent1 = new Intent(view.getContext(), InformationDetailActivity.class);
                 switch (i){
                     case 0:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/1");
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/" + informationList.get(i).getId());
                         startActivity(intent1);
                         break;
                     case 1:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/2");
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId());
                         startActivity(intent1);
                         break;
                     case 2:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/3");
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId() );
                         startActivity(intent1);
                         break;
                     case 3:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/4");
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId() );
                         startActivity(intent1);
                         break;
                     case 4:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/5");
+                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId());
                         startActivity(intent1);
                         break;
                 }
@@ -228,6 +201,36 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
             @Override
             public BannerViewHolder createViewHolder() {
                 return new BannerViewHolder();
+            }
+        });
+    }
+
+    /**
+     * 热门资讯
+     */
+    private void loadInformationData() {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://103.242.1.48:81").addConverterFactory(GsonConverterFactory.create()).build();
+        apiServer = retrofit.create(ApiServer.class);
+        final Call<InformationModel> list = apiServer.getInformation();
+        list.enqueue(new Callback<InformationModel>() {
+            @Override
+            public void onResponse(Call<InformationModel> call, Response<InformationModel> response) {
+                InformationModel body = response.body();
+                if (response.isSuccessful() && response.body() != null && body.getData() != null &&
+                        body.getData().size() > 0) {
+                    informationList.clear();
+                    informationList.addAll(body.getData());
+                    informationAdapter.notifyDataSetChanged();
+                } else {
+
+                }
+                fixListViewHeight(infor_list);
+
+            }
+
+            @Override
+            public void onFailure(Call<InformationModel> call, Throwable t) {
+
             }
         });
     }
@@ -442,6 +445,8 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         mMZBanner.start();
+        loadPrizeListData();
+        loadInformationData();
         // mNormalBanner.start();
     }
 }
