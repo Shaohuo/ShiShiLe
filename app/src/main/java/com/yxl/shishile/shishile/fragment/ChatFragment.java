@@ -129,6 +129,9 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                             }
                             String[] split = countDownData.data.split("\\,|\\+");
                             for (int i = 0; i < mTvDataIds.length; i++) {
+                                if (getView() == null) {
+                                    return;
+                                }
                                 TextView mTvData = getView().findViewById(mTvDataIds[i]);
                                 if (i < split.length) {
                                     mTvData.setText("" + split[i]);
