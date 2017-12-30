@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         sf.setOnClickListener(this);
         kf.setOnClickListener(this);
         setting.setOnClickListener(this);
-        nicknameTextView.setOnClickListener(this);
+        view.findViewById(R.id.ll_user).setOnClickListener(this);
 //        if (userlogo.getId() == R.mipmap.person1) {
 //            nicknameTextView.setText("登录 / 注册");
 //        }
@@ -145,7 +146,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
              /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
                 startActivity(intent1);*/
                 break;
-            case R.id.nicknameTextView:
+            case R.id.ll_user:
                 PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil
                         .readObject
                                 (getContext());

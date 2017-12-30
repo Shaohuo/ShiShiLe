@@ -42,24 +42,33 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.yxl.shishile.shishile.widgets.ImageViewPlus
-            android:id="@+id/userlogo"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
+        <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="40dp"
-            android:src="@mipmap/person1" />
+            >
 
-        <TextView
-            android:id="@+id/nicknameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="1dp"
-            android:gravity="center"
-            android:text="登录 / 注册"
-            android:textColor="@color/white" />
+            <com.yxl.shishile.shishile.widgets.ImageViewPlus
+                android:id="@+id/userlogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/person1" />
+
+            <TextView
+                android:id="@+id/nicknameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="登录 / 注册"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
 
         <!--<LinearLayout-->
         <!--android:id="@+id/login_liner"-->
