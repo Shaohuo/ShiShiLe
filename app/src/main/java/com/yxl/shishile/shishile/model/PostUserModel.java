@@ -89,17 +89,17 @@ public class PostUserModel extends BaseModel {
         private int grade;
         private int score;
         private int scoreTotal;
-        private int coin;
-        private int fcoin;
-        private int fanDian;
-        private int fanDianBdw;
+        private float coin;
+        private float fcoin;
+        private float fanDian;
+        private float fanDianBdw;
         private int sb;
         private String care;
         private String qq;
         private int conCommStatus;
         private int lossCommStatus;
         private Object xuni;
-        private int deposit;
+        private float deposit;
         private int depositStatus;
         private int free;
         private int group;
@@ -260,35 +260,35 @@ public class PostUserModel extends BaseModel {
             this.scoreTotal = scoreTotal;
         }
 
-        public int getCoin() {
+        public float getCoin() {
             return coin;
         }
 
-        public void setCoin(int coin) {
+        public void setCoin(float coin) {
             this.coin = coin;
         }
 
-        public int getFcoin() {
+        public float getFcoin() {
             return fcoin;
         }
 
-        public void setFcoin(int fcoin) {
+        public void setFcoin(float fcoin) {
             this.fcoin = fcoin;
         }
 
-        public int getFanDian() {
+        public float getFanDian() {
             return fanDian;
         }
 
-        public void setFanDian(int fanDian) {
+        public void setFanDian(float fanDian) {
             this.fanDian = fanDian;
         }
 
-        public int getFanDianBdw() {
+        public float getFanDianBdw() {
             return fanDianBdw;
         }
 
-        public void setFanDianBdw(int fanDianBdw) {
+        public void setFanDianBdw(float fanDianBdw) {
             this.fanDianBdw = fanDianBdw;
         }
 
@@ -340,7 +340,7 @@ public class PostUserModel extends BaseModel {
             this.xuni = xuni;
         }
 
-        public int getDeposit() {
+        public float getDeposit() {
             return deposit;
         }
 

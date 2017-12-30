@@ -71,9 +71,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         mTvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nicknameTextView.setText("登录 / 注册");
                 showNormalDialog();
-
             }
         });
 
@@ -188,6 +186,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     {
                         ObjectSaveUtil.saveObject(getContext(), null);
                         mTvLogout.setVisibility(View.INVISIBLE);
+                        nicknameTextView.setText("登录 / 注册");
                         //...To-do
                     }
                 });
