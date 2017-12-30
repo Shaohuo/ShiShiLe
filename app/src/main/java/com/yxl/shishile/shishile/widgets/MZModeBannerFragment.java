@@ -386,7 +386,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
         }
-
     }
 
     public static class BannerViewHolder implements MZViewHolder<Integer> {
@@ -411,6 +410,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_mzmode_banner_fragment, null);
+
 
         initView(view);
         if (!isViewPrepared && getUserVisibleHint()) {//尚未初始化view,不能执行initData()方法[会报空指针]

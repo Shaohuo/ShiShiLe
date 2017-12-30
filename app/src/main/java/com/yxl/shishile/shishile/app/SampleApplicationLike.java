@@ -61,9 +61,9 @@ public class SampleApplicationLike extends DefaultApplicationLike {
          * 参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
          * 参数5:Push推送业务的secret
          */
-        UMConfigure.init(getApplication(), "5a28dc6aa40fa33ba8000015",
+        UMConfigure.init(getApplication(), "5a471721f43e480a58000129",
                 "com_yxl_shishile_shishile", UMConfigure.DEVICE_TYPE_PHONE,
-                "25a29d098573684108ccdba2d523ca7a");
+                "4ffc0169796cf942521581714eb4cd9a");
 //        PushAgent mPushAgent = PushAgent.getInstance(getApplication());
 ////注册推送服务，每次调用register方法都会回调该接口
 //        mPushAgent.register(new IUmengRegisterCallback() {

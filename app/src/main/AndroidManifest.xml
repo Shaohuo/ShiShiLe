@@ -139,7 +139,7 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5a28dc6aa40fa33ba8000015" />
+            android:value="5a471721f43e480a58000129" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="com_yxl_shishile_shishile" />
