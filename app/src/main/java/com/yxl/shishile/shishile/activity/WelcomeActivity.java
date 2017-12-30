@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -106,7 +107,7 @@ public class WelcomeActivity extends Activity {
                         () != null) {
                     String username = response.body().getData().getUsername();
                     String password = response.body().getData().getHx_password();
-                    if (username == null || password == null) {
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                         Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast.LENGTH_SHORT).show();
                         return;
                     }
