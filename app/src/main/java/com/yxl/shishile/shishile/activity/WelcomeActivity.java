@@ -94,7 +94,7 @@ public class WelcomeActivity extends Activity {
         }
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context
                 .TELEPHONY_SERVICE);
-        String imei = telephonyManager.getImei();
+        String imei = telephonyManager.getDeviceId();
         Call<PostEaseUserModel> call = ApiManager.getInstance().create(ApiServer
                 .class).getEaseUser(imei);
         call.enqueue(new Callback<PostEaseUserModel>() {
@@ -106,6 +106,10 @@ public class WelcomeActivity extends Activity {
                         () != null) {
                     String username = response.body().getData().getUsername();
                     String password = response.body().getData().getHx_password();
+                    if (username == null || password == null) {
+                        Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     EMClient.getInstance().login("" + username, "" + password, new EMCallBack()
                     {//回调
                         @Override
@@ -117,32 +121,21 @@ public class WelcomeActivity extends Activity {
                                     Log.d("main", "登录聊天服务器成功！");
                                 }
                             });
-//                            try {
-//                                final EMPageResult<EMChatRoom> result = EMClient.getInstance()
-// .chatroomManager()
-//                                        .fetchPublicChatRoomsFromServer(1, 99);
-//                                if (result != null && result.getData() != null) {
-//                                    for (int i = 0; i < result.getData().size(); i++) {
-//                                        EMChatRoom chatRoom = result.getData().get(i);
-//                                        Log.e("ChatRoomListFragment", "" + chatRoom.getName());
-//                                    }
-//                                    AppDataManager.getInstance().setChatRoomList(result.getData
-// ());
-//                                }
-//                            } catch (HyphenateException e) {
-//                                Log.e("ChatRoomListFragment", "" + e);
-//                                e.printStackTrace();
-//                            }
                         }
 
                         @Override
                         public void onProgress(int progress, String status) {
-                            Toast.makeText(WelcomeActivity.this, "加载聊天室服务器"+progress+"%", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override
-                        public void onError(int code, String message) {
-                            Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast.LENGTH_SHORT).show();
+                        public void onError(int code, final String message) {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(WelcomeActivity.this, "" + message, Toast
+                                            .LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                 }
