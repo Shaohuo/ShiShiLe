@@ -106,6 +106,10 @@ public class WelcomeActivity extends Activity {
                         () != null) {
                     String username = response.body().getData().getUsername();
                     String password = response.body().getData().getHx_password();
+                    if (username == null || password == null) {
+                        Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     EMClient.getInstance().login("" + username, "" + password, new EMCallBack()
                     {//回调
                         @Override
@@ -125,10 +129,10 @@ public class WelcomeActivity extends Activity {
                         }
 
                         @Override
-                        public void onError(int code, String message) {
+                        public void onError(int code, final String message) {
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast
+                                    Toast.makeText(WelcomeActivity.this, "" + message, Toast
                                             .LENGTH_SHORT).show();
                                 }
                             });
