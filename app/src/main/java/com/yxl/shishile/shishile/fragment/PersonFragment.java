@@ -48,16 +48,16 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.activity_person, null);
         View setting = view.findViewById(R.id.setting);
         View kf = view.findViewById(R.id.kefu);
-        View chongzhi_button = view.findViewById(R.id.chongzhi_button);
+//        View chongzhi_button = view.findViewById(R.id.chongzhi_button);
         nicknameTextView = view.findViewById(R.id.nicknameTextView);
         userlogo = view.findViewById(R.id.userlogo);
         userlogo.setImageResource(R.mipmap.person1);
         View bp = view.findViewById(R.id.bp);
         View my = view.findViewById(R.id.my);
         View sf = view.findViewById(R.id.sf);
-        View jifen_duihuan = view.findViewById(R.id.jifen_duihuan);
-        chongzhi_button.setOnClickListener(this);
-        jifen_duihuan.setOnClickListener(this);
+//        View jifen_duihuan = view.findViewById(R.id.jifen_duihuan);
+//        chongzhi_button.setOnClickListener(this);
+//        jifen_duihuan.setOnClickListener(this);
         bp.setOnClickListener(this);
         my.setOnClickListener(this);
         sf.setOnClickListener(this);
@@ -132,18 +132,18 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 //设置
                 Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.chongzhi_button:
-                //充值
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
-                startActivity(intent1);*/
-                break;
-            case R.id.jifen_duihuan:
-                //充值
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
-                startActivity(intent1);*/
-                break;
+//            case R.id.chongzhi_button:
+//                //充值
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
+//                startActivity(intent1);*/
+//                break;
+//            case R.id.jifen_duihuan:
+//                //充值
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
+//                startActivity(intent1);*/
+//                break;
             case R.id.ll_user:
                 PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil
                         .readObject

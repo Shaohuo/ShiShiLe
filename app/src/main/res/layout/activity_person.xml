@@ -115,92 +115,92 @@
         <!--</LinearLayout>-->
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/chongzhi_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#FFF"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/chongzhi" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:text="充值" />
-        </LinearLayout>
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
         <!--android:orientation="horizontal">-->
 
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1.5" />-->
+        <!--<LinearLayout-->
+            <!--android:id="@+id/chongzhi_button"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="#FFF"-->
+            <!--android:orientation="horizontal">-->
 
-        <!--<ImageView-->
-        <!--android:layout_width="20dp"-->
-        <!--android:layout_height="20dp"-->
-        <!--android:layout_gravity="center_vertical" />-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.5" />-->
 
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_weight="2"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:text="提现" />-->
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/chongzhi" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_weight="2"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:text="充值" />-->
         <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:id="@+id/jifen_duihuan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#FFF"
-            android:orientation="horizontal">
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal">&ndash;&gt;-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1.5" />&ndash;&gt;-->
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/jifenduihuan" />
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="20dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="20dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_gravity="center_vertical" />&ndash;&gt;-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:text="积分兑换" />
-        </LinearLayout>
-    </LinearLayout>
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginLeft="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="2"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="center_vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="提现" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/jifen_duihuan"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="#FFF"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/jifenduihuan" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_weight="2"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:text="积分兑换" />-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -223,13 +223,13 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="15dp"
-                android:src="@mipmap/integration" />
+                android:src="@mipmap/youhui" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="积分明细" />
+                android:text="优惠活动" />
 
             <TextView
                 android:layout_width="0dp"
@@ -257,13 +257,13 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="15dp"
-                android:src="@mipmap/wallet" />
+                android:src="@mipmap/xiaoxi" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="我的钱包" />
+                android:text="消息公告" />
 
             <TextView
                 android:layout_width="0dp"
