@@ -166,7 +166,11 @@
             android:name="BUGLY_APP_VERSION"
             android:value="1.0" />
 
-        <activity android:name=".activity.InformationDetailActivity"></activity>
+        <activity android:name=".activity.InformationDetailActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.MineActivity" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.MessageActivity"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e1e1e1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -18,21 +19,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <ImageView
-            android:id="@+id/kefu"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/kefu" />
+        <!--<ImageView-->
+            <!--android:id="@+id/kefu"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:src="@mipmap/kefu" />-->
 
-        <ImageView
-            android:id="@+id/setting"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/setting" />
+        <!--<ImageView-->
+            <!--android:id="@+id/setting"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:src="@mipmap/setting" />-->
     </LinearLayout>
 
     <LinearLayout
@@ -69,50 +70,6 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-
-        <!--<LinearLayout-->
-        <!--android:id="@+id/login_liner"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="1dp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="4" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:gravity="center_vertical|end"-->
-        <!--android:text="登录"-->
-        <!--android:textColor="@color/white" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="0.5"-->
-        <!--android:gravity="center"-->
-        <!--android:text="/"-->
-        <!--android:textColor="@color/white" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:text="注册"-->
-        <!--android:textColor="@color/white" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="4" />-->
-
-        <!--</LinearLayout>-->
     </LinearLayout>
 
     <!--<LinearLayout-->
@@ -210,7 +167,7 @@
         android:paddingTop="9dp">
 
         <LinearLayout
-            android:id="@+id/bp"
+            android:id="@+id/xiaoxi"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -223,13 +180,13 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="15dp"
-                android:src="@mipmap/youhui" />
+                android:src="@mipmap/xiaoxi" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="优惠活动" />
+                android:text="消息公告" />
 
             <TextView
                 android:layout_width="0dp"
@@ -263,7 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="消息公告" />
+                android:text="关于我们" />
 
             <TextView
                 android:layout_width="0dp"
@@ -279,10 +236,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/sf"
+            android:id="@+id/help"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
 
@@ -297,7 +254,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="我的收藏" />
+                android:text="帮助中心" />
 
             <TextView
                 android:layout_width="0dp"
@@ -321,9 +278,7 @@
             android:gravity="center"
             android:text="退出登录"
             android:textColor="@color/red"
-            android:textSize="14dp">
-
-        </TextView>
+            android:textSize="14dp"/>
     </LinearLayout>
 
 </LinearLayout>
