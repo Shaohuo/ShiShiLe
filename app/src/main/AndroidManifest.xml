@@ -185,8 +185,10 @@
         <activity android:name=".activity.MessageActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.InformationActivity"></activity>
+            />
+        <activity android:name=".activity.InformationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
