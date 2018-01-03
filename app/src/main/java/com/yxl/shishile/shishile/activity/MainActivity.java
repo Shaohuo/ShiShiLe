@@ -21,8 +21,10 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-    private AlphaTabsIndicator alphaTabsIndicator;
+    public AlphaTabsIndicator mAlphaTabsIndicator;
     public static String username;
+    public MainAdapter mMainAdapter;
+    public ViewPager mViewPger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +44,10 @@ public class MainActivity extends BaseActivity {
         MobclickAgent.setSessionContinueMillis(1000);
 //        PushAgent.getInstance(this).onAppStart();
 
-        ViewPager mViewPger = (ViewPager) findViewById(R.id.mViewPager);
-        MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
-        mViewPger.setAdapter(mainAdapter);
-        mViewPger.addOnPageChangeListener(mainAdapter);
+        mViewPger = (ViewPager) findViewById(R.id.mViewPager);
+        mMainAdapter = new MainAdapter(getSupportFragmentManager());
+        mViewPger.setAdapter(mMainAdapter);
+        mViewPger.addOnPageChangeListener(mMainAdapter);
         mViewPger.setOffscreenPageLimit(0);
 
         username = getIntent().getStringExtra("nicknameTextView");
@@ -56,8 +58,8 @@ public class MainActivity extends BaseActivity {
 //        personFragment.setArguments(bundle);                                     //通过setArguments传值
 //        fm.beginTransaction().replace(R.id.person_fragment,personFragment ).commit();        //通过add()将布局加入fragment容器中
 
-        alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
-        alphaTabsIndicator.setViewPager(mViewPger);
+        mAlphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
+        mAlphaTabsIndicator.setViewPager(mViewPger);
 
 
 //        alphaTabsIndicator.getTabView(0).showNumber(6);
@@ -66,8 +68,15 @@ public class MainActivity extends BaseActivity {
 //        alphaTabsIndicator.getTabView(3).showPoint();
     }
 
+    public AlphaTabsIndicator getAlphaTabsIndicator(){
+        return mAlphaTabsIndicator;
+    }
 
-    private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
+    public ViewPager getViewPger() {
+        return mViewPger;
+    }
+
+    public class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
 
         private List<Fragment> fragments = new ArrayList<>();
 

@@ -56,4 +56,7 @@ public interface ApiServer {
 
     @GET("article?page=1&pagesize=5")
     Call<InformationModel> getInformation();
+
+    @GET("article?page=1&pagesize=15")
+    Call<InformationModel> getInfor();
 }

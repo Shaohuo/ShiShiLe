@@ -170,7 +170,8 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.MineActivity" />
         <activity android:name=".activity.HelpActivity" />
-        <activity android:name=".activity.MessageActivity"></activity>
+        <activity android:name=".activity.MessageActivity" />
+        <activity android:name=".activity.InformationActivity"></activity>
     </application>
 
 </manifest>
