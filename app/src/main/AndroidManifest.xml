@@ -166,12 +166,26 @@
             android:name="BUGLY_APP_VERSION"
             android:value="1.0" />
 
-        <activity android:name=".activity.InformationDetailActivity" />
-        <activity android:name=".activity.ChangePasswordActivity"></activity>
-        <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.MineActivity" />
-        <activity android:name=".activity.HelpActivity" />
-        <activity android:name=".activity.MessageActivity"></activity>
+        <activity android:name=".activity.InformationDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.ChangePasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".activity.MineActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.HelpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.MessageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>
