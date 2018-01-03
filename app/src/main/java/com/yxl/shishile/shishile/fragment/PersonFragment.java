@@ -94,8 +94,10 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 (getContext());
         if (userModel != null) {
             nicknameTextView.setText("" + userModel.getNickname());
+            userlogo.setImageResource(R.mipmap.ic_avatar);
             mTvLogout.setVisibility(View.VISIBLE);
         } else {
+            userlogo.setImageResource(R.mipmap.person1);
             mTvLogout.setVisibility(View.INVISIBLE);
         }
     }
@@ -188,6 +190,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     {
                         ObjectSaveUtil.saveObject(getContext(), null);
                         mTvLogout.setVisibility(View.INVISIBLE);
+                        userlogo.setImageResource(R.mipmap.person1);
                         nicknameTextView.setText("登录 / 注册");
                         //...To-do
                     }
