@@ -16,6 +16,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -48,12 +49,18 @@ public interface ApiServer {
 
     @POST("/user")
     @FormUrlEncoded
-    Call<PostRegisterUserModel> register(@Field("username") String username, @Field("password") String password);
+    Call<PostRegisterUserModel> register(@Field("username") String username, @Field("password")
+            String password);
 
     @POST("/user/login")
     @FormUrlEncoded
-    Call<PostUserModel> login(@Field("username") String username,@Field("password") String password);
+    Call<PostUserModel> login(@Field("username") String username, @Field("password") String
+            password);
 
     @GET("article?page=1&pagesize=5")
     Call<InformationModel> getInformation();
+
+    @PUT("/user/{user_id}")
+    Call<PostUserModel> changePassword(@Path("user_id") int user_id, @Query("oldpwd") String
+            oldpwd, @Query("newpwd") String newpwd);
 }

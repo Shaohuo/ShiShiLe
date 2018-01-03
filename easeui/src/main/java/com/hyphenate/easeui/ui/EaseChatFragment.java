@@ -240,7 +240,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             }
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
-            titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
+//            titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
             if (chatType == EaseConstant.CHATTYPE_GROUP) {
                 //group chat
                 EMGroup group = EMClient.getInstance().groupManager().getGroup(toChatUsername);

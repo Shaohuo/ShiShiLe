@@ -166,7 +166,8 @@
             android:name="BUGLY_APP_VERSION"
             android:value="1.0" />
 
-        <activity android:name=".activity.InformationDetailActivity"></activity>
+        <activity android:name=".activity.InformationDetailActivity" />
+        <activity android:name=".activity.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

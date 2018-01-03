@@ -30,25 +30,25 @@
         android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        >
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@mipmap/ic_group"
-            />
+            android:src="@mipmap/ic_group" />
+
         <TextView
             android:id="@+id/tvGrounpNum"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
             android:gravity="center"
             android:text="100人"
             android:textColor="@color/black"
-            android:layout_marginLeft="4dp"
-            android:textSize="12dp"
-            />
+            android:textSize="12dp" />
     </LinearLayout>
 
 </RelativeLayout>
