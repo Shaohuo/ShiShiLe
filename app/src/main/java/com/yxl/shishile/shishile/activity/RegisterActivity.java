@@ -1,7 +1,6 @@
 package com.yxl.shishile.shishile.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +13,9 @@ import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.model.PostRegisterUserModel;
-import com.yxl.shishile.shishile.model.PostUserModel;
-import com.yxl.shishile.shishile.util.ObjectSaveUtil;
+import com.yxl.shishile.shishile.model.UserModel;
+import com.yxl.shishile.shishile.util.UserSaveUtil;
 
-import java.io.ObjectInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,15 +94,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void login(String username, String password) {
-        Call<PostUserModel> call = ApiManager.getInstance().create(ApiServer.class)
+        Call<UserModel> call = ApiManager.getInstance().create(ApiServer.class)
                 .login(username, password);
-        call.enqueue(new Callback<PostUserModel>() {
+        call.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<PostUserModel> call, Response<PostUserModel>
+            public void onResponse(Call<UserModel> call, Response<UserModel>
                     response) {
                 if (response.isSuccessful() && response.body().getData() != null) {
-                    PostUserModel.DataBean data = response.body().getData();
-                    ObjectSaveUtil.saveObject(RegisterActivity.this, data);
+                    UserModel.UserInfo data = response.body().getData();
+                    UserSaveUtil.saveObject(RegisterActivity.this, data);
                     Toast.makeText(RegisterActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     setResult(Activity.RESULT_OK);
                     finish();
@@ -114,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
 
             @Override
-            public void onFailure(Call<PostUserModel> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 Toast.makeText(RegisterActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
             }
         });

@@ -61,7 +61,6 @@ public class WelcomeActivity extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
-                getEaseUerInfo();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -74,7 +73,6 @@ public class WelcomeActivity extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-                getEaseUerInfo();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

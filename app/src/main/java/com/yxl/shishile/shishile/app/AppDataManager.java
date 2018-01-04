@@ -1,6 +1,8 @@
 package com.yxl.shishile.shishile.app;
 
 import com.yxl.shishile.shishile.model.ChatRoomModel;
+import com.yxl.shishile.shishile.model.UserModel;
+import com.yxl.shishile.shishile.util.UserSaveUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,12 @@ public class AppDataManager {
 
     private AppDataManager() {
 
+    }
+
+    public UserModel.UserInfo getUser() {
+        UserModel.UserInfo userModel = (UserModel.UserInfo) UserSaveUtil.readObject
+                (SampleApplicationLike.getAppContext());
+        return userModel;
     }
 
     public void setChatRoomList(List<ChatRoomModel> list) {

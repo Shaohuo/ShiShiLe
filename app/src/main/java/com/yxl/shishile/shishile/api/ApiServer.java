@@ -9,7 +9,7 @@ import com.yxl.shishile.shishile.model.LotteryListModel;
 import com.yxl.shishile.shishile.model.LotteryModel;
 import com.yxl.shishile.shishile.model.PostEaseUserModel;
 import com.yxl.shishile.shishile.model.PostRegisterUserModel;
-import com.yxl.shishile.shishile.model.PostUserModel;
+import com.yxl.shishile.shishile.model.UserModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -52,7 +52,7 @@ public interface ApiServer {
 
     @POST("/user/login")
     @FormUrlEncoded
-    Call<PostUserModel> login(@Field("username") String username,@Field("password") String password);
+    Call<UserModel> login(@Field("username") String username, @Field("password") String password);
 
     @GET("article?page=1&pagesize=5")
     Call<InformationModel> getInformation();

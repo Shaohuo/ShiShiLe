@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
-public class ObjectSaveUtil {
+public class UserSaveUtil {
 
     private final static String FILENAME = "login_data_save";
 	

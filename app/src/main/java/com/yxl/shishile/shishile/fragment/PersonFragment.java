@@ -10,22 +10,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.activity.ForecastActivity;
-import com.yxl.shishile.shishile.activity.BPActivity;
-import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
 import com.yxl.shishile.shishile.activity.LoginActivity;
-import com.yxl.shishile.shishile.activity.MainActivity;
-import com.yxl.shishile.shishile.activity.MyWalletActivity;
-import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.model.MessageEvent;
-import com.yxl.shishile.shishile.model.PostUserModel;
-import com.yxl.shishile.shishile.util.ObjectSaveUtil;
+import com.yxl.shishile.shishile.model.UserModel;
+import com.yxl.shishile.shishile.util.UserSaveUtil;
 import com.yxl.shishile.shishile.widgets.ImageViewPlus;
 
 import org.greenrobot.eventbus.EventBus;
@@ -87,7 +79,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil.readObject
+        UserModel.UserInfo userModel = (UserModel.UserInfo) UserSaveUtil.readObject
                 (getContext());
         if (userModel != null) {
             nicknameTextView.setText("" + userModel.getNickname());
@@ -145,7 +137,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent1);*/
                 break;
             case R.id.ll_user:
-                PostUserModel.DataBean userModel = (PostUserModel.DataBean) ObjectSaveUtil
+                UserModel.UserInfo userModel = (UserModel.UserInfo) UserSaveUtil
                         .readObject
                                 (getContext());
                 if (userModel == null) {
@@ -184,7 +176,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        ObjectSaveUtil.saveObject(getContext(), null);
+                        UserSaveUtil.saveObject(getContext(), null);
                         mTvLogout.setVisibility(View.INVISIBLE);
                         nicknameTextView.setText("登录 / 注册");
                         //...To-do

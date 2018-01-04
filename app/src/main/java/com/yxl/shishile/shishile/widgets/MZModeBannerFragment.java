@@ -178,12 +178,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e(TAG, "----->addPageChangeLisnter:" + position + "positionOffset:" + positionOffset + "positionOffsetPixels:" + positionOffsetPixels);
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.e(TAG, "addPageChangeLisnter:" + position);
             }
 
             @Override

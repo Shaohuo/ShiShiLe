@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Administrator on 2017/12/28 0028.
  */
 
-public class PostUserModel extends BaseModel {
+public class UserModel extends BaseModel {
 
     /**
      * data : {"uid":689,"isDelete":0,"enable":1,"parentId":0,"parents":"","admin":0,
@@ -19,17 +19,17 @@ public class PostUserModel extends BaseModel {
      * "token":"2a9e37d72dc34a016666975485518e89ff7ff59a"}
      */
 
-    private DataBean data;
+    private UserInfo data;
 
-    public DataBean getData() {
+    public UserInfo getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(UserInfo data) {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
+    public static class UserInfo implements Serializable{
         /**
          * uid : 689
          * isDelete : 0

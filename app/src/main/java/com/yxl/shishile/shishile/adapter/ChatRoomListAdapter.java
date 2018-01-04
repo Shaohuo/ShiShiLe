@@ -63,7 +63,7 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ChatActivity.class);
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID, "" + chatRoom.chatId);
+                    intent.putExtra("chatRoomId", "" + chatRoom.chatId);
                     intent.putExtra("lotteryId", chatRoom.lotteryId);
                     mContext.startActivity(intent);
                 }

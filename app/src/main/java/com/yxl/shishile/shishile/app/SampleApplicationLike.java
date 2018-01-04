@@ -1,41 +1,41 @@
 package com.yxl.shishile.shishile.app;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.EaseUI;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
-import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.umeng.commonsdk.UMConfigure;
 //import com.umeng.message.IUmengRegisterCallback;
 //import com.umeng.message.PushAgent;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.MainActivity;
-import com.yxl.shishile.shishile.api.ApiManager;
-import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.imchat.JacenUtils;
+import com.yxl.shishile.shishile.imchat.XmppAction;
+import com.yxl.shishile.shishile.imchat.XmppService;
+import com.yxl.shishile.shishile.model.UserModel;
+import com.yxl.shishile.shishile.util.UserSaveUtil;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Locale;
 
 public class SampleApplicationLike extends DefaultApplicationLike {
 
     public static final String TAG = "Tinker.SampleApplicationLike";
+    public static Context mApplication;
 
     public SampleApplicationLike(Application application, int tinkerFlags,
                                  boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime,
@@ -47,9 +47,46 @@ public class SampleApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
+        mApplication = getApplication().getApplicationContext();
         initUmeng();
-        initEMClient();
         initBuglySDK();
+        loginXmppServer();
+    }
+
+    public static Context getAppContext() {
+        return mApplication;
+    }
+
+    private void loginXmppServer() {
+        UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
+        if (userInfo != null) {
+            String username = userInfo.getUsername();
+            if (!TextUtils.isEmpty(username)) {
+                Bundle bundle = new Bundle();
+                bundle.putString("account", "" + userInfo.getUsername());
+                bundle.putString("password", "123456");//Xmpp用户密码固定123456
+                JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
+                        .class, XmppAction.ACTION_LOGIN, bundle);
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction(XmppAction.ACTION_LOGIN_SUCCESS);
+                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR);
+                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_CONFLICT);
+                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_NOT_AUTHORIZED);
+                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_UNKNOWNHOST);
+                intentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
+                JacenUtils.registerLocalBroadcastReceiver(getApplication().getApplicationContext
+                        (), new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        if (intent != null) {
+                            String action = intent.getAction();
+                            Log.i("XmppServer", "" + action);
+                        }
+                    }
+                }, intentFilter);
+            }
+        }
+
     }
 
     private void initUmeng() {
@@ -215,21 +252,21 @@ public class SampleApplicationLike extends DefaultApplicationLike {
 //                strategy);
 //    }
 
-    private void initEMClient() {
-        EMOptions options = new EMOptions();
-        // 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
-        // 是否自动将消息附件上传到环信服务器，默认为True是使用环信服务器上传下载，如果设为 false，需要开发者自己处理附件消息的上传和下载
-        options.setAutoTransferMessageAttachments(true);
-        // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
-        options.setAutoDownloadThumbnail(true);
-        //初始化
-        EMClient.getInstance().init(getApplication().getApplicationContext(), options);
-        //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
-        EMClient.getInstance().setDebugMode(false);
-        //初始化EaseUI库
-        EaseUI.getInstance().init(getApplication().getApplicationContext(), options);
-    }
+//    private void initEMClient() {
+//        EMOptions options = new EMOptions();
+//        // 默认添加好友时，是不需要验证的，改成需要验证
+//        options.setAcceptInvitationAlways(false);
+//        // 是否自动将消息附件上传到环信服务器，默认为True是使用环信服务器上传下载，如果设为 false，需要开发者自己处理附件消息的上传和下载
+//        options.setAutoTransferMessageAttachments(true);
+//        // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
+//        options.setAutoDownloadThumbnail(true);
+//        //初始化
+//        EMClient.getInstance().init(getApplication().getApplicationContext(), options);
+//        //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
+//        EMClient.getInstance().setDebugMode(false);
+//        //初始化EaseUI库
+//        EaseUI.getInstance().init(getApplication().getApplicationContext(), options);
+//    }
 
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

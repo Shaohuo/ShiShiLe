@@ -10,11 +10,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -25,8 +23,8 @@ import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.model.MessageEvent;
-import com.yxl.shishile.shishile.model.PostUserModel;
-import com.yxl.shishile.shishile.util.ObjectSaveUtil;
+import com.yxl.shishile.shishile.model.UserModel;
+import com.yxl.shishile.shishile.util.UserSaveUtil;
 import com.yxl.shishile.shishile.widgets.Util;
 
 import org.greenrobot.eventbus.EventBus;
@@ -42,7 +40,7 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
     private static final String APP_ID = "1106575688";//官方获取的APPID
     private Tencent mTencent;
     private BaseUiListener mIUiListener;
-    private UserInfo mUserInfo;
+    private com.tencent.connect.UserInfo mUserInfo;
     //    public static ImageView userlogo;
     Bitmap bitmap = null;
     public static String nicknameTextView;
@@ -88,18 +86,18 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
                     Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Call<PostUserModel> call = ApiManager.getInstance().create(ApiServer.class)
+                Call<UserModel> call = ApiManager.getInstance().create(ApiServer.class)
                         .login(username, password);
-                call.enqueue(new Callback<PostUserModel>() {
+                call.enqueue(new Callback<UserModel>() {
                     @Override
-                    public void onResponse(Call<PostUserModel> call, Response<PostUserModel>
+                    public void onResponse(Call<UserModel> call, Response<UserModel>
                             response) {
                         Toast.makeText(LoginActivity.this, "" + response.body().message,
                                 Toast.LENGTH_SHORT).show();
                         if (response.isSuccessful() && response.body() != null) {
                             if ("登录成功".equals(response.body().message)) {
-                                PostUserModel.DataBean data = response.body().getData();
-                                ObjectSaveUtil.saveObject(LoginActivity.this, data);
+                                UserModel.UserInfo data = response.body().getData();
+                                UserSaveUtil.saveObject(LoginActivity.this, data);
                                 setResult(Activity.RESULT_OK);
                                 finish();
                             }
@@ -107,7 +105,7 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
                     }
 
                     @Override
-                    public void onFailure(Call<PostUserModel> call, Throwable t) {
+                    public void onFailure(Call<UserModel> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -140,7 +138,7 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
                 mTencent.setOpenId(openID);
                 mTencent.setAccessToken(accessToken, expires);
                 QQToken qqToken = mTencent.getQQToken();
-                mUserInfo = new UserInfo(getApplicationContext(), qqToken);
+                mUserInfo = new com.tencent.connect.UserInfo(getApplicationContext(), qqToken);
                 mUserInfo.getUserInfo(new IUiListener() {
                     @Override
                     public void onComplete(final Object response) {
