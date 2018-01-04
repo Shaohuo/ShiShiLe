@@ -14,7 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.ForecastActivity;
+import com.yxl.shishile.shishile.activity.BPActivity;
+import com.yxl.shishile.shishile.activity.HelpActivity;
+import com.yxl.shishile.shishile.activity.IntegraldetailActivity;
 import com.yxl.shishile.shishile.activity.LoginActivity;
+import com.yxl.shishile.shishile.activity.MainActivity;
+import com.yxl.shishile.shishile.activity.MessageActivity;
+import com.yxl.shishile.shishile.activity.MineActivity;
+import com.yxl.shishile.shishile.activity.MyWalletActivity;
+import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.model.MessageEvent;
 import com.yxl.shishile.shishile.model.UserModel;
 import com.yxl.shishile.shishile.util.UserSaveUtil;
@@ -38,23 +47,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_person, null);
-        View setting = view.findViewById(R.id.setting);
-        View kf = view.findViewById(R.id.kefu);
-        View chongzhi_button = view.findViewById(R.id.chongzhi_button);
+//        View setting = view.findViewById(R.id.setting);
+//        View kf = view.findViewById(R.id.kefu);
+//        View chongzhi_button = view.findViewById(R.id.chongzhi_button);
         nicknameTextView = view.findViewById(R.id.nicknameTextView);
         userlogo = view.findViewById(R.id.userlogo);
         userlogo.setImageResource(R.mipmap.person1);
-        View bp = view.findViewById(R.id.bp);
+        View xiaoxi = view.findViewById(R.id.xiaoxi);
         View my = view.findViewById(R.id.my);
-        View sf = view.findViewById(R.id.sf);
-        View jifen_duihuan = view.findViewById(R.id.jifen_duihuan);
-        chongzhi_button.setOnClickListener(this);
-        jifen_duihuan.setOnClickListener(this);
-        bp.setOnClickListener(this);
+        View help = view.findViewById(R.id.help);
+//        View jifen_duihuan = view.findViewById(R.id.jifen_duihuan);
+//        chongzhi_button.setOnClickListener(this);
+//        jifen_duihuan.setOnClickListener(this);
+        xiaoxi.setOnClickListener(this);
         my.setOnClickListener(this);
-        sf.setOnClickListener(this);
-        kf.setOnClickListener(this);
-        setting.setOnClickListener(this);
+        help.setOnClickListener(this);
+//        kf.setOnClickListener(this);
+//        setting.setOnClickListener(this);
         view.findViewById(R.id.ll_user).setOnClickListener(this);
 //        if (userlogo.getId() == R.mipmap.person1) {
 //            nicknameTextView.setText("登录 / 注册");
@@ -83,8 +92,10 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 (getContext());
         if (userModel != null) {
             nicknameTextView.setText("" + userModel.getNickname());
+            userlogo.setImageResource(R.mipmap.ic_avatar);
             mTvLogout.setVisibility(View.VISIBLE);
         } else {
+            userlogo.setImageResource(R.mipmap.person1);
             mTvLogout.setVisibility(View.INVISIBLE);
         }
     }
@@ -100,42 +111,41 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bp:
-                //积分明细
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-                /*Intent intent2 = new Intent(getContext(), IntegraldetailActivity.class);
-                startActivity(intent2);*/
+            case R.id.xiaoxi:
+                //消息公告
+                Intent intent2 = new Intent(getContext(),MessageActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.my:
-                //我的钱包
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-              /*  Intent intent = new Intent(view.getContext(), MyWalletActivity.class);
-                startActivity(intent);*/
+                //关于我们
+                Intent intent = new Intent(view.getContext(), MineActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.sf:
-                //我的收藏
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+            case R.id.help:
+                //帮助中心
+                Intent intent1 = new Intent(view.getContext(), HelpActivity.class);
+                startActivity(intent1);
                 break;
-            case R.id.kefu:
-                //客服
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.setting:
-                //设置
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.chongzhi_button:
-                //充值
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
-                startActivity(intent1);*/
-                break;
-            case R.id.jifen_duihuan:
-                //充值
-                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
-             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
-                startActivity(intent1);*/
-                break;
+//            case R.id.kefu:
+//                //客服
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.setting:
+//                //设置
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.chongzhi_button:
+//                //充值
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
+//                startActivity(intent1);*/
+//                break;
+//            case R.id.jifen_duihuan:
+//                //充值
+//                Toast.makeText(getContext(), "功能即将开放！尽请期待", Toast.LENGTH_SHORT).show();
+//             /*   Intent intent1 = new Intent(view.getContext(), BPActivity.class);
+//                startActivity(intent1);*/
+//                break;
             case R.id.ll_user:
                 UserModel.UserInfo userModel = (UserModel.UserInfo) UserSaveUtil
                         .readObject
@@ -178,6 +188,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     {
                         UserSaveUtil.saveObject(getContext(), null);
                         mTvLogout.setVisibility(View.INVISIBLE);
+                        userlogo.setImageResource(R.mipmap.person1);
                         nicknameTextView.setText("登录 / 注册");
                         //...To-do
                     }
