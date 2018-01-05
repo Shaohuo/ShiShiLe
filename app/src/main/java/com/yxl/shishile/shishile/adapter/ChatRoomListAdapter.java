@@ -8,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.hyphenate.chat.EMChatRoom;
-import com.hyphenate.easeui.EaseConstant;
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.activity.ChatActivity;
+import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.imchat.ChattingUI;
+import com.yxl.shishile.shishile.imchat.XmppUtils;
 import com.yxl.shishile.shishile.model.ChatRoomModel;
+import com.yxl.shishile.shishile.model.UserModel;
+
+import org.jivesoftware.smackx.muc.MultiUserChat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +58,7 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (mChatRoomList != null && mChatRoomList.size() > position) {
             final ChatRoomModel chatRoom = mChatRoomList.get(position);
-            holder.mTvPrizeName.setText(chatRoom.chatName);
+            holder.mTvPrizeName.setText(chatRoom.chatRoomName);
             holder.mIvPrize.setImageResource(mImgIds[position]);
             Random random = new Random();
             int num = random.nextInt(200);
@@ -62,10 +66,16 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
             holder.mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, ChatActivity.class);
-                    intent.putExtra("chatRoomId", "" + chatRoom.chatId);
-                    intent.putExtra("lotteryId", chatRoom.lotteryId);
-                    mContext.startActivity(intent);
+                    UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
+                    if (userInfo != null) {
+                        Intent intent = new Intent(mContext, ChattingUI.class);
+                        intent.putExtra("chatRoomId", "" + chatRoom.chatId);
+                        intent.putExtra("chatRoomName", chatRoom.chatRoomName);
+                        mContext.startActivity(intent);
+                    } else {
+                        Toast.makeText(mContext, "请先登录账号", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         }

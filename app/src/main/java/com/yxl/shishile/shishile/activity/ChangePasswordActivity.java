@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.yxl.shishile.shishile.R;
-import com.yxl.shishile.shishile.model.PostUserModel;
-import com.yxl.shishile.shishile.util.ObjectSaveUtil;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 

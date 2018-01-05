@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffd1d1d1"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/shape_corner"
+        android:enabled="false"
+        android:padding="8dp"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        />
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_toLeftOf="@id/send"
+        android:background="@mipmap/icon_rectangle_white"
+        android:maxLines="6"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        />
+
+</RelativeLayout>

@@ -23,6 +23,16 @@ public class ChatMessageVo implements Serializable {
     private int messageStatus;//发送状态
     private int unRead;//未读
 
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    private String from;
+
     private int imagePercent;//图片上传百分比
 
     public int getUnRead() {

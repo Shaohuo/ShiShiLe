@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.ChatRoomListAdapter;
-import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.model.ChatRoomModel;
 import com.yxl.shishile.shishile.widgets.RecycleViewDivider;
 
@@ -77,7 +76,7 @@ public class ChatRoomListFragment extends Fragment {
         mChatRoomList.clear();
         for (int i = 0; i < mNames.length; i++) {
             ChatRoomModel chatRoomModel = new ChatRoomModel();
-            chatRoomModel.chatName = mNames[i];
+            chatRoomModel.chatRoomName = mNames[i];
             chatRoomModel.chatId = mChatRoomIds[i];
             chatRoomModel.lotteryId = mLotteryIds[i];
             mChatRoomList.add(chatRoomModel);

@@ -122,7 +122,6 @@ public class XmppUtils {
 
     public String loginXmpp(final String userName, final String password) {
         String result = XmppAction.ACTION_LOGIN_SUCCESS;
-
         try {
             createConnection();
             connection.connect();
@@ -185,16 +184,18 @@ public class XmppUtils {
         return chatMessageVo;
     }
 
+
     public ChatMessageVo sendChatRoomMessage(String chatId, String content) {
         ChatMessageVo chatMessageVo = new ChatMessageVo();
         Message msg = new Message();
         try {
+            String chatJid = chatId + "@conference." + connection.getServiceName();
+            msg.setTo(chatJid);
             msg.setType(Message.Type.groupchat);
-            msg.setTo(chatId);
-            msg.setFrom(getConnection().getUser());
+            msg.setFrom("" + connection.getUser());
             msg.setBody(content);
             chatMessageVo.parseMessage(msg);
-            chatMessageVo.setChatJid(chatId);
+            chatMessageVo.setChatJid(chatJid);
             chatMessageVo.setChatType(ChatType.text.getId());
             chatMessageVo.setMessageStatus(MessageStatus.success.getId());
             chatMessageVo.setMe(true);
@@ -210,7 +211,6 @@ public class XmppUtils {
 
     public String registerXmpp(final String account, final String password) {
         String result = XmppAction.ACTION_REGISTER_SUCCESS;
-
         try {
             if (connection == null) {
                 createConnection();

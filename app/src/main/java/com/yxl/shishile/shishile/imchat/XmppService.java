@@ -13,7 +13,9 @@ import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.StanzaListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.filter.StanzaExtensionFilter;
 import org.jivesoftware.smack.filter.StanzaFilter;
+import org.jivesoftware.smack.packet.ExtensionElement;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Stanza;
@@ -129,17 +131,22 @@ public class XmppService extends Service {
 
         @Override
         public void processPacket(Stanza packet) throws SmackException.NotConnectedException {
+            ExtensionElement delayExtension = packet.getExtension("delay", "urn:xmpp:delay");
             Log.i("XmppService", "packet = " + packet.toString());
-
-            if (packet instanceof Message) {//消息
+            if (packet instanceof Message) {
                 Message msg = (Message) packet;
                 if (Message.Type.chat.equals(msg.getType())) {//单聊
+
+                } else if (Message.Type.groupchat.equals(msg.getType())) {//群聊
                     if (TextUtils.isEmpty(msg.getBody()))
                         return;
+                    if (delayExtension != null) {//不接受延时消息
+                        return;
+                    }
                     ChatMessageVo chatMessageVo = new ChatMessageVo();
                     chatMessageVo.parseMessage(msg);
                     chatMessageVo.setChatType(ChatType.text.getId());
-                    chatMessageVo.setMe(false);
+                    chatMessageVo.setFrom(msg.getFrom());
                     chatMessageVo.setShowTime(ChatMessageDataBase.getInstance().isShowTime
                             (chatMessageVo.getChatJid(), chatMessageVo.getSendTime()));
                     chatMessageVo.setUnRead(1);
@@ -151,9 +158,7 @@ public class XmppService extends Service {
                             .ACTION_MESSAGE, bundle);
                     JacenUtils.intentLocalBroadcastReceiver(XmppService.this, action_chatting,
                             bundle);
-                    ChatMessageDataBase.getInstance().saveChatMessage(chatMessageVo);
-                } else if (Message.Type.groupchat.equals(msg.getType())) {//群聊
-
+//                    ChatMessageDataBase.getInstance().saveChatMessage(chatMessageVo);
                 }
             } else if (packet instanceof Presence) {//在线状态
                 Presence presence = (Presence) packet;

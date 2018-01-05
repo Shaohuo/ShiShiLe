@@ -6,6 +6,6 @@ package com.yxl.shishile.shishile.model;
 
 public class ChatRoomModel {
     public String chatId;
-    public String chatName;
+    public String chatRoomName;
     public int lotteryId;
 }
