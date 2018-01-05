@@ -279,7 +279,7 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
      * @param alpha
      */
     private void setAnyBarAlpha(int alpha) {
-        if (alpha > 0 && alpha < 100){
+        if (alpha >= 0 && alpha < 100){
             mainText.setText("");
         }else if (alpha >= 100 && alpha <255){
             mainText.setText("快赢彩票");
