@@ -59,6 +59,9 @@ public interface ApiServer {
     @GET("article?page=1&pagesize=5")
     Call<InformationModel> getInformation();
 
+    @GET("article?page=1&pagesize=15")
+    Call<InformationModel> getInfor();
+
     @PUT("/user/{user_id}")
     Call<UserModel> changePassword(@Path("user_id") int user_id, @Query("oldpwd") String
             oldpwd, @Query("newpwd") String newpwd);

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
@@ -26,10 +27,13 @@ import android.widget.Toast;
 import com.gongwen.marqueen.MarqueeFactory;
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
+import com.yinglan.alphatabs.AlphaTabsIndicator;
+import com.yxl.shishile.shishile.activity.InformationActivity;
 import com.yxl.shishile.shishile.activity.InformationDetailActivity;
 import com.yxl.shishile.shishile.activity.LotteryActivity;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.activity.M_ForecastActivity;
+import com.yxl.shishile.shishile.activity.MainActivity;
 import com.yxl.shishile.shishile.adapter.InformationAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
@@ -124,57 +128,32 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         main_forecast.setOnClickListener(this);
         loadInformationData();
 
-
-
-
         infor_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent1 = new Intent(view.getContext(), InformationDetailActivity.class);
-                switch (i){
-                    case 0:
                         intent1.putExtra("info","http://103.242.1.48:81/article/detail/" + informationList.get(i).getId());
                         startActivity(intent1);
-                        break;
-                    case 1:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId());
-                        startActivity(intent1);
-                        break;
-                    case 2:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId() );
-                        startActivity(intent1);
-                        break;
-                    case 3:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId() );
-                        startActivity(intent1);
-                        break;
-                    case 4:
-                        intent1.putExtra("info","http://103.242.1.48:81/article/detail/"+ informationList.get(i).getId());
-                        startActivity(intent1);
-                        break;
-                }
             }
         });
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
-       /* mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+        mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int position) {
                 if (position == 0) {
-                    Toast.makeText(getContext(), "点击跳转a", Toast.LENGTH_SHORT).show();
+                    Intent intent3 = new Intent(view.getContext(),M_ForecastActivity.class);
+                    startActivity(intent3);
                 } else if (position == 1) {
-                    Toast.makeText(getContext(), "点击跳转b", Toast.LENGTH_SHORT).show();
+                    MainActivity activity = (MainActivity) getActivity();
+                    AlphaTabsIndicator mAlphaTabsIndicator = activity.getAlphaTabsIndicator();
+                    mAlphaTabsIndicator.setTabCurrenItem(2);
                 } else if (position == 2) {
-
-
-                    Toast.makeText(getContext(), "点击跳转c", Toast.LENGTH_SHORT).show();
-                } else if (position == 3) {
-                    Toast.makeText(getContext(), "点击跳转d", Toast.LENGTH_SHORT).show();
-                } else if (position == 4) {
-                    Toast.makeText(getContext(), "点击跳转e", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(view.getContext(), InformationActivity.class);
+                    startActivity(intent);
                 }
             }
-        });*/
+        });
         mMZBanner.addPageChangeLisnter(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
