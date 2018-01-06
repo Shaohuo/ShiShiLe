@@ -52,9 +52,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.gongwen:marqueelibrary:1.1.2'
     compile 'com.jude:swipebackhelper:3.1.2'
-    compile project(':easeui')
     implementation files('libs/open_sdk_r5923_lite.jar')
-    compile 'com.ycjiang:loadviewhelper:1.1.2'
     // 多dex配置
     compile 'com.android.support:multidex:1.0.2'
     // 远程依赖集成方式（推荐）
@@ -66,5 +64,7 @@ dependencies {
     compile "org.igniterealtime.smack:smack-android-extensions:4.1.0"
     compile "org.igniterealtime.smack:smack-experimental:4.1.0"
     compile "org.igniterealtime.smack:smack-tcp:4.1.0"
+    compile 'com.yanzhenjie:permission:1.1.2'
+    compile 'com.github.iwgang:countdownview:2.1.6'
     //    compile project(':push')
 }

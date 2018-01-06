@@ -82,10 +82,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity
-            android:name=".activity.ChatActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.MyWalletActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
