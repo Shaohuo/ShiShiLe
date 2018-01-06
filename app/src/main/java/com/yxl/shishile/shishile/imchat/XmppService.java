@@ -8,12 +8,14 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.model.UserModel;
+
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.StanzaListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.filter.StanzaExtensionFilter;
 import org.jivesoftware.smack.filter.StanzaFilter;
 import org.jivesoftware.smack.packet.ExtensionElement;
 import org.jivesoftware.smack.packet.Message;
@@ -27,7 +29,6 @@ import org.jivesoftware.smack.roster.packet.RosterPacket;
 import org.jxmpp.util.XmppStringUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -131,25 +132,22 @@ public class XmppService extends Service {
 
         @Override
         public void processPacket(Stanza packet) throws SmackException.NotConnectedException {
-            ExtensionElement delayExtension = packet.getExtension("delay", "urn:xmpp:delay");
             Log.i("XmppService", "packet = " + packet.toString());
             if (packet instanceof Message) {
                 Message msg = (Message) packet;
-                if (Message.Type.chat.equals(msg.getType())) {//单聊
+                if (Message.Type.groupchat.equals(msg.getType())) {//群聊
 
-                } else if (Message.Type.groupchat.equals(msg.getType())) {//群聊
-                    if (TextUtils.isEmpty(msg.getBody()))
-                        return;
-                    if (delayExtension != null) {//不接受延时消息
-                        return;
-                    }
+                    ExtensionElement delay = msg.getExtension("delay", "urn:xmpp:delay");
                     ChatMessageVo chatMessageVo = new ChatMessageVo();
                     chatMessageVo.parseMessage(msg);
                     chatMessageVo.setChatType(ChatType.text.getId());
-                    chatMessageVo.setFrom(msg.getFrom());
                     chatMessageVo.setShowTime(ChatMessageDataBase.getInstance().isShowTime
                             (chatMessageVo.getChatJid(), chatMessageVo.getSendTime()));
-                    chatMessageVo.setUnRead(1);
+                    chatMessageVo.setUnRead(delay == null ? 1 : 0);
+                    UserModel.UserInfo user = AppDataManager.getInstance().getUser();
+                    if (user != null && user.getUsername() != null) {
+                        chatMessageVo.setMe(user.getUsername().equals(chatMessageVo.getSender()));
+                    }
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("chat", chatMessageVo);
                     String action_chatting = XmppAction.ACTION_MESSAGE + "_" + chatMessageVo
@@ -158,7 +156,9 @@ public class XmppService extends Service {
                             .ACTION_MESSAGE, bundle);
                     JacenUtils.intentLocalBroadcastReceiver(XmppService.this, action_chatting,
                             bundle);
-//                    ChatMessageDataBase.getInstance().saveChatMessage(chatMessageVo);
+                    if (!TextUtils.isEmpty(msg.getBody())) {
+                        ChatMessageDataBase.getInstance().saveChatMessage(chatMessageVo);
+                    }
                 }
             } else if (packet instanceof Presence) {//在线状态
                 Presence presence = (Presence) packet;

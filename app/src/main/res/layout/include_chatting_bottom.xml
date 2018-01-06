@@ -31,6 +31,8 @@
         android:maxLines="6"
         android:padding="8dp"
         android:textColor="@color/black"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         />
 
 </RelativeLayout>

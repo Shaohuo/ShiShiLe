@@ -3,9 +3,6 @@ package com.yxl.shishile.shishile.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.EaseUI;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 

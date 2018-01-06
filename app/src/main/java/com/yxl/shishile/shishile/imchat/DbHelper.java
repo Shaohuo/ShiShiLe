@@ -33,6 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + TableField._FIELD_MESSAGE_ID + " text,"
                 + TableField._FIELD_CHAT_JID + " text,"
                 + TableField._FIELD_CONTENT + " text,"
+                + TableField._FIELD_SENDER + " text,"
                 + TableField._FIELD_CHAT_TYPE + " integer,"
                 + TableField._FIELD_SEND_TIME + " long,"
                 + TableField._FIELD_SHOW_TIME + " integer,"

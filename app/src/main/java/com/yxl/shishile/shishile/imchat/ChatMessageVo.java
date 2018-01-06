@@ -22,18 +22,16 @@ public class ChatMessageVo implements Serializable {
     private boolean isMe = false;//是不是我的发的信息
     private int messageStatus;//发送状态
     private int unRead;//未读
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    private String from;
-
+    private String sender;
     private int imagePercent;//图片上传百分比
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
     public int getUnRead() {
         return unRead;
@@ -118,6 +116,7 @@ public class ChatMessageVo implements Serializable {
     public ChatMessageVo parseMessage(Message msg) {
         setMessageID(msg.getStanzaId());
         setChatJid(XmppStringUtils.parseBareJid(msg.getFrom()));
+        setSender(msg.getFrom().replace(chatJid + "/", ""));
         setContent(msg.getBody());
         setSendTime(System.currentTimeMillis());
         return this;

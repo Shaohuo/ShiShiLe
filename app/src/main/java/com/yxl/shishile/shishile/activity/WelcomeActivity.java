@@ -16,11 +16,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMChatRoom;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMPageResult;
-import com.hyphenate.exceptions.HyphenateException;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -109,34 +104,6 @@ public class WelcomeActivity extends Activity {
                         Toast.makeText(WelcomeActivity.this, "登录聊天室失败", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    EMClient.getInstance().login("" + username, "" + password, new EMCallBack()
-                    {//回调
-                        @Override
-                        public void onSuccess() {
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    EMClient.getInstance().groupManager().loadAllGroups();
-                                    EMClient.getInstance().chatManager().loadAllConversations();
-                                    Log.d("main", "登录聊天服务器成功！");
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onProgress(int progress, String status) {
-
-                        }
-
-                        @Override
-                        public void onError(int code, final String message) {
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(WelcomeActivity.this, "" + message, Toast
-                                            .LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
                 }
             }
 

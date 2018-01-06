@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvNextLotteryNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="距846411315期开奖"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="#c1c1c1" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvOpenPrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="开奖中..."
+                android:textColor="#f83e3f"
+                android:visibility="invisible" />
+
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/countdownView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="4dp"
+                android:visibility="invisible"
+                app:isHideTimeBackground="true"
+                app:isShowDay="false"
+                app:isShowHour="true"
+                app:isShowMillisecond="false"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:isTimeTextBold="true"
+                app:suffixGravity="bottom"
+                app:suffixHour=":"
+                app:suffixMinute=":"
+                app:suffixSecond=""
+                app:suffixTextColor="#f83e3f"
+                app:suffixTextSize="12sp"
+                app:timeTextColor="#f83e3f"
+                app:timeTextSize="20dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c1c1c1" />
+
+    <include layout="@layout/layout_chatroom_lottery_num" />
+
+
+</LinearLayout>

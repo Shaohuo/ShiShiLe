@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.adapter.HistoryAdapter;
 import com.yxl.shishile.shishile.api.ApiManager;

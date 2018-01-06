@@ -30,33 +30,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 设置环信应用的AppKey -->
-        <meta-data
-            android:name="EASEMOB_APPKEY"
-            android:value="1160171220178158#shishile2" />
-        <!-- 声明SDK所需的service SDK核心功能 -->
-        <service
-            android:name="com.hyphenate.chat.EMChatService"
-            android:exported="true" />
-        <service
-            android:name="com.hyphenate.chat.EMJobService"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!-- 声明SDK所需的receiver -->
-        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-            <!-- 可选filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
-
-
         <service android:name=".imchat.XmppService" />
 
         <activity
@@ -82,10 +55,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
         <activity
-            android:name=".activity.ChatActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.MyWalletActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
@@ -106,11 +75,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/SwipeBackTheme" />
-        <!-- 环信图片预览Activity -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" />
 
         <!-- 注册SDKActivity -->
         <activity
@@ -194,10 +158,11 @@
             android:name=".imchat.ChattingUI"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.InformationActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".activity.InformationActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

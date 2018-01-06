@@ -40,11 +40,19 @@ public class ChatMessageDataBase {
         values.put(TableField._FIELD_CONTENT, vo.getContent());
         values.put(TableField._FIELD_CHAT_TYPE, vo.getChatType().getId());
         values.put(TableField._FIELD_SEND_TIME, vo.getSendTime());
+        values.put(TableField._FIELD_SENDER, vo.getSender());
         values.put(TableField._FIELD_SHOW_TIME, vo.isShowTime() ? 1 : 0);
         values.put(TableField._FIELD_IS_ME, vo.isMe() ? 1 : 0);
         values.put(TableField._FIELD_MESSAGE_STATUS, vo.getMessageStatus());
         values.put(TableField._FIELD_UNREAD, vo.getUnRead());
-        db.insert(TableField._TABLE_CHAT, TableField._ID, values);
+        String sql = "select * from chat where messageid=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{vo.getMessageID()});
+        if (cursor.moveToFirst()) {
+            db.update(TableField._TABLE_CHAT, values, TableField._FIELD_MESSAGE_ID + "=?", new
+                    String[]{vo.getMessageID()});
+        } else {
+            db.insert(TableField._TABLE_CHAT, TableField._ID, values);
+        }
     }
 
     public boolean isShowTime(String chatJid, long msgTime) {
@@ -105,6 +113,7 @@ public class ChatMessageDataBase {
         msg.setMessageID(cursor.getString(cursor.getColumnIndex(TableField._FIELD_MESSAGE_ID)));
         msg.setChatJid(cursor.getString(cursor.getColumnIndex(TableField._FIELD_CHAT_JID)));
         msg.setContent(cursor.getString(cursor.getColumnIndex(TableField._FIELD_CONTENT)));
+        msg.setSender(cursor.getString(cursor.getColumnIndex(TableField._FIELD_SENDER)));
         msg.setChatType(cursor.getInt(cursor.getColumnIndex(TableField._FIELD_CHAT_TYPE)));
         msg.setSendTime(cursor.getLong(cursor.getColumnIndex(TableField._FIELD_SEND_TIME)));
         msg.setShowTime(cursor.getInt(cursor.getColumnIndex(TableField._FIELD_SHOW_TIME)) == 1 ?
