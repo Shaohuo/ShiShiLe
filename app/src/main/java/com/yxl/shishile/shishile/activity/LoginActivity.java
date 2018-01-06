@@ -76,7 +76,7 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
         mEtUsername = findViewById(R.id.et01);
         mEtPassword = findViewById(R.id.et02);
         final View user_view = findViewById(R.id.user_view);
-        final View view_password = findViewById(R.id.view_password);
+        final View view_password = findViewById(R.id.password_view);
 
         mEtPassword.setOnFocusChangeListener(new android.view.View.
                 OnFocusChangeListener() {

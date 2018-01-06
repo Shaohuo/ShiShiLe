@@ -58,7 +58,53 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //  et02 = findViewById(R.id.et02);//邮箱
         et03 = findViewById(R.id.et03);//密码1
         et04 = findViewById(R.id.et04);//密码2
+        final   View user_view = findViewById(R.id.view_user);
+        final   View view_password_1 = findViewById(R.id.view_password_1);
+        final   View view_password_2 = findViewById(R.id.view_password_2);
         zhuce.setOnClickListener(this);
+        et01.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+        et03.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    view_password_1.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    view_password_1.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+        et04.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    view_password_2.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    view_password_2.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+
     }
 
     @Override
