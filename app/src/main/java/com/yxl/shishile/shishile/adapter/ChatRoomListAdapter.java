@@ -71,6 +71,7 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
                         Intent intent = new Intent(mContext, ChattingUI.class);
                         intent.putExtra("chatRoomId", "" + chatRoom.chatId);
                         intent.putExtra("chatRoomName", chatRoom.chatRoomName);
+                        intent.putExtra("lotteryId", chatRoom.lotteryId);
                         mContext.startActivity(intent);
                     } else {
                         Toast.makeText(mContext, "请先登录账号", Toast.LENGTH_SHORT).show();

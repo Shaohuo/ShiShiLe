@@ -19,12 +19,20 @@ import android.widget.TextView;
 
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.api.ApiManager;
+import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.model.CountDownModel;
 
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.iwgang.countdownview.CountdownView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Jacen on 2017/10/19 18:02.
@@ -59,6 +67,14 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     //软件盘弹起后所占高度阀值
     private int keyHeight = 0;
 
+    private CountdownView mCvCountdownView;
+    private TextView mTvLotteryNum;
+    private TextView mTvOpenPrize;
+    int[] mTvDataIds = new int[]{R.id.six_num_01, R.id.six_num_02, R.id.six_num_03, R.id
+            .six_num_04, R.id.six_num_05, R.id.six_num_06, R.id.six_num_07, R.id.six_num_08, R.id
+            .six_num_09, R.id.six_num_10};
+    private TextView mTvNextLotteryNum;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +89,77 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         screenHeight = this.getWindowManager().getDefaultDisplay().getHeight();
         //阀值设置为屏幕高度的1/3
         keyHeight = screenHeight / 3;
+
+        mCvCountdownView = findViewById(R.id.countdownView);
+        mTvOpenPrize = findViewById(R.id.tvOpenPrize);
+        mTvLotteryNum = findViewById(R.id.tvLotteryNum);
+        mTvNextLotteryNum = findViewById(R.id.tvNextLotteryNum);
+        mCvCountdownView.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+            @Override
+            public void onEnd(CountdownView cv) {
+                mCvCountdownView.restart();
+                loadLotteryCountDown();
+            }
+        });
+        for (int i = 0; i < mTvDataIds.length; i++) {
+            TextView mTvData = findViewById(mTvDataIds[i]);
+            mTvData.setVisibility(View.INVISIBLE);
+        }
         setListener();
         initData();
+        loadLotteryCountDown();
+    }
 
+    public void loadLotteryCountDown() {
+        int lotteryId = getIntent().getIntExtra("lotteryId", -1);
+        Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
+                .getLotteryCountDown(lotteryId);
+        call.enqueue(new Callback<CountDownModel>() {
+            @Override
+            public void onResponse(Call<CountDownModel> call, Response<CountDownModel> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().data !=
+                        null) {
+                    CountDownModel.CountDown countDownData = response.body().data;
+                    if (countDownData.countdown >= 0) {
+                        mCvCountdownView.setVisibility(View.VISIBLE);
+                        mTvOpenPrize.setVisibility(View.INVISIBLE);
+                        mCvCountdownView.start(countDownData.countdown * 1000);
+                        if (countDownData.number != null) {
+                            try {
+                                long number = Long.valueOf("" + countDownData.number);
+                                mTvLotteryNum.setText("第" + number + "期");
+                                mTvNextLotteryNum.setText("距第" + (number + 1) + "期开奖");
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                            }
+                            String[] split = countDownData.data.split("\\,|\\+");
+                            for (int i = 0; i < mTvDataIds.length; i++) {
+                                if (isFinishing()) {
+                                    return;
+                                }
+                                TextView mTvData = findViewById(mTvDataIds[i]);
+                                if (i < split.length) {
+                                    mTvData.setText("" + split[i]);
+                                    mTvData.setVisibility(View.VISIBLE);
+                                } else {
+                                    mTvData.setVisibility(View.GONE);
+                                }
+                            }
+                        }
+
+                    } else {
+                        mCvCountdownView.setVisibility(View.INVISIBLE);
+                        mTvOpenPrize.setVisibility(View.VISIBLE);
+                        loadLotteryCountDown();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CountDownModel> call, Throwable t) {
+
+            }
+        });
     }
 
     private void setListener() {

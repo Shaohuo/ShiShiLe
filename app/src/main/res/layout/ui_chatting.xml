@@ -14,10 +14,20 @@
         />
 
     <include
+        android:id="@+id/title"
         layout="@layout/include_app_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentTop="true" />
+
+    <include
+        android:id="@+id/countdown"
+        layout="@layout/include_chatroom_countdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        />
+
 
     <include
         layout="@layout/include_chatting_bottom"
