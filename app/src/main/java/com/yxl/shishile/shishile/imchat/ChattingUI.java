@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.yxl.shishile.shishile.R;
@@ -195,6 +196,13 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         ChatMessageDataBase.getInstance().deleteChatMessageByChatJid(chatRoomJid);
         mMultiUserChat = XmppUtils.getInstance().joinChatRoom("" + chatRoomId,
                 mUsername);
+
+        if (mMultiUserChat == null) {
+            Toast.makeText(ChattingUI.this, "进入聊天室失败", Toast.LENGTH_SHORT).show();
+        }else{
+            JacenDialogUtils.showDialog(ChattingUI.this, "加载中...");
+            mRecyclerView.setVisibility(View.INVISIBLE);
+        }
         mChatBroadcastReceiver = new ChatBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(XmppAction.ACTION_MESSAGE + "_" + chatRoomJid);
@@ -203,8 +211,7 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         mAdapter = new ChatAdapter(this, mMsgList, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-        JacenDialogUtils.showDialog(ChattingUI.this, "登入中...");
-        mRecyclerView.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -273,6 +280,7 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                 JacenDialogUtils.dismissDialog();
                 mRecyclerView.setVisibility(View.VISIBLE);
             }
+
             if (vo.getUnRead() == 1) {
                 mAdapter.addChatMessage(vo);
                 mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());

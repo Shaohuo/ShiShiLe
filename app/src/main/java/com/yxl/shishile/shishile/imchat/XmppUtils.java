@@ -259,7 +259,6 @@ public class XmppUtils {
             throw new NullPointerException("服务器连接失败，请先连接服务器");
         }
         try {
-
             MultiUserChat muc = MultiUserChatManager.getInstanceFor(connection).
                     getMultiUserChat(roomName + "@conference." + connection.getServiceName());
             // 用户加入聊天室
