@@ -50,6 +50,14 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         mApplication = getApplication().getApplicationContext();
         initUmeng();
         initBuglySDK();
+        UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
+        if (userInfo != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("account", "" + userInfo.getUsername());
+            bundle.putString("password", "123456");//Xmpp用户密码固定123456
+            JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
+                            .class, XmppAction.ACTION_LOGIN, bundle);
+        }
     }
 
     public static Context getAppContext() {

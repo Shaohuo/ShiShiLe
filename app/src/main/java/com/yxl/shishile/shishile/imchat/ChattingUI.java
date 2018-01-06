@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,11 +21,17 @@ import android.widget.Toast;
 
 
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.RegisterActivity;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.event.XmppGrounpChatMessageEvent;
+import com.yxl.shishile.shishile.event.XmppLoginEvent;
 import com.yxl.shishile.shishile.model.CountDownModel;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 import java.util.ArrayList;
@@ -53,7 +60,6 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     private ChatAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private ChatBroadcastReceiver mChatBroadcastReceiver;
     private MultiUserChat mMultiUserChat;
     private TextView mTitle;
     private ImageView mBack;
@@ -80,6 +86,7 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_chatting);
+        EventBus.getDefault().register(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mTitle = findViewById(R.id.app_title);
         mConetnt = findViewById(R.id.content);
@@ -108,7 +115,18 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         }
         setListener();
         initData();
+        loadChatRoom();
         loadLotteryCountDown();
+    }
+
+    private void loadChatRoom() {
+        ChatMessageDataBase.getInstance().deleteChatMessageByChatJid(chatRoomJid);
+        mMultiUserChat = XmppUtils.getInstance().joinChatRoom("" + chatRoomId,
+                mUsername);
+
+        if (mMultiUserChat == null) {
+            Toast.makeText(ChattingUI.this, "进入聊天室失败", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadLotteryCountDown() {
@@ -193,32 +211,11 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         chatRoomJid = chatRoomId + "@conference." + XmppUtils.SERVICENAME;
         mTitle.setText(chatRoomName);
         mUsername = AppDataManager.getInstance().getUser().getUsername();
-        ChatMessageDataBase.getInstance().deleteChatMessageByChatJid(chatRoomJid);
-        mMultiUserChat = XmppUtils.getInstance().joinChatRoom("" + chatRoomId,
-                mUsername);
-
-        if (mMultiUserChat == null) {
-            Toast.makeText(ChattingUI.this, "进入聊天室失败", Toast.LENGTH_SHORT).show();
-        }else{
-            JacenDialogUtils.showDialog(ChattingUI.this, "加载中...");
-            mRecyclerView.setVisibility(View.INVISIBLE);
-        }
-        mChatBroadcastReceiver = new ChatBroadcastReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(XmppAction.ACTION_MESSAGE + "_" + chatRoomJid);
-        JacenUtils.registerLocalBroadcastReceiver(this, mChatBroadcastReceiver, intentFilter);
-
         mAdapter = new ChatAdapter(this, mMsgList, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        JacenUtils.unRegisterLocalBroadcastReceiver(this, mChatBroadcastReceiver);
     }
 
     @Override
@@ -265,11 +262,17 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
     }
 
-    class ChatBroadcastReceiver extends BroadcastReceiver {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ChatMessageVo vo = (ChatMessageVo) intent.getSerializableExtra("chat");
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onXmppGrounpChatMessageEvent(XmppGrounpChatMessageEvent event) {
+        if (event != null && event.getChatMessageVo() != null) {
+            ChatMessageVo vo = event.getChatMessageVo();
             if (vo.getContent() == null) {
                 List<ChatMessageVo> msgList = ChatMessageDataBase.getInstance()
                         .getChatMessageListByChatJid(chatRoomJid);
@@ -277,8 +280,6 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                 mMsgList.addAll(msgList);
                 mAdapter.notifyDataSetChanged();
                 mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-                JacenDialogUtils.dismissDialog();
-                mRecyclerView.setVisibility(View.VISIBLE);
             }
 
             if (vo.getUnRead() == 1) {
@@ -287,4 +288,5 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
             }
         }
     }
+
 }

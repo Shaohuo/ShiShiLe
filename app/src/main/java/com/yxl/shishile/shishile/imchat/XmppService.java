@@ -9,6 +9,7 @@ import android.util.Log;
 
 
 import com.yxl.shishile.shishile.app.AppDataManager;
+import com.yxl.shishile.shishile.event.XmppGrounpChatMessageEvent;
 import com.yxl.shishile.shishile.event.XmppLoginEvent;
 import com.yxl.shishile.shishile.event.XmppRegisterEvent;
 import com.yxl.shishile.shishile.model.UserModel;
@@ -151,14 +152,17 @@ public class XmppService extends Service {
                     if (user != null && user.getUsername() != null) {
                         chatMessageVo.setMe(user.getUsername().equals(chatMessageVo.getSender()));
                     }
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("chat", chatMessageVo);
-                    String action_chatting = XmppAction.ACTION_MESSAGE + "_" + chatMessageVo
-                            .getChatJid();
-                    JacenUtils.intentLocalBroadcastReceiver(XmppService.this, XmppAction
-                            .ACTION_MESSAGE, bundle);
-                    JacenUtils.intentLocalBroadcastReceiver(XmppService.this, action_chatting,
-                            bundle);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("chat", chatMessageVo);
+//                    String action_chatting = XmppAction.ACTION_MESSAGE + "_" + chatMessageVo
+//                            .getChatJid();
+//                    JacenUtils.intentLocalBroadcastReceiver(XmppService.this, XmppAction
+//                            .ACTION_MESSAGE, bundle);
+//                    JacenUtils.intentLocalBroadcastReceiver(XmppService.this, action_chatting,
+//                            bundle);
+                    XmppGrounpChatMessageEvent messageEvent = new XmppGrounpChatMessageEvent();
+                    messageEvent.setChatMessageVo(chatMessageVo);
+                    EventBus.getDefault().post(messageEvent);
                     if (!TextUtils.isEmpty(msg.getBody())) {
                         ChatMessageDataBase.getInstance().saveChatMessage(chatMessageVo);
                     }
