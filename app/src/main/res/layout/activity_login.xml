@@ -33,11 +33,12 @@
         android:visibility="invisible" />
 
     <LinearLayout
+        android:id="@+id/user_view"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/border_liner"
+        android:background="@drawable/border_noliner"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -63,31 +64,33 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="2dp"
+            android:layout_width="1.5dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#f83e3f" />
+            android:background="#cccccc" />
 
         <EditText
+            android:textSize="13sp"
             android:id="@+id/et01"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:cursorVisible="true"
+            android:cursorVisible="false"
             android:gravity="center|left"
-            android:hint="请输入用户名"
+            android:hint="@string/edittext_username"
             android:inputType="text"
             android:singleLine="true" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/view_password"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border_liner"
+        android:background="@drawable/border_noliner"
         android:orientation="horizontal">
 
         <ImageView
@@ -105,19 +108,20 @@
             android:textSize="12sp" />
 
         <ImageView
-            android:layout_width="2dp"
+            android:layout_width="1.5dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="#f83e3f" />
+            android:background="#cccccc" />
 
         <EditText
+            android:textSize="13sp"
             android:id="@+id/et02"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:cursorVisible="true"
+            android:cursorVisible="false"
             android:gravity="center|left"
-            android:hint="请输入密码"
+            android:hint="@string/edittext_password"
             android:inputType="textPassword"
             android:singleLine="true" />
 
@@ -156,22 +160,6 @@
             android:text="忘记密码？"
             android:visibility="invisible" />
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_gravity="center_vertical"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#f83e3f" />
-
-    </LinearLayout>
 
     <RadioGroup
         android:layout_width="match_parent"
