@@ -16,16 +16,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.app.AppDataManager;
 
-import org.jivesoftware.smack.MessageListener;
-import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +31,8 @@ import java.util.List;
  * jacen@iswsc.com
  */
 
-public class ChattingUI extends Activity implements OnItemClickListener, View.OnClickListener {
+public class ChattingUI extends Activity implements OnItemClickListener, View.OnClickListener,
+        View.OnLayoutChangeListener {
 
     private TextView mSendBtn;
     private EditText mConetnt;
@@ -51,6 +50,14 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     private ImageView mBack;
     private String chatRoomJid;
     private String mUsername;
+    List<ChatMessageVo> mMsgList = new ArrayList<>();
+
+    //Activity最外层的Layout视图
+    private View mActivityRootView;
+    //屏幕高度
+    private int screenHeight = 0;
+    //软件盘弹起后所占高度阀值
+    private int keyHeight = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,11 +65,17 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         setContentView(R.layout.ui_chatting);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mTitle = findViewById(R.id.app_title);
+        mConetnt = findViewById(R.id.content);
         mBack = findViewById(R.id.app_back);
-        mConetnt = (EditText) findViewById(R.id.content);
         mSendBtn = (TextView) findViewById(R.id.send);
+        mActivityRootView = findViewById(R.id.root_layout);
+        //获取屏幕高度
+        screenHeight = this.getWindowManager().getDefaultDisplay().getHeight();
+        //阀值设置为屏幕高度的1/3
+        keyHeight = screenHeight / 3;
         setListener();
         initData();
+
     }
 
     private void setListener() {
@@ -95,23 +108,19 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         chatRoomJid = chatRoomId + "@conference." + XmppUtils.SERVICENAME;
         mTitle.setText(chatRoomName);
         mUsername = AppDataManager.getInstance().getUser().getUsername();
+        ChatMessageDataBase.getInstance().deleteChatMessageByChatJid(chatRoomJid);
         mMultiUserChat = XmppUtils.getInstance().joinChatRoom("" + chatRoomId,
                 mUsername);
-
         mChatBroadcastReceiver = new ChatBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(XmppAction.ACTION_MESSAGE + "_" + chatRoomJid);
         JacenUtils.registerLocalBroadcastReceiver(this, mChatBroadcastReceiver, intentFilter);
-        ChatMessageDataBase.getInstance().clearUnReadByJid(chatRoomJid);
-        List<ChatMessageVo> mList = ChatMessageDataBase.getInstance().getChatMessageListByChatJid
-                (chatRoomJid);
-        if (mList.size() > 10) {
-            mList = mList.subList(mList.size() - 10, mList.size());
-        }
-        mAdapter = new ChatAdapter(this, mList, this);
+
+        mAdapter = new ChatAdapter(this, mMsgList, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+        JacenDialogUtils.showDialog(ChattingUI.this, "登入中...");
+        mRecyclerView.setVisibility(View.INVISIBLE);
 
     }
 
@@ -126,14 +135,8 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         switch (v.getId()) {
             case R.id.send://发送信息
                 String content = mConetnt.getText().toString().trim();
-                ChatMessageVo vo = XmppUtils.getInstance().sendChatRoomMessage(chatRoomId,
-                        content);
-                if (vo != null) {
-                    mConetnt.setText("");
-                    mAdapter.addChatMessage(vo);
-                    mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-                    ChatMessageDataBase.getInstance().saveChatMessage(vo);
-                }
+                XmppUtils.getInstance().sendChatRoomMessage(chatRoomId, content);
+                mConetnt.setText("");
                 break;
             case R.id.app_back:
                 finish();
@@ -146,19 +149,50 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //添加layout大小发生改变监听器
+        mActivityRootView.addOnLayoutChangeListener(this);
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right,
+                               int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        //old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
+
+        //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
+        if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
+
+//            Toast.makeText(ChattingUI.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
+            mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+        } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
+
+//            Toast.makeText(ChattingUI.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
     class ChatBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             ChatMessageVo vo = (ChatMessageVo) intent.getSerializableExtra("chat");
-            String from = vo.getFrom();
-            String meJid = chatRoomJid + "/" + mUsername;
-            if (!meJid.equals(from)) {
+            if (vo.getContent() == null) {
+                List<ChatMessageVo> msgList = ChatMessageDataBase.getInstance()
+                        .getChatMessageListByChatJid(chatRoomJid);
+                mMsgList.clear();
+                mMsgList.addAll(msgList);
+                mAdapter.notifyDataSetChanged();
+                mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+                JacenDialogUtils.dismissDialog();
+                mRecyclerView.setVisibility(View.VISIBLE);
+            }
+            if (vo.getUnRead() == 1) {
                 mAdapter.addChatMessage(vo);
                 mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-                ChatMessageDataBase.getInstance().saveChatMessage(vo);
             }
-
         }
     }
 }

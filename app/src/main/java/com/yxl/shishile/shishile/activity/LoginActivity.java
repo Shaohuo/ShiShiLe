@@ -70,6 +70,33 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
         mEtPassword = findViewById(R.id.et02);
         //传入参数APPID和全局Context上下文
         mTencent = Tencent.createInstance(APP_ID, LoginActivity.this.getApplicationContext());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(XmppAction.ACTION_LOGIN_SUCCESS);
+        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR);
+        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_CONFLICT);
+        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_NOT_AUTHORIZED);
+        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_UNKNOWNHOST);
+        intentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
+        JacenUtils.registerLocalBroadcastReceiver(getApplication().getApplicationContext
+                (), new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent != null) {
+                    String action = intent.getAction();
+                    if (XmppAction.ACTION_LOGIN_SUCCESS.equals(action)) {
+                        String username = mEtUsername.getText().toString();
+                        String password = mEtPassword.getText().toString();
+                        login(username, password);
+                    } else {
+                        JacenDialogUtils.dismissDialog();
+                        Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+            }
+
+
+        }, intentFilter);
     }
 
     public void buttonLogin(View v) {
@@ -95,38 +122,12 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
                     Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                JacenDialogUtils.showDialog(this,"登录中...");
+                JacenDialogUtils.showDialog(this, "登录中...");
                 Bundle bundle = new Bundle();
                 bundle.putString("account", "" + username);
                 bundle.putString("password", "123456");//Xmpp用户密码固定123456
                 JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
                         .class, XmppAction.ACTION_LOGIN, bundle);
-                IntentFilter intentFilter = new IntentFilter();
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_SUCCESS);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_CONFLICT);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_NOT_AUTHORIZED);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_UNKNOWNHOST);
-                intentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
-                JacenUtils.registerLocalBroadcastReceiver(getApplication().getApplicationContext
-                        (), new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        if (intent != null) {
-                            String action = intent.getAction();
-                            Log.i("XmppServer", "" + action);
-                            if (XmppAction.ACTION_LOGIN_SUCCESS.equals(action)) {
-                                login(username, password);
-                            } else {
-                                JacenDialogUtils.dismissDialog();
-                                Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        }
-                    }
-
-
-                }, intentFilter);
 
                 break;
             case R.id.back_img:

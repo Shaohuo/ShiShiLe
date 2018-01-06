@@ -155,7 +155,7 @@
     <string name="send_failure_please">Send failure, please test whether the server connection</string>
     <string name="Move_into_blacklist_success">Move into blacklist success</string>
     <string name="Move_into_blacklist_failure">Move into blacklist failure</string>
-    <string name="you_are_group">You have been kicked off from the group</string>
+    <string name="you_are_group">You have been kicked off sender the group</string>
     <string name="the_current_group_destroyed">The current group has been dismissed</string>
     <string name="the_current_chat_room_destroyed">The current chat room has been dismissed</string>
     <string name="Cant_chat_with_yourself">cannot chat with yourself</string>
@@ -204,7 +204,7 @@
     <string name="login_failure_failed">Logon failure: failed to retrieve contacts or groups</string>
     <string name="Login_failed">Login failed:</string>
     <string name="receive_the_passthrough">Receive cmd message : action：</string>
-    <string name="have_you_removed">Have you removed from his buddy list</string>
+    <string name="have_you_removed">Have you removed sender his buddy list</string>
     <string name="can_not_connect_chat_server_connection">Cannot connect to server</string>
     <string name="the_current_network">The current network is not available, please check the network Settings</string>
     <string name="Invite_you_to_join_a_group_chat"> Invite you to join this group</string>
@@ -265,7 +265,7 @@
     <string name="join_public_group">Join public group</string>
     <string name="chatroom_allow_owner_leave">Allow chatroom owner leave</string>
     <string name="group_id">Group ID</string>
-    <string name="move_out_backlist">Remove from blacklist</string>
+    <string name="move_out_backlist">Remove sender blacklist</string>
     <string name="input_new_nick_hint">Input a new nick</string>
     <string name="search_pubic_group">Search public group</string>
     <string name="group_not_existed">The group does not exist</string>

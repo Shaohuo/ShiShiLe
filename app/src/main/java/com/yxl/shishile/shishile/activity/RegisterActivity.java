@@ -91,9 +91,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 JacenUtils.registerLocalBroadcastReceiver(this, new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
-                        if (intent != null && XmppAction.ACTION_LOGIN_SUCCESS.equals(intent
+                        if (intent != null && XmppAction.ACTION_REGISTER_SUCCESS.equals(intent
                                 .getAction())) {
                             register(username, password);
+                        } else if (XmppAction.ACTION_REGISTER_ERROR_CONFLICT.equals(intent
+                                .getAction())) {
+                            JacenDialogUtils.dismissDialog();
+                            Toast.makeText(RegisterActivity.this, "该用户已存在", Toast.LENGTH_SHORT)
+                                    .show();
                         } else {
                             JacenDialogUtils.dismissDialog();
                             Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT)

@@ -19,7 +19,7 @@ public class UserModel extends BaseModel {
      * "token":"2a9e37d72dc34a016666975485518e89ff7ff59a"}
      */
 
-    private UserInfo data;
+    public UserInfo data;
 
     public UserInfo getData() {
         return data;

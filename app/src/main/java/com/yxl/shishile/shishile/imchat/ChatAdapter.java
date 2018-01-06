@@ -104,12 +104,14 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.mTime.setText(JacenUtils.parseChatTimer(vo.getSendTime()));
         holder.mTime.setVisibility(vo.isShowTime() ? View.VISIBLE : View.GONE);
         holder.mContent.setText(vo.getContent());
+        holder.mUserName.setText(vo.getSender());
     }
 
     private void rightTextContent(RightTextHolder holder, ChatMessageVo vo) {
         holder.mTime.setText(JacenUtils.parseChatTimer(vo.getSendTime()));
         holder.mTime.setVisibility(vo.isShowTime() ? View.VISIBLE : View.GONE);
         holder.mContent.setText(vo.getContent());
+        holder.mUserName.setText(vo.getSender());
     }
 
     private void errorTextContent(ErrorHolder holder, ChatMessageVo vo) {
@@ -122,6 +124,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         TextView mTime;
         TextView mContent;
+        TextView mUserName;
         ImageView mAvatar;
         OnItemClickListener l;
 
@@ -132,6 +135,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mContent = (TextView) view.findViewById(R.id.content);
             mAvatar = (ImageView) view.findViewById(R.id.avatar);
             mTime = (TextView) view.findViewById(R.id.time);
+            mUserName = (TextView) view.findViewById(R.id.username);
         }
 
         @Override
@@ -145,6 +149,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView mTime;
         ImageView mAvatar;
         TextView mContent;
+        TextView mUserName;
         OnItemClickListener l;
 
         LeftTextHolder(View view, OnItemClickListener l) {
@@ -154,7 +159,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mTime = (TextView) view.findViewById(R.id.time);
             mAvatar = (ImageView) view.findViewById(R.id.avatar);
             mContent = (TextView) view.findViewById(R.id.content);
-
+            mUserName = (TextView) view.findViewById(R.id.username);
         }
 
         @Override
