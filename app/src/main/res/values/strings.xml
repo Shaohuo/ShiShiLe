@@ -4,4 +4,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edittext_username"><font size="13">请输入账号</font></string>
+    <string name="edittext_password"><font size="13">请输入密码</font></string>
 </resources>

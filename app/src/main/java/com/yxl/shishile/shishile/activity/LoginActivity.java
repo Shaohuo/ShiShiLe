@@ -10,7 +10,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -68,6 +72,37 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
         findViewById(R.id.denglu).setOnClickListener(this);
         mEtUsername = findViewById(R.id.et01);
         mEtPassword = findViewById(R.id.et02);
+      final   View user_view = findViewById(R.id.user_view);
+        final   View view_password = findViewById(R.id.view_password);
+
+        mEtPassword.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    view_password.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    view_password.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+        mEtUsername.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
         //传入参数APPID和全局Context上下文
         mTencent = Tencent.createInstance(APP_ID, LoginActivity.this.getApplicationContext());
         IntentFilter intentFilter = new IntentFilter();
