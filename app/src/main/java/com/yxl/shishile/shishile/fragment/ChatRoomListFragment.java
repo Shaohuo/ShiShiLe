@@ -3,6 +3,7 @@ package com.yxl.shishile.shishile.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -90,12 +91,18 @@ public class ChatRoomListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat_room, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         //创建默认的线性LayoutManager
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(),2);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return 1;
+            }
+        });
         mRecyclerView.setLayoutManager(mLayoutManager);
         //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager
-                .HORIZONTAL));
+//        mRecyclerView.addItemDecoration(new RecycleViewDivider(getContext(), GridLayoutManager
+//                .HORIZONTAL));
         mAdapter = new ChatRoomListAdapter(mChatRoomList);
         mRecyclerView.setAdapter(mAdapter);
         return view;

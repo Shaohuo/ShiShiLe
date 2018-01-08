@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
+    <TextView
+        android:background="@drawable/bg_radius_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_radius_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
     <ImageView
         android:id="@+id/ivPrize"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvPrizename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/ivPrize"
+        android:layout_alignEnd="@+id/linearLayout"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignTop="@+id/ivPrize"
         android:text="重庆时时彩"
         android:textColor="@android:color/black"
         android:textSize="16dp" />
@@ -33,12 +47,12 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal"
-        android:visibility="invisible">
+        android:id="@+id/linearLayout">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@mipmap/ic_group" />
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/person3" />
 
         <TextView
             android:id="@+id/tvGrounpNum"
