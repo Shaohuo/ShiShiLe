@@ -5,13 +5,7 @@
     android:id="@+id/root_layout"
     >
 
-    <include
-        layout="@layout/include_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="50dp"
-        />
+
 
     <include
         android:id="@+id/title"
@@ -27,9 +21,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         />
-
+    <include
+        layout="@layout/include_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/countdown"
+        android:layout_above="@+id/input"
+        />
 
     <include
+        android:id="@+id/input"
         layout="@layout/include_chatting_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"

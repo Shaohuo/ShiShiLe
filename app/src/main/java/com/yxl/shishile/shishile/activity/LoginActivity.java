@@ -31,6 +31,7 @@ import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.app.Constant;
+import com.yxl.shishile.shishile.event.XmppLoginEvent;
 import com.yxl.shishile.shishile.imchat.JacenDialogUtils;
 import com.yxl.shishile.shishile.imchat.JacenUtils;
 import com.yxl.shishile.shishile.imchat.XmppAction;
@@ -41,6 +42,8 @@ import com.yxl.shishile.shishile.util.UserSaveUtil;
 import com.yxl.shishile.shishile.widgets.Util;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,8 +75,8 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
         findViewById(R.id.denglu).setOnClickListener(this);
         mEtUsername = findViewById(R.id.et01);
         mEtPassword = findViewById(R.id.et02);
-      final   View user_view = findViewById(R.id.user_view);
-        final   View view_password = findViewById(R.id.view_password);
+        final View user_view = findViewById(R.id.user_view);
+        final View view_password = findViewById(R.id.password_view);
 
         mEtPassword.setOnFocusChangeListener(new android.view.View.
                 OnFocusChangeListener() {
@@ -103,35 +106,35 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
                 }
             }
         });
-        //传入参数APPID和全局Context上下文
-        mTencent = Tencent.createInstance(APP_ID, LoginActivity.this.getApplicationContext());
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(XmppAction.ACTION_LOGIN_SUCCESS);
-        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR);
-        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_CONFLICT);
-        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_NOT_AUTHORIZED);
-        intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_UNKNOWNHOST);
-        intentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
-        JacenUtils.registerLocalBroadcastReceiver(getApplication().getApplicationContext
-                (), new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent != null) {
-                    String action = intent.getAction();
-                    if (XmppAction.ACTION_LOGIN_SUCCESS.equals(action)) {
-                        String username = mEtUsername.getText().toString();
-                        String password = mEtPassword.getText().toString();
-                        login(username, password);
-                    } else {
-                        JacenDialogUtils.dismissDialog();
-                        Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                }
-            }
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
-        }, intentFilter);
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onXmppLoginEvent(XmppLoginEvent event) {
+        Log.i("XmppService", "onXmppLoginEvent " + event.getAction());
+        if (XmppAction.ACTION_LOGIN_SUCCESS.equals(event.getAction())) {
+            JacenDialogUtils.dismissDialog();
+            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT)
+                    .show();
+            setResult(Activity.RESULT_OK);
+            finish();
+        } else {
+            JacenDialogUtils.dismissDialog();
+            UserSaveUtil.saveObject(LoginActivity.this, null);
+            Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 
     public void buttonLogin(View v) {
@@ -147,22 +150,19 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.denglu:
-                final String username = mEtUsername.getText().toString();
+                String username = mEtUsername.getText().toString();
                 if ("".equals(username)) {
                     Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                final String password = mEtPassword.getText().toString();
+                String password = mEtPassword.getText().toString();
                 if ("".equals(password)) {
                     Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 JacenDialogUtils.showDialog(this, "登录中...");
-                Bundle bundle = new Bundle();
-                bundle.putString("account", "" + username);
-                bundle.putString("password", "123456");//Xmpp用户密码固定123456
-                JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
-                        .class, XmppAction.ACTION_LOGIN, bundle);
+                login(username, password);
 
                 break;
             case R.id.back_img:
@@ -182,14 +182,20 @@ public class LoginActivity extends SwipeBackActivity implements View.OnClickList
             public void onResponse(Call<UserModel> call, Response<UserModel>
                     response) {
                 JacenDialogUtils.dismissDialog();
-                Toast.makeText(LoginActivity.this, "" + response.body().message,
-                        Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful() && response.body() != null) {
                     if ("登录成功".equals(response.body().message)) {
                         UserModel.UserInfo data = response.body().getData();
                         UserSaveUtil.saveObject(LoginActivity.this, data);
-                        setResult(Activity.RESULT_OK);
-                        finish();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("account", "" + data.getUsername());
+                        bundle.putString("password", "123456");//Xmpp用户密码固定123456
+                        JacenUtils.intentService(getApplication().getApplicationContext(),
+                                XmppService
+                                .class, XmppAction.ACTION_LOGIN, bundle);
+                    } else {
+                        JacenDialogUtils.dismissDialog();
+                        Toast.makeText(LoginActivity.this, "" + response.body().message,
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -1,8 +1,13 @@
 package com.yxl.shishile.shishile.adapter;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +18,19 @@ import android.widget.Toast;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.imchat.ChattingUI;
+import com.yxl.shishile.shishile.imchat.JacenUtils;
+import com.yxl.shishile.shishile.imchat.XmppAction;
+import com.yxl.shishile.shishile.imchat.XmppService;
 import com.yxl.shishile.shishile.imchat.XmppUtils;
 import com.yxl.shishile.shishile.model.ChatRoomModel;
 import com.yxl.shishile.shishile.model.UserModel;
 
+import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -68,19 +80,22 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
                 public void onClick(View view) {
                     UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
                     if (userInfo != null) {
-                        Intent intent = new Intent(mContext, ChattingUI.class);
-                        intent.putExtra("chatRoomId", "" + chatRoom.chatId);
-                        intent.putExtra("chatRoomName", chatRoom.chatRoomName);
-                        intent.putExtra("lotteryId", chatRoom.lotteryId);
-                        mContext.startActivity(intent);
+                        enterChatRoomUI(chatRoom);
                     } else {
                         Toast.makeText(mContext, "请先登录账号", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
         }
 
+    }
+
+    private void enterChatRoomUI(ChatRoomModel chatRoom) {
+        Intent intent = new Intent(mContext, ChattingUI.class);
+        intent.putExtra("chatRoomId", "" + chatRoom.chatId);
+        intent.putExtra("chatRoomName", chatRoom.chatRoomName);
+        intent.putExtra("lotteryId", chatRoom.lotteryId);
+        mContext.startActivity(intent);
     }
 
     @Override

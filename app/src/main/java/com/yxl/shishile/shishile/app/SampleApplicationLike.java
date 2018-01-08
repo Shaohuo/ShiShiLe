@@ -50,44 +50,20 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         mApplication = getApplication().getApplicationContext();
         initUmeng();
         initBuglySDK();
-        loginXmppServer();
+        UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
+        if (userInfo != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("account", "" + userInfo.getUsername());
+            bundle.putString("password", "123456");//Xmpp用户密码固定123456
+            JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
+                            .class, XmppAction.ACTION_LOGIN, bundle);
+        }
     }
 
     public static Context getAppContext() {
         return mApplication;
     }
 
-    private void loginXmppServer() {
-        UserModel.UserInfo userInfo = AppDataManager.getInstance().getUser();
-        if (userInfo != null) {
-            String username = userInfo.getUsername();
-            if (!TextUtils.isEmpty(username)) {
-                Bundle bundle = new Bundle();
-                bundle.putString("account", "" + userInfo.getUsername());
-                bundle.putString("password", "123456");//Xmpp用户密码固定123456
-                JacenUtils.intentService(getApplication().getApplicationContext(), XmppService
-                        .class, XmppAction.ACTION_LOGIN, bundle);
-                IntentFilter intentFilter = new IntentFilter();
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_SUCCESS);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_CONFLICT);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_NOT_AUTHORIZED);
-                intentFilter.addAction(XmppAction.ACTION_LOGIN_ERROR_UNKNOWNHOST);
-                intentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
-                JacenUtils.registerLocalBroadcastReceiver(getApplication().getApplicationContext
-                        (), new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        if (intent != null) {
-                            String action = intent.getAction();
-                            Log.i("XmppServer", "" + action);
-                        }
-                    }
-                }, intentFilter);
-            }
-        }
-
-    }
 
     private void initUmeng() {
         /**

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,14 +17,21 @@ import android.widget.Toast;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.event.XmppLoginEvent;
+import com.yxl.shishile.shishile.event.XmppRegisterEvent;
 import com.yxl.shishile.shishile.imchat.JacenDialogUtils;
 import com.yxl.shishile.shishile.imchat.JacenUtils;
 import com.yxl.shishile.shishile.imchat.XmppAction;
 import com.yxl.shishile.shishile.imchat.XmppService;
 import com.yxl.shishile.shishile.imchat.XmppUtils;
+import com.yxl.shishile.shishile.model.MessageEvent;
 import com.yxl.shishile.shishile.model.PostRegisterUserModel;
 import com.yxl.shishile.shishile.model.UserModel;
 import com.yxl.shishile.shishile.util.UserSaveUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,8 +58,98 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //  et02 = findViewById(R.id.et02);//邮箱
         et03 = findViewById(R.id.et03);//密码1
         et04 = findViewById(R.id.et04);//密码2
+        final   View user_view = findViewById(R.id.view_user);
+        final   View view_password_1 = findViewById(R.id.view_password_1);
+        final   View view_password_2 = findViewById(R.id.view_password_2);
         zhuce.setOnClickListener(this);
+        et01.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    user_view.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+        et03.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    view_password_1.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    view_password_1.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+        et04.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    view_password_2.setBackgroundResource(R.drawable.border_liner);
+
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    view_password_2.setBackgroundResource(R.drawable.border_noliner);
+                }
+            }
+        });
+
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onXmppLoginEvent(XmppLoginEvent event) {
+        Log.i("XmppService", "onXmppLoginEvent " + event.getAction());
+        if (XmppAction.ACTION_LOGIN_SUCCESS.equals(event.getAction())) {
+            String username = et01.getText().toString();
+            String password = et03.getText().toString();
+            login(username, password);
+        } else {
+            JacenDialogUtils.dismissDialog();
+            Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onXmppRegisterEvent(XmppRegisterEvent event) {
+        Log.i("XmppService", "onXmppRegisterEvent " + event.getAction());
+        if (XmppAction.ACTION_REGISTER_SUCCESS.equals(event.getAction())) {
+            String username = et01.getText().toString();
+            Bundle bundle = new Bundle();
+            bundle.putString("account", "" + username);
+            bundle.putString("password", "123456");//Xmpp用户密码固定123456
+            JacenUtils.intentService(getApplication().getApplicationContext(),
+                    XmppService.class, XmppAction.ACTION_LOGIN, bundle);
+        } else {
+            JacenDialogUtils.dismissDialog();
+            Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -60,13 +158,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.zhuce:
-
                 final String username = et01.getText().toString();
+                final String password = et03.getText().toString();
                 if (username.equals("")) {
                     Toast.makeText(RegisterActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                final String password = et03.getText().toString();
                 if (password.equals("")) {
                     Toast.makeText(RegisterActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
@@ -76,37 +173,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     return;
                 }
                 JacenDialogUtils.showDialog(this, "注册中...");
-                Bundle bundle = new Bundle();
-                bundle.putString("account", username);
-                bundle.putString("password", password);
-                JacenUtils.intentService(this, XmppService.class, XmppAction.ACTION_REGISTER,
-                        bundle);
-                IntentFilter mIntentFilter = new IntentFilter();
-                mIntentFilter.addAction(XmppAction.ACTION_REGISTER_SUCCESS);
-                mIntentFilter.addAction(XmppAction.ACTION_REGISTER_ERROR);
-                mIntentFilter.addAction(XmppAction.ACTION_REGISTER_ERROR_CONFLICT);
-                mIntentFilter.addAction(XmppAction.ACTION_REGISTER_ERROR_FORBIDDEN);
-                mIntentFilter.addAction(XmppAction.ACTION_REGISTER_ERROR_JID_MALFORMED);
-                mIntentFilter.addAction(XmppAction.ACTION_SERVICE_ERROR);
-                JacenUtils.registerLocalBroadcastReceiver(this, new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        if (intent != null && XmppAction.ACTION_REGISTER_SUCCESS.equals(intent
-                                .getAction())) {
-                            register(username, password);
-                        } else if (XmppAction.ACTION_REGISTER_ERROR_CONFLICT.equals(intent
-                                .getAction())) {
-                            JacenDialogUtils.dismissDialog();
-                            Toast.makeText(RegisterActivity.this, "该用户已存在", Toast.LENGTH_SHORT)
-                                    .show();
-                        } else {
-                            JacenDialogUtils.dismissDialog();
-                            Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    }
-                }, mIntentFilter);
-
+                register(username, password);
                 break;
         }
     }
@@ -119,13 +186,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<PostRegisterUserModel> call,
                                    Response<PostRegisterUserModel>
                                            response) {
-                JacenDialogUtils.dismissDialog();
                 if (response.isSuccessful()) {
                     String message = response.body().message;
-                    Toast.makeText(RegisterActivity.this, "" + message, Toast
-                            .LENGTH_SHORT).show();
                     if ("注册成功".equals(message)) {
-                        login(username, password);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("account", "" + username);
+                        bundle.putString("password", "123456");//Xmpp用户密码固定123456
+                        JacenUtils.intentService(getApplication().getApplicationContext(),
+                                XmppService.class, XmppAction.ACTION_REGISTER, bundle);
+                    } else {
+                        JacenDialogUtils.dismissDialog();
+                        Toast.makeText(RegisterActivity.this, "" + message, Toast.LENGTH_SHORT)
+                                .show();
                     }
                 }
             }
@@ -139,18 +211,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void login(String username, String password) {
-        Call<UserModel> call = ApiManager.getInstance().create(ApiServer.class)
-                .login(username, password);
+    private void login(final String username, String password) {
+        Call<UserModel> call = ApiManager.getInstance().create(ApiServer.class).login(username, password);
         call.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<UserModel> call, Response<UserModel>
-                    response) {
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                Log.i("XmpppService","onResponse");
+                JacenDialogUtils.dismissDialog();
                 if (response.isSuccessful() && response.body().getData() != null) {
-                    UserModel.UserInfo data = response.body().getData();
+                    final UserModel.UserInfo data = response.body().getData();
                     UserSaveUtil.saveObject(RegisterActivity.this, data);
-                    Toast.makeText(RegisterActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                    setResult(Activity.RESULT_OK);
+                    Toast.makeText(RegisterActivity.this, "注册成功", Toast
+                            .LENGTH_SHORT).show();
+                    RegisterActivity.this.setResult(Activity.RESULT_OK);
                     finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
@@ -159,6 +232,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
+                Log.i("XmpppService","onFailure "+t.getMessage());
+                JacenDialogUtils.dismissDialog();
                 Toast.makeText(RegisterActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
             }
         });
