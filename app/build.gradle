@@ -32,6 +32,11 @@ android {
     }
 }
 
+configurations {
+    //xpp3消除警告
+    all*.exclude group: 'xpp3', module: 'xpp3'
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
