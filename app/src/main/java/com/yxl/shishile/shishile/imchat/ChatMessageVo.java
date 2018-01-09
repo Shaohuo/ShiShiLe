@@ -1,10 +1,13 @@
 package com.yxl.shishile.shishile.imchat;
 
 
+import org.jivesoftware.smack.packet.ExtensionElement;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smackx.delay.packet.DelayInformation;
 import org.jxmpp.util.XmppStringUtils;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Jacen on 2017/10/20 17:12.
@@ -118,7 +121,11 @@ public class ChatMessageVo implements Serializable {
         setChatJid(XmppStringUtils.parseBareJid(msg.getFrom()));
         setSender(msg.getFrom().replace(chatJid + "/", ""));
         setContent(msg.getBody());
-        setSendTime(System.currentTimeMillis());
+        ExtensionElement delay = msg.getExtension("delay", "urn:xmpp:delay");
+        if (delay instanceof DelayInformation) {
+            Date stamp = ((DelayInformation) delay).getStamp();
+            setSendTime(stamp.getTime());
+        }
         return this;
     }
 }

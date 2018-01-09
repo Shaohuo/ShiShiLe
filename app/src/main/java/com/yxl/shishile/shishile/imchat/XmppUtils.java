@@ -208,6 +208,29 @@ public class XmppUtils {
         return chatMessageVo;
     }
 
+    public ChatMessageVo sendChatRoomImage(String chatId, String url) {
+        ChatMessageVo chatMessageVo = new ChatMessageVo();
+        Message msg = new Message();
+        try {
+            String chatJid = chatId + "@conference." + connection.getServiceName();
+            msg.setTo(chatJid);
+            msg.setType(Message.Type.groupchat);
+            msg.setFrom("" + connection.getUser());
+            msg.setBody(url);
+            chatMessageVo.parseMessage(msg);
+            chatMessageVo.setChatJid(chatJid);
+            chatMessageVo.setChatType(ChatType.image.getId());
+            chatMessageVo.setMessageStatus(MessageStatus.success.getId());
+            chatMessageVo.setShowTime(ChatMessageDataBase.getInstance().isShowTime(chatId,
+                    chatMessageVo.getSendTime()));
+            connection.sendStanza(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return chatMessageVo;
+    }
+
     public String registerXmpp(final String account, final String password) {
         String result = XmppAction.ACTION_REGISTER_SUCCESS;
         try {

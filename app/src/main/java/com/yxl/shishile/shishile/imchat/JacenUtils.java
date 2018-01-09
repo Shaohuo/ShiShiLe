@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -116,7 +117,8 @@ public class JacenUtils {
      * @datetime @2015-9-6上午11:34:06
      */
     public static void writeToFile(String saveString, String filePath, String fileName) {
-        if (TextUtils.isEmpty(saveString) || TextUtils.isEmpty(filePath) || TextUtils.isEmpty(fileName)) {
+        if (TextUtils.isEmpty(saveString) || TextUtils.isEmpty(filePath) || TextUtils.isEmpty
+                (fileName)) {
             return;
         }
         try {//保存到本地
@@ -142,7 +144,8 @@ public class JacenUtils {
      * @datetime 2014年4月15日 下午5:47:05
      */
     public static String getIMEI(Context mContext) {
-        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context
+                .TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
     }
 
@@ -180,7 +183,8 @@ public class JacenUtils {
      * @email jacen@wscnydx.com
      * @datetime @2015-11-2下午8:27:00
      */
-    public static void intentUI(Activity act, Class clazz, int requestCode, Bundle bundle, boolean isFinish) {
+    public static void intentUI(Activity act, Class clazz, int requestCode, Bundle bundle,
+                                boolean isFinish) {
         if (act == null || clazz == null) return;
         Intent intent = new Intent(act, clazz);
         if (bundle != null) {
@@ -202,7 +206,8 @@ public class JacenUtils {
      * @email jacen@wscnydx.com
      * @datetime @2015-11-2下午8:27:00
      */
-    public static void intentUI(Fragment fragment, Activity act, Class clazz, int requestCode, Bundle bundle) {
+    public static void intentUI(Fragment fragment, Activity act, Class clazz, int requestCode,
+                                Bundle bundle) {
         if (act == null || clazz == null) return;
         Intent intent = new Intent(act, clazz);
         if (bundle != null) {
@@ -277,7 +282,8 @@ public class JacenUtils {
 
 
     /**
-     * 发送本地广播 接收该广播需要用V4包下的LocalBroadcastManager.getInstance(mContext).registerReceiver(receiver, intentFilter)注册
+     * 发送本地广播 接收该广播需要用V4包下的LocalBroadcastManager.getInstance(mContext).registerReceiver(receiver,
+     * intentFilter)注册
      * <br/>取值 直接getExtras()
      *
      * @param mContext
@@ -287,7 +293,8 @@ public class JacenUtils {
      * @email jacen@wscnydx.com
      * @datetime @2015-12-17下午6:30:35
      */
-    public static final void intentLocalBroadcastReceiver(Context mContext, String action, Bundle bundle) {
+    public static final void intentLocalBroadcastReceiver(Context mContext, String action, Bundle
+            bundle) {
         if (mContext == null || TextUtils.isEmpty(action)) {
             return;
         }
@@ -298,7 +305,8 @@ public class JacenUtils {
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
     }
 
-    public static void intentService(Context mContext, Class serviceClass, String serviceAction, Bundle bundle) {
+    public static void intentService(Context mContext, Class serviceClass, String serviceAction,
+                                     Bundle bundle) {
         Intent service = new Intent(serviceAction);
         ComponentName mComponentName = new ComponentName(mContext, serviceClass);
         service.setComponent(mComponentName);
@@ -318,7 +326,8 @@ public class JacenUtils {
      * @email jacen@wscnydx.com
      * @datetime @2015-12-17下午6:34:09
      */
-    public static final void registerLocalBroadcastReceiver(Context mContext, BroadcastReceiver receiver, IntentFilter intentFilter) {
+    public static final void registerLocalBroadcastReceiver(Context mContext, BroadcastReceiver
+            receiver, IntentFilter intentFilter) {
         if (mContext == null) {
             return;
         }
@@ -335,7 +344,8 @@ public class JacenUtils {
      * @email jacen@wscnydx.com
      * @datetime @2015-12-17下午6:34:09
      */
-    public static final void unRegisterLocalBroadcastReceiver(Context mContext, BroadcastReceiver receiver) {
+    public static final void unRegisterLocalBroadcastReceiver(Context mContext, BroadcastReceiver
+            receiver) {
         if (mContext == null) {
             return;
         }
@@ -388,6 +398,7 @@ public class JacenUtils {
         }
         return tmp.toString();
     }
+
     public static String parseChatTimer(long time) {
         time = time;//精确到秒值
         String times = "";
@@ -400,6 +411,7 @@ public class JacenUtils {
         }
         return times;
     }
+
     /**
      * 转秒为时 00:00:00
      *
@@ -420,7 +432,8 @@ public class JacenUtils {
         } else if (time < 3600) {//分
             min = time / 60;
             second = time - min * 60;
-            sb.append("00").append(___).append(unitFormat(min)).append(___).append(unitFormat(second));
+            sb.append("00").append(___).append(unitFormat(min)).append(___).append(unitFormat
+                    (second));
         } else {//时
             hour = time / 3600;
             min = (time - hour * 3600) / 60;

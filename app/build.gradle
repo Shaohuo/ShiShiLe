@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-   /* signingConfigs {
-        config {
-            keyAlias 'shishile'
-            keyPassword 'facai88888'
-            storeFile file('D:/keystore.jks')
-            storePassword 'facai88888'
-        }
-    }*/
+    /* signingConfigs {
+         config {
+             keyAlias 'shishile'
+             keyPassword 'facai88888'
+             storeFile file('D:/keystore.jks')
+             storePassword 'facai88888'
+         }
+     }*/
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.yxl.shishile.shishile"
