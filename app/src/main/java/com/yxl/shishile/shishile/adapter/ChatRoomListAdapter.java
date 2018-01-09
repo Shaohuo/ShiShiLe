@@ -73,8 +73,8 @@ public class ChatRoomListAdapter extends RecyclerView.Adapter<ChatRoomListAdapte
             holder.mTvPrizeName.setText(chatRoom.chatRoomName);
             holder.mIvPrize.setImageResource(mImgIds[position]);
             Random random = new Random();
-            int num = random.nextInt(200);
-            holder.mTvGrounpNum.setText((num + 100) + "人");
+            int num = random.nextInt(50);
+            holder.mTvGrounpNum.setText((num + 50) + "人");
             holder.mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
