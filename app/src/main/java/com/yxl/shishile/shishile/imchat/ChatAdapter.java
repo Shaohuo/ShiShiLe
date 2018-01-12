@@ -1,6 +1,8 @@
 package com.yxl.shishile.shishile.imchat;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.DragPhotoActivity;
+import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.util.DisplayUtil;
 
 import java.io.File;
@@ -110,16 +114,21 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
-    private void bindChatHolderContent(ChatHolder holder, ChatMessageVo vo) {
+    private void bindChatHolderContent(final ChatHolder holder, ChatMessageVo vo) {
         if (vo.getChatType() == ChatType.text) {
             holder.mContent.setVisibility(View.VISIBLE);
             holder.mImage.setVisibility(View.GONE);
         } else if (vo.getChatType() == ChatType.image) {
             holder.mContent.setVisibility(View.GONE);
             holder.mImage.setVisibility(View.VISIBLE);
-            String imgUrl = vo.getContent().replace("Image:", "");
-//        Glide.with(context).load(new File(imgUrl)).into(holder.mImage);
+            final String imgUrl = vo.getContent().replace("Image:", "");
             holder.mImage.setImageDrawable(null);
+            holder.mImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startPhotoActivity(context, holder.mImage, imgUrl);
+                }
+            });
             loadImage(holder, imgUrl);
         }
         holder.mTime.setText(JacenUtils.parseChatTimer(vo.getSendTime()));
@@ -129,45 +138,28 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void loadImage(final ChatHolder holder, final String imgUrl) {
-        if (isLocalImage(imgUrl)) {
-            Glide.with(context).load(new File(imgUrl)).asBitmap().into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap>
-                        glideAnimation) {
-                    setImageViewSizeAndBitmap(bitmap, holder);
+
+        Glide.with(context).load(imgUrl).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap>
+                    glideAnimation) {
+                int width = bitmap.getWidth();
+                int height = bitmap.getHeight();
+                ViewGroup.LayoutParams layoutParams = holder.mImage.getLayoutParams();
+                if (width > height) {
+                    layoutParams.width = DisplayUtil.dip2px(context, 150);
+                    layoutParams.height = (int) ((float) (layoutParams.width * height) / (float)
+                            width);
+                } else {
+                    layoutParams.height = DisplayUtil.dip2px(context, 150);
+                    layoutParams.width = (int) ((float) (layoutParams.height * width) / (float)
+                            height);
                 }
-            });
-        }else{
-            Glide.with(context).load(imgUrl).asBitmap().into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap>
-                        glideAnimation) {
-                    setImageViewSizeAndBitmap(bitmap, holder);
-                }
-            });
-        }
+                holder.mImage.setLayoutParams(layoutParams);
+                holder.mImage.setImageBitmap(bitmap);
+            }
+        });
 
-    }
-
-    private boolean isLocalImage(String imgUrl) {
-        return new File(imgUrl).exists();
-    }
-
-    private void setImageViewSizeAndBitmap(Bitmap bitmap, ChatHolder holder) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        ViewGroup.LayoutParams layoutParams = holder.mImage.getLayoutParams();
-        if (width > height) {
-            layoutParams.width = DisplayUtil.dip2px(context, 150);
-            layoutParams.height = (int) ((float) (layoutParams.width * height) / (float)
-                    width);
-        } else {
-            layoutParams.height = DisplayUtil.dip2px(context, 150);
-            layoutParams.width = (int) ((float) (layoutParams.height * width) / (float)
-                    height);
-        }
-        holder.mImage.setLayoutParams(layoutParams);
-        holder.mImage.setImageBitmap(bitmap);
     }
 
     private void errorTextContent(ErrorHolder holder, ChatMessageVo vo) {
@@ -185,7 +177,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView mImage;
         OnItemClickListener l;
 
-        ChatHolder(View view, OnItemClickListener l) {
+        ChatHolder(final View view, OnItemClickListener l) {
             super(view);
             view.setOnClickListener(this);
             this.l = l;
@@ -202,6 +194,25 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    public void startPhotoActivity(Context context, ImageView imageView, String imgUrl) {
+        Intent intent = new Intent(context, DragPhotoActivity.class);
+        int location[] = new int[2];
+
+        imageView.getLocationOnScreen(location);
+        intent.putExtra("left", location[0]);
+        intent.putExtra("top", location[1]);
+        intent.putExtra("height", imageView.getHeight());
+        intent.putExtra("width", imageView.getWidth());
+        ArrayList<String> photoList = new ArrayList<>();
+        photoList.add(imgUrl);
+        intent.putStringArrayListExtra(Constant.PHOTO_LIST, photoList);
+        context.startActivity(intent);
+        if (context instanceof ChattingUI) {
+            ((ChattingUI) context).setCanAutoScrollToBottom(false);
+            ((ChattingUI) context).overridePendingTransition(0, 0);
+
+        }
+    }
 //    class LeftTextHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 //
 //        TextView mTime;

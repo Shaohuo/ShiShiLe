@@ -32,6 +32,15 @@
 
         <service android:name=".imchat.XmppService" />
 
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name=".ImagePickerProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
         <activity
             android:name=".activity.WelcomeActivity"
@@ -164,6 +173,14 @@
             android:name=".activity.InformationActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.DragPhotoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            >
+        </activity>
+
     </application>
 
 </manifest>
