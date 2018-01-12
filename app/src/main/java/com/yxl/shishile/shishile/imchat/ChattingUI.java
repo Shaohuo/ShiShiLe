@@ -175,7 +175,7 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
     private void compressAndSendPhoto(String absolutePath) {
         Luban.with(this)
-                .ignoreBy(100)                                  // 忽略不压缩图片的大小
+                .ignoreBy(200)                                  // 忽略不压缩图片的大小
                 .load(absolutePath)
                 .setCompressListener(new OnCompressListener() { //设置回调
                     @Override
