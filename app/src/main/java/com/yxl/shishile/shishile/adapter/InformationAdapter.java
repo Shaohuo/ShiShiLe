@@ -20,12 +20,12 @@ import java.util.List;
 
 public class InformationAdapter extends BaseAdapter {
 
-    private List<InformationModel.DataBean> list=new ArrayList<>();
+    private List<InformationModel.DataBean> list = new ArrayList<>();
     private MZModeBannerFragment view;
-    public  InformationAdapter(MZModeBannerFragment context , List<InformationModel.DataBean> list)
-    {
-        this.list=list;
-        view=context;
+
+    public InformationAdapter(MZModeBannerFragment context, List<InformationModel.DataBean> list) {
+        this.list = list;
+        view = context;
     }
 
     @Override
@@ -46,20 +46,19 @@ public class InformationAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         View inflate;
-        if (convertView==null) {
-            inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_information, null);
+        if (convertView == null) {
+            inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout
+                    .item_information, null);
 
-        }
-        else
-        {
-            inflate=  convertView;
+        } else {
+            inflate = convertView;
         }
         TextView title = inflate.findViewById(R.id.title);
         TextView info = inflate.findViewById(R.id.info);
-        if (list != null) {
+        if (list != null && list.size() > 0) {
             title.setText(list.get(i).getTitle());
             info.setText(list.get(i).getContent());
-        }else {
+        } else {
         }
         return inflate;
     }

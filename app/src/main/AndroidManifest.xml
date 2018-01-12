@@ -32,6 +32,7 @@
 
         <service android:name=".imchat.XmppService" />
 
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"

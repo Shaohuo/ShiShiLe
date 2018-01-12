@@ -1,12 +1,8 @@
 package com.yxl.shishile.shishile.imchat;
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -17,6 +13,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,13 +25,18 @@ import android.widget.Toast;
 import com.yxl.shishile.shishile.R;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
+import com.yxl.shishile.shishile.api.FileRequestBody;
+import com.yxl.shishile.shishile.api.RetrofitCallback;
 import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.event.XmppGrounpChatMessageEvent;
 import com.yxl.shishile.shishile.model.CountDownModel;
+import com.yxl.shishile.shishile.model.UploadResultModel;
+import com.yxl.shishile.shishile.util.UriUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 import java.io.File;
@@ -42,17 +44,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.iwgang.countdownview.CountdownView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by Jacen on 2017/10/19 18:02.
  * jacen@iswsc.com
  */
 
-public class ChattingUI extends Activity implements OnItemClickListener, View.OnClickListener,
-        View.OnLayoutChangeListener {
+public class ChattingUI extends Activity implements OnItemClickListener, View.OnClickListener {
 
     private TextView mSendBtn;
     private EditText mConetnt;
@@ -71,12 +77,6 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     private String mUsername;
     List<ChatMessageVo> mMsgList = new ArrayList<>();
 
-    //Activity最外层的Layout视图
-    private View mActivityRootView;
-    //屏幕高度
-    private int screenHeight = 0;
-    //软件盘弹起后所占高度阀值
-    private int keyHeight = 0;
 
     private CountdownView mCvCountdownView;
     private TextView mTvLotteryNum;
@@ -94,15 +94,18 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     public static final int IMAGE_REQUEST_CODE = 0x102;
     public static final int CAMERA_REQUEST_CODE = 0x103;
     private static File mCameraOutFile;
+    private boolean isCanScrollToBottom = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.ui_chatting);
         initView();
-        setListener();
         initData();
+        setListener();
         loadLotteryCountDown();
+        loadChatRoom();
     }
 
     private void initView() {
@@ -117,11 +120,6 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         mBtnMoreItem = findViewById(R.id.btn_more_item);
         ImageView mIvAddCamera = findViewById(R.id.iv_add_camera);
         ImageView mIvAddPic = findViewById(R.id.iv_add_pic);
-        mActivityRootView = findViewById(R.id.root_layout);
-        //获取屏幕高度
-        screenHeight = this.getWindowManager().getDefaultDisplay().getHeight();
-        //阀值设置为屏幕高度的1/3
-        keyHeight = screenHeight / 3;
 
         mCvCountdownView = findViewById(R.id.countdownView);
         mTvOpenPrize = findViewById(R.id.tvOpenPrize);
@@ -141,6 +139,9 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
         if (mMultiUserChat == null) {
             Toast.makeText(ChattingUI.this, "进入聊天室失败", Toast.LENGTH_SHORT).show();
+        } else {
+            JacenDialogUtils.showDialog(ChattingUI.this, "载入中...");
+            mRecyclerView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -151,42 +152,83 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
             if (requestCode == IMAGE_REQUEST_CODE) {
                 try {
                     Uri uri = data.getData();
-                    final String absolutePath = getAbsolutePath(ChattingUI.this, uri);
-                    Log.e("ChattingUI", "absolutePath " + absolutePath);
+                    String absolutePath = UriUtil.getRealPathFromUri(ChattingUI.this, uri);
+                    compressAndSendPhoto(absolutePath);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             if (requestCode == CAMERA_REQUEST_CODE) {
                 if (mCameraOutFile != null) {
-                    Log.e("ChattingUI", "cameraPath " + mCameraOutFile.getAbsolutePath());
+                    String absolutePath = mCameraOutFile.getAbsolutePath();
+                    compressAndSendPhoto(absolutePath);
                 }
             }
         }
     }
 
-    public String getAbsolutePath(final Context context, final Uri uri) {
-        if (null == uri) return null;
-        final String scheme = uri.getScheme();
-        String data = null;
-        if (scheme == null)
-            data = uri.getPath();
-        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
-            data = uri.getPath();
-        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
-            Cursor cursor = context.getContentResolver().query(uri,
-                    new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
-            if (null != cursor) {
-                if (cursor.moveToFirst()) {
-                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                    if (index > -1) {
-                        data = cursor.getString(index);
+    private void compressAndSendPhoto(String absolutePath) {
+        Luban.with(this)
+                .ignoreBy(100)                                  // 忽略不压缩图片的大小
+                .load(absolutePath)
+                .setCompressListener(new OnCompressListener() { //设置回调
+                    @Override
+                    public void onStart() {
+                        // TODO 压缩开始前调用，可以在方法内启动 loading UI
                     }
-                }
-                cursor.close();
-            }
-        }
-        return data;
+
+                    @Override
+                    public void onSuccess(File file) {
+                        // TODO 压缩成功后调用，返回压缩后的图片文件
+                        Log.e("ChattingUI", "" + file.getAbsolutePath());
+                        RequestBody requestFile = RequestBody.create(MediaType.parse
+                                ("image/jpeg"), file);
+                        RetrofitCallback retrofitCallback = new
+                                RetrofitCallback<UploadResultModel>() {
+
+                                    @Override
+                                    public void onFailure(Call<UploadResultModel> call, Throwable
+                                            t) {
+                                        Log.e("ChattingUI", "" + t.getMessage());
+                                    }
+
+                                    @Override
+                                    public void onSuccess(Call<UploadResultModel> call,
+                                                          Response<UploadResultModel> response) {
+                                        if (response.isSuccessful() && response.body() != null) {
+                                            //允许消息滚动到底部
+                                            isCanScrollToBottom = true;
+                                            UploadResultModel.DataBean data = response.body()
+                                                    .getData();
+                                            Log.e("ChattingUI", "" + data.getUrl());
+                                            XmppUtils.getInstance().sendChatRoomImage(chatRoomId,
+                                                    "Image:" + ApiManager.BASE_URL + data.getUrl());
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onLoading(long total, long progress) {
+                                        Log.e("ChattingUI", progress + "/" + total);
+                                    }
+                                };
+                        FileRequestBody requestBody = new FileRequestBody(requestFile,
+                                retrofitCallback);
+
+                        MultipartBody.Part body = MultipartBody.Part.createFormData("file",
+                                file.getName(), requestBody);
+                        RequestBody description = RequestBody.create(MediaType.parse
+                                ("multipart/form-data"), "This is a description");
+                        Call<UploadResultModel> call = ApiManager.getInstance().create(ApiServer
+                                .class).uploadFile(description, body);
+                        call.enqueue(retrofitCallback);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        // TODO 当压缩过程出现问题时调用
+                    }
+                }).launch();    //启动压缩
     }
 
     public void loadLotteryCountDown() {
@@ -279,9 +321,66 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         }
     }
 
+    public static boolean isSlideToBottom(RecyclerView recyclerView) {
+        if (recyclerView == null) return false;
+        if (recyclerView.computeVerticalScrollExtent() + recyclerView.computeVerticalScrollOffset()
+                >= recyclerView.computeVerticalScrollRange())
+            return true;
+        return false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //退出后台时又有新消息接收，则切回时消息栏自动滑到底部
+        if (mMsgList.size() > mAdapter.getItemCount()) {
+            mRecyclerView.smoothScrollToPosition(mMsgList.size());
+        }
+    }
+
     private void setListener() {
         mSendBtn.setOnClickListener(this);
         mBack.setOnClickListener(this);
+        mRecyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int
+                    oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (mAdapter.getItemCount() > 0) {
+                    if (isCanScrollToBottom || bottom != oldBottom) {
+                        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+                    }
+                }
+            }
+        });
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+//                Log.e("ChattingUI", "" + newState + " smoothScrollToPosition " + isSlideToBottom
+//                        (mRecyclerView));
+                if (isSlideToBottom(mRecyclerView)) {
+                    if (JacenDialogUtils.isShowing()) {
+                        JacenDialogUtils.dismissDialog();
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    if (mChatMoreContainer.isShown()) {
+                        mChatMoreContainer.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                //触摸时不允许消息滚动到底部
+                isCanScrollToBottom = false;
+                return false;
+            }
+        });
+
         mBtnMoreItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -343,16 +442,17 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         mTitle.setText(chatRoomName);
         mUsername = AppDataManager.getInstance().getUser().getUsername();
         mAdapter = new ChatAdapter(this, mMsgList, this);
+        mAdapter.setRecyclerView(mRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.send://发送信息
+                //允许消息滚动到底部
+                isCanScrollToBottom = true;
                 String content = mConetnt.getText().toString().trim();
                 XmppUtils.getInstance().sendChatRoomMessage(chatRoomId, content);
                 mConetnt.setText("");
@@ -369,41 +469,20 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //添加layout大小发生改变监听器
-        mActivityRootView.addOnLayoutChangeListener(this);
-    }
-
-    @Override
-    public void onLayoutChange(View v, int left, int top, int right,
-                               int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-        //old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
-
-        //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
-        if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
-
-//            Toast.makeText(ChattingUI.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
-            mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-        } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
-
-//            Toast.makeText(ChattingUI.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
-
-        }
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-        loadChatRoom();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
+        leaveChatroom();
         EventBus.getDefault().unregister(this);
+    }
+
+    private void leaveChatroom() {
+        if (mMultiUserChat != null) {
+            try {
+                mMultiUserChat.leave();
+            } catch (SmackException.NotConnectedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -413,15 +492,20 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
             if (vo.getContent() == null) {
                 List<ChatMessageVo> msgList = ChatMessageDataBase.getInstance()
                         .getChatMessageListByChatJid(chatRoomJid);
-                mMsgList.clear();
-                mMsgList.addAll(msgList);
-                mAdapter.notifyDataSetChanged();
-                mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+                if (msgList.size() > 0) {
+                    mMsgList.clear();
+                    mMsgList.addAll(msgList);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    if (JacenDialogUtils.isShowing()) {
+                        JacenDialogUtils.dismissDialog();
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                    }
+                }
             }
 
-            if (vo.getUnRead() == 1) {
+            if (vo.isDelay() == 0) {
                 mAdapter.addChatMessage(vo);
-                mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
             }
         }
     }

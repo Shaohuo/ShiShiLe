@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
-import com.yxl.shishile.shishile.app.SampleApplication;
 import com.yxl.shishile.shishile.app.SampleApplicationLike;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class ChatMessageDataBase {
         values.put(TableField._FIELD_SHOW_TIME, vo.isShowTime() ? 1 : 0);
         values.put(TableField._FIELD_IS_ME, vo.isMe() ? 1 : 0);
         values.put(TableField._FIELD_MESSAGE_STATUS, vo.getMessageStatus());
-        values.put(TableField._FIELD_UNREAD, vo.getUnRead());
+        values.put(TableField._FIELD_UNREAD, vo.isDelay());
         String sql = "select * from chat where messageid=?";
         Cursor cursor = db.rawQuery(sql, new String[]{vo.getMessageID()});
         if (cursor.moveToFirst()) {
@@ -100,7 +99,7 @@ public class ChatMessageDataBase {
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
             ChatMessageVo msg = getChatMessageVoByCursor(cursor);
-            msg.setUnRead(cursor.getInt(cursor.getColumnIndex("total_unread")));
+            msg.setIsDelay(cursor.getInt(cursor.getColumnIndex("total_unread")));
             list.add(msg);
         }
         cursor.close();
@@ -122,7 +121,7 @@ public class ChatMessageDataBase {
                 false);
         msg.setMessageStatus(cursor.getInt(cursor.getColumnIndex(TableField
                 ._FIELD_MESSAGE_STATUS)));
-        msg.setUnRead(cursor.getInt(cursor.getColumnIndex(TableField._FIELD_UNREAD)));
+        msg.setIsDelay(cursor.getInt(cursor.getColumnIndex(TableField._FIELD_UNREAD)));
         return msg;
     }
 

@@ -134,7 +134,7 @@ public class XmppUtils {
             //处理完所有监听器 发送在线状态 接收离线 也可在UI处理完毕后发送在线状态
             //所有的离线信息 在没有发送在线状态的时候 服务器是不会推送给客户端的
             // 除非服务器做过特殊处理 或者配置connectoin配置的时候选择了发送在线状态
-            Presence  presence = new Presence(Presence.Type.available);
+            Presence presence = new Presence(Presence.Type.available);
             connection.sendStanza(presence);
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,7 +208,7 @@ public class XmppUtils {
         return chatMessageVo;
     }
 
-    public ChatMessageVo sendChatRoomImage(String chatId, String url) {
+    public ChatMessageVo sendChatRoomImage(String chatId, String path) {
         ChatMessageVo chatMessageVo = new ChatMessageVo();
         Message msg = new Message();
         try {
@@ -216,7 +216,7 @@ public class XmppUtils {
             msg.setTo(chatJid);
             msg.setType(Message.Type.groupchat);
             msg.setFrom("" + connection.getUser());
-            msg.setBody(url);
+            msg.setBody(path);
             chatMessageVo.parseMessage(msg);
             chatMessageVo.setChatJid(chatJid);
             chatMessageVo.setChatType(ChatType.image.getId());

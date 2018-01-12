@@ -24,7 +24,7 @@ public class ChatMessageVo implements Serializable {
     private boolean showTime = false;//显示时间
     private boolean isMe = false;//是不是我的发的信息
     private int messageStatus;//发送状态
-    private int unRead;//未读
+    private int isDelay;//未读
     private String sender;
     private int imagePercent;//图片上传百分比
 
@@ -36,12 +36,12 @@ public class ChatMessageVo implements Serializable {
         this.sender = sender;
     }
 
-    public int getUnRead() {
-        return unRead;
+    public int isDelay() {
+        return isDelay;
     }
 
-    public void setUnRead(int unRead) {
-        this.unRead = unRead;
+    public void setIsDelay(int isDelay) {
+        this.isDelay = isDelay;
     }
 
     public String getMessageID() {

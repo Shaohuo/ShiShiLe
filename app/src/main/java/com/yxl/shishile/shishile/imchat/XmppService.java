@@ -2,7 +2,6 @@ package com.yxl.shishile.shishile.imchat;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
@@ -144,10 +143,16 @@ public class XmppService extends Service {
                     ExtensionElement delay = msg.getExtension("delay", "urn:xmpp:delay");
                     ChatMessageVo chatMessageVo = new ChatMessageVo();
                     chatMessageVo.parseMessage(msg);
-                    chatMessageVo.setChatType(ChatType.text.getId());
+                    if (msg.getBody() != null) {
+                        if (msg.getBody().startsWith("Image:")) {
+                            chatMessageVo.setChatType(ChatType.image.getId());
+                        } else {
+                            chatMessageVo.setChatType(ChatType.text.getId());
+                        }
+                    }
                     chatMessageVo.setShowTime(ChatMessageDataBase.getInstance().isShowTime
                             (chatMessageVo.getChatJid(), chatMessageVo.getSendTime()));
-                    chatMessageVo.setUnRead(delay == null ? 1 : 0);
+                    chatMessageVo.setIsDelay(delay == null ? 0 : 1);
                     UserModel.UserInfo user = AppDataManager.getInstance().getUser();
                     if (user != null && user.getUsername() != null) {
                         chatMessageVo.setMe(user.getUsername().equals(chatMessageVo.getSender()));
