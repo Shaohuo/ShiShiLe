@@ -145,6 +145,12 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
         if (mMultiUserChat == null) {
             Toast.makeText(ChattingUI.this, "进入聊天室失败", Toast.LENGTH_SHORT).show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    XmppUtils.getInstance().loginXmpp(mUsername, "123456");
+                }
+            }).start();
         } else {
             JacenDialogUtils.showDialog(ChattingUI.this, "载入中...");
             mRecyclerView.setVisibility(View.INVISIBLE);
@@ -187,8 +193,10 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                     public void onSuccess(File file) {
                         // TODO 压缩成功后调用，返回压缩后的图片文件
                         Log.e("ChattingUI", "" + file.getAbsolutePath());
-                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                        RetrofitCallback retrofitCallback = new RetrofitCallback<UploadResultModel>() {
+                        RequestBody requestFile = RequestBody.create(MediaType.parse
+                                ("image/jpeg"), file);
+                        RetrofitCallback retrofitCallback = new
+                                RetrofitCallback<UploadResultModel>() {
 
                             @Override
                             public void onFailure(Call<UploadResultModel> call, Throwable
@@ -197,7 +205,8 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                             }
 
                             @Override
-                            public void onSuccess(Call<UploadResultModel> call, Response<UploadResultModel> response) {
+                            public void onSuccess(Call<UploadResultModel> call,
+                                                  Response<UploadResultModel> response) {
                                 if (response.isSuccessful() && response.body() != null) {
                                     //允许消息滚动到底部
                                     isCanAutoScrollToBottom = true;
@@ -214,11 +223,15 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                                 Log.e("ChattingUI", progress + "/" + total);
                             }
                         };
-                        FileRequestBody requestBody = new FileRequestBody(requestFile, retrofitCallback);
+                        FileRequestBody requestBody = new FileRequestBody(requestFile,
+                                retrofitCallback);
 
-                        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-                        RequestBody description = RequestBody.create(MediaType.parse("multipart/form-data"), "This is a description");
-                        Call<UploadResultModel> call = ApiManager.getInstance().create(ApiServer.class).uploadFile(description, body);
+                        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file
+                                .getName(), requestBody);
+                        RequestBody description = RequestBody.create(MediaType.parse
+                                ("multipart/form-data"), "This is a description");
+                        Call<UploadResultModel> call = ApiManager.getInstance().create(ApiServer
+                                .class).uploadFile(description, body);
                         call.enqueue(retrofitCallback);
 
                     }
@@ -232,11 +245,13 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
     public void loadLotteryCountDown() {
         int lotteryId = getIntent().getIntExtra("lotteryId", -1);
-        Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class).getLotteryCountDown(lotteryId);
+        Call<CountDownModel> call = ApiManager.getInstance().create(ApiServer.class)
+                .getLotteryCountDown(lotteryId);
         call.enqueue(new Callback<CountDownModel>() {
             @Override
             public void onResponse(Call<CountDownModel> call, Response<CountDownModel> response) {
-                if (response.isSuccessful() && response.body() != null && response.body().data != null) {
+                if (response.isSuccessful() && response.body() != null && response.body().data !=
+                        null) {
                     CountDownModel.CountDown countDownData = response.body().data;
                     if (countDownData.countdown >= 0) {
                         mCvCountdownView.setVisibility(View.VISIBLE);
@@ -298,7 +313,8 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
 
             // 指定开启系统相机的Action
             intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-            File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            File outDir = Environment.getExternalStoragePublicDirectory(Environment
+                    .DIRECTORY_PICTURES);
             if (!outDir.exists()) {
                 outDir.mkdirs();
             }
@@ -311,7 +327,8 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                  * 7.0 调用系统相机拍照不再允许使用Uri方式，应该替换为FileProvider
                  * 并且这样可以解决MIUI系统上拍照返回size为0的情况
                  */
-                uri = FileProvider.getUriForFile(ChattingUI.this, ProviderUtil.getFileProviderName(ChattingUI.this), mCameraOutFile);
+                uri = FileProvider.getUriForFile(ChattingUI.this, ProviderUtil
+                        .getFileProviderName(ChattingUI.this), mCameraOutFile);
             }
             // 设置系统相机拍摄照片完成后图片文件的存放地址
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -359,7 +376,8 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         mBack.setOnClickListener(this);
         mRecyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int
+                    oldLeft, int oldTop, int oldRight, int oldBottom) {
                 if (mAdapter.getItemCount() > 0) {
                     if (isCanAutoScrollToBottom()) {
                         mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
