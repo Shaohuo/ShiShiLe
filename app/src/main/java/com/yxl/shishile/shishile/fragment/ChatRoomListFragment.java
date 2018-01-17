@@ -37,13 +37,12 @@ public class ChatRoomListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private ChatRoomListAdapter mAdapter;
     public List<ChatRoomModel> mChatRoomList = new ArrayList<>();
-    public String[] mNames = new String[]{"重庆时时彩", "新疆时时彩", "北京PK10", "湖北快3", "江苏快3", "福彩3D",
-            "排列3", "江西11选5", "广东11选5", "山东11选5", "六合彩"};
+    public String[] mNames = new String[]{"重庆时时彩", "新疆时时彩", "湖北快3", "江苏快3", "福彩3D",
+            "排列3", "江西11选5", "广东11选5", "山东11选5"};
     public String[] mChatRoomIds = new String[]{"chongqing", "xinjiang",
-            "beijing", "hubei", "jiangsu", "fucai",
-            "pailie", "jiangxi", "guangdong", "shandong",
-            "liuhecai"};
-    public int[] mLotteryIds = new int[]{1, 7, 10, 2, 8, 5, 6, 9, 4, 11, 3};
+            "hubei", "jiangsu", "fucai",
+            "pailie", "jiangxi", "guangdong", "shandong"};
+    public int[] mLotteryIds = new int[]{1, 7,  2, 8, 5, 6, 9, 4, 11};
 
     public ChatRoomListFragment() {
         // Required empty public constructor

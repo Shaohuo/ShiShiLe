@@ -117,7 +117,13 @@ public class OpenPrizeFragment extends Fragment implements BGARefreshLayout
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(view.getContext(), LotteryActivity.class);
-                intent.putExtra("index", position + 1);
+                if (position >= 2 && position <8){
+                intent.putExtra("index", position + 2);
+                }else if(position >= 8){
+                    intent.putExtra("index", position + 3);
+                }else {
+                    intent.putExtra("index", position + 1);
+                }
                 startActivity(intent);
             }
         });
