@@ -28,15 +28,15 @@ import java.util.List;
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> implements View.OnClickListener
 {
 
-    private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
-    private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2, R.mipmap.ic_lottery_3, R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_10, R.mipmap.ic_lottery_11};
+    private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "广东11选5", "福彩3D", "排列3", "新疆时时彩", "江苏快3", "江西11选5", "山东11选5"};
+    private int[] mImgs = new int[]{R.mipmap.ic_lottery_1, R.mipmap.ic_lottery_2,  R.mipmap.ic_lottery_4, R.mipmap.ic_lottery_5, R.mipmap.ic_lottery_6, R.mipmap.ic_lottery_7, R.mipmap.ic_lottery_8, R.mipmap.ic_lottery_9, R.mipmap.ic_lottery_11};
     private  View view;
     List<Forecast> mLotteryList = new ArrayList<>();
     private final Context mContext;
 
     public ForecastAdapter(Context context, List<Forecast> list) {
         mContext = context;
-        mLotteryList = list;;
+        mLotteryList = list;
     }
 
     @Override

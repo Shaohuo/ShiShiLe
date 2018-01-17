@@ -83,14 +83,14 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         marqueeView = view.findViewById(R.id.marqueeView);
         LinearLayout chongqingLiner = view.findViewById(R.id.chongqing);
         LinearLayout hubeiLiner = view.findViewById(R.id.hubei);
-        LinearLayout liuhecaiLiner = view.findViewById(R.id.liuhecai);
+//        LinearLayout liuhecaiLiner = view.findViewById(R.id.liuhecai);
         LinearLayout guangdongLiner = view.findViewById(R.id.guangdong);
         LinearLayout fucaiLiner = view.findViewById(R.id.fucai);
         LinearLayout pailieLiner = view.findViewById(R.id.pailie);
         LinearLayout xinjiangLiner = view.findViewById(R.id.xinjiang);
         LinearLayout jiangsuLiner = view.findViewById(R.id.jiangsu);
         LinearLayout jiangxiLiner = view.findViewById(R.id.jiangxi);
-        LinearLayout beijingLiner = view.findViewById(R.id.beijing);
+//        LinearLayout beijingLiner = view.findViewById(R.id.beijing);
         LinearLayout shandongLiner = view.findViewById(R.id.shandong);
         infor_list = view.findViewById(R.id.information_list);
         informationAdapter = new InformationAdapter(this, informationList);
@@ -116,14 +116,14 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
 
         chongqingLiner.setOnClickListener(this);
         hubeiLiner.setOnClickListener(this);
-        liuhecaiLiner.setOnClickListener(this);
+//        liuhecaiLiner.setOnClickListener(this);
         guangdongLiner.setOnClickListener(this);
         fucaiLiner.setOnClickListener(this);
         pailieLiner.setOnClickListener(this);
         xinjiangLiner.setOnClickListener(this);
         jiangsuLiner.setOnClickListener(this);
         jiangxiLiner.setOnClickListener(this);
-        beijingLiner.setOnClickListener(this);
+//        beijingLiner.setOnClickListener(this);
         shandongLiner.setOnClickListener(this);
         main_forecast.setOnClickListener(this);
         loadInformationData();
@@ -225,11 +225,11 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
 
                         body.data.size() > 0) {
                     datas = Arrays.asList("下期重庆时时彩预测号：" + body.data.get(0).forecast,"下期湖北快3预测号：" + body.data.get(1).forecast,
-                            "下期六合彩预测号：" + body.data.get(2).forecast,"下期广东11选5预测号：" + body.data.get(3).forecast,
-                            "下期福彩3D预测号：" + body.data.get(4).forecast,"下期排列3预测号：" + body.data.get(5).forecast,
-                            "下期新疆时时彩预测号：" + body.data.get(6).forecast,"下期江苏快3预测号：" + body.data.get(7).forecast,
-                            "下期江西11选5预测号：" + body.data.get(8).forecast,"下期北京PK10预测号：" + body.data.get(9).forecast,
-                            "下期山东11选5预测号：" + body.data.get(10).forecast);
+                            "下期广东11选5预测号：" + body.data.get(2).forecast,
+                            "下期福彩3D预测号：" + body.data.get(3).forecast,"下期排列3预测号：" + body.data.get(4).forecast,
+                            "下期新疆时时彩预测号：" + body.data.get(5).forecast,"下期江苏快3预测号：" + body.data.get(6).forecast,
+                            "下期江西11选5预测号：" + body.data.get(7).forecast,
+                            "下期山东11选5预测号：" + body.data.get(8).forecast);
                     if (datas != null){
                         initMarqueeView();
                     }else {
@@ -322,10 +322,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("index", 2);
                 startActivity(intent);
                 break;
-            case R.id.liuhecai:
-                intent.putExtra("index", 3);
-                startActivity(intent);
-                break;
+//            case R.id.liuhecai:
+//                intent.putExtra("index", 3);
+//                startActivity(intent);
+//                break;
             case R.id.guangdong:
                 intent.putExtra("index", 4);
                 startActivity(intent);
@@ -350,10 +350,10 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("index", 9);
                 startActivity(intent);
                 break;
-            case R.id.beijing:
-                intent.putExtra("index", 10);
-                startActivity(intent);
-                break;
+//            case R.id.beijing:
+//                intent.putExtra("index", 10);
+//                startActivity(intent);
+//                break;
             case R.id.shandong:
                 intent.putExtra("index", 11);
                 startActivity(intent);

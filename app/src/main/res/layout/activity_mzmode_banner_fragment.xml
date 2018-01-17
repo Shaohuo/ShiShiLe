@@ -230,37 +230,6 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/liuhecai"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/sex_selected_bg"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.2" />
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@mipmap/ic_lottery_3" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center_vertical"
-                            android:text="六合彩" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
                         android:id="@+id/guangdong"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
@@ -288,13 +257,8 @@
                             android:layout_weight="2"
                             android:gravity="center_vertical"
                             android:text="广东11选5" />
-                    </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal">
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/fucai"
@@ -325,6 +289,12 @@
                             android:gravity="center_vertical"
                             android:text="福彩3D" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/pailie"
@@ -355,12 +325,6 @@
                             android:gravity="center_vertical"
                             android:text="排列3" />
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/xinjiang"
@@ -391,6 +355,12 @@
                             android:gravity="center_vertical"
                             android:text="新疆时时彩" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/jiangsu"
@@ -421,12 +391,6 @@
                             android:gravity="center_vertical"
                             android:text="江苏快3" />
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/jiangxi"
@@ -457,37 +421,8 @@
                             android:gravity="center_vertical"
                             android:text="江西11选5" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/beijing"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/sex_selected_bg"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.2" />
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@mipmap/ic_lottery_10" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center_vertical"
-                            android:text="北京PK10" />
-                    </LinearLayout>
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

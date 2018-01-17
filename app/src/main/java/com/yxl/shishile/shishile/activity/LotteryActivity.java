@@ -51,14 +51,13 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
     private TextView tvLotteryNum;
     private HistoryAdapter mAdapter;
     private List<Lottery> mLotteryList = new ArrayList<>();
-    private int[] mImgs = new int[]{R.mipmap.bg_countdown_chongqing, R.mipmap.bg_countdown_hubei,
-            R.mipmap.bg_countdown_liuhecai, R.mipmap.bg_countdown_guangdong, R.mipmap
+    private int[] mImgs = new int[]{R.mipmap.bg_countdown_chongqing, R.mipmap.bg_countdown_hubei,R.mipmap.bg_countdown_liuhecai,
+             R.mipmap.bg_countdown_guangdong, R.mipmap
             .bg_countdown_fucai, R.mipmap
             .bg_countdown_paileisan, R.mipmap.bg_countdown_xinjiang, R.mipmap
-            .bg_countdown_jiangsu, R.mipmap.bg_countdown_jiangxi, R
-            .mipmap.bg_countdown_beijing, R.mipmap.bg_countdown_shandong};
-    private String[] mNames = new String[]{"重庆时时彩", "湖北快3", "六合彩", "广东11选5", "福彩3D", "排列3",
-            "新疆时时彩", "江苏快3", "江西11选5", "北京PK10", "山东11选5"};
+            .bg_countdown_jiangsu, R.mipmap.bg_countdown_jiangxi,R.mipmap.bg_countdown_beijing, R.mipmap.bg_countdown_shandong};
+    private String[] mNames = new String[]{"重庆时时彩", "湖北快3","六合彩", "广东11选5", "福彩3D", "排列3",
+            "新疆时时彩", "江苏快3", "江西11选5","北京pk10", "山东11选5"};
     private int mIndex;
     private TextView mTvLotteryName;
     private ImageView mIvLotteryBar;
@@ -148,10 +147,10 @@ public class LotteryActivity extends SwipeBackActivity implements CountdownView
                             loadLotteryHistoryData();
                         }
                     }
-                    if (mIndex == 3) {//如果为六合彩则不显示倒计时
-                        mCvCountdownView.setVisibility(View.INVISIBLE);
-                        mTvOpenPrize.setVisibility(View.INVISIBLE);
-                    }
+//                    if (mIndex == 3) {//如果为六合彩则不显示倒计时
+//                        mCvCountdownView.setVisibility(View.INVISIBLE);
+//                        mTvOpenPrize.setVisibility(View.INVISIBLE);
+//                    }
                 }
             }
 
