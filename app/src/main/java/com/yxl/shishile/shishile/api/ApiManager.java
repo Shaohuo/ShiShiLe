@@ -4,7 +4,11 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.yxl.shishile.shishile.app.SampleApplicationLike;
+import com.yxl.shishile.shishile.util.PackageUtil;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -65,20 +71,28 @@ public class ApiManager {
         File httpCacheDirectory = new File(Environment.getExternalStorageDirectory(), "/net_cache");
         Cache cache = new Cache(httpCacheDirectory, CACHE_SIZE);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request()
+                        .newBuilder()
+                        .addHeader("version", "" + PackageUtil.getLocalVersionName(SampleApplicationLike.getAppContext()))
+                        .build();
+                return chain.proceed(request);
+            }
+        });
 
         //日志显示级别
-        HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.BODY;
+        HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
         //新建log拦截器
-        HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                Log.d("zcb","OkHttp====Message:"+message);
+                Log.d("OkHttp", "OkHttp====Message:" + message);
             }
         });
         loggingInterceptor.setLevel(level);
-//        builder.addNetworkInterceptor(loggingInterceptor);
+        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         mClient = builder.cache(cache)
                 .build();
     }

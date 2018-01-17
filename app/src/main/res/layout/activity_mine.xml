@@ -44,6 +44,7 @@
         android:layout_height="30dp" />
 
     <TextView
+        android:id="@+id/version"
         android:gravity="center"
         android:layout_gravity="center"
         android:textColor="@color/black"
