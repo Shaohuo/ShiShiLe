@@ -57,7 +57,7 @@ import static com.umeng.analytics.pro.i.a.i;
 
 
 public class
-MZModeBannerFragment extends Fragment implements View.OnClickListener {
+MZModeBannerFragment extends Fragment{
     public static final String TAG = "MZModeBannerFragment";
     public static final int[] BANNER = new int[]{R.mipmap.banner_1, R.mipmap.banner_2,R.mipmap.banner_3};
     private MZBannerView mMZBanner;
@@ -114,18 +114,79 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         });
         setAnyBarAlpha(0);
 
-        chongqingLiner.setOnClickListener(this);
-        hubeiLiner.setOnClickListener(this);
+        final Intent intent = new Intent(view.getContext(), LotteryActivity.class);
+        chongqingLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 1);
+                startActivity(intent);
+            }
+        });
+        hubeiLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 2);
+                startActivity(intent);
+            }
+        });
 //        liuhecaiLiner.setOnClickListener(this);
-        guangdongLiner.setOnClickListener(this);
-        fucaiLiner.setOnClickListener(this);
-        pailieLiner.setOnClickListener(this);
-        xinjiangLiner.setOnClickListener(this);
-        jiangsuLiner.setOnClickListener(this);
-        jiangxiLiner.setOnClickListener(this);
+        guangdongLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 4);
+                startActivity(intent);
+            }
+        });
+        fucaiLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 5);
+                startActivity(intent);
+            }
+        });
+        pailieLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 6);
+                startActivity(intent);
+            }
+        });
+        xinjiangLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 7);
+                startActivity(intent);
+            }
+        });
+        jiangsuLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 8);
+                startActivity(intent);
+            }
+        });
+        jiangxiLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 9);
+                startActivity(intent);
+            }
+        });
 //        beijingLiner.setOnClickListener(this);
-        shandongLiner.setOnClickListener(this);
-        main_forecast.setOnClickListener(this);
+        shandongLiner.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                intent.putExtra("index", 11);
+                startActivity(intent);
+            }
+        });
+        main_forecast.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                Intent intent1 = new Intent(v.getContext(), M_ForecastActivity.class);
+                startActivity(intent1);
+            }
+        });
         loadInformationData();
 
         infor_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -304,65 +365,6 @@ MZModeBannerFragment extends Fragment implements View.OnClickListener {
         marqueeFactory.setData(datas);
         marqueeView.setMarqueeFactory(marqueeFactory);
         marqueeView.startFlipping();
-    }
-
-    /**
-     * 点击事件
-     * @param view
-     */
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(), LotteryActivity.class);
-        switch (view.getId()) {
-            case R.id.chongqing:
-                intent.putExtra("index", 1);
-                startActivity(intent);
-                break;
-            case R.id.hubei:
-                intent.putExtra("index", 2);
-                startActivity(intent);
-                break;
-//            case R.id.liuhecai:
-//                intent.putExtra("index", 3);
-//                startActivity(intent);
-//                break;
-            case R.id.guangdong:
-                intent.putExtra("index", 4);
-                startActivity(intent);
-                break;
-            case R.id.fucai:
-                intent.putExtra("index", 5);
-                startActivity(intent);
-                break;
-            case R.id.pailie:
-                intent.putExtra("index", 6);
-                startActivity(intent);
-                break;
-            case R.id.xinjiang:
-                intent.putExtra("index", 7);
-                startActivity(intent);
-                break;
-            case R.id.jiangsu:
-                intent.putExtra("index", 8);
-                startActivity(intent);
-                break;
-            case R.id.jiangxi:
-                intent.putExtra("index", 9);
-                startActivity(intent);
-                break;
-//            case R.id.beijing:
-//                intent.putExtra("index", 10);
-//                startActivity(intent);
-//                break;
-            case R.id.shandong:
-                intent.putExtra("index", 11);
-                startActivity(intent);
-                break;
-            case R.id.main_forecast:
-             Intent intent1 = new Intent(view.getContext(), M_ForecastActivity.class);
-                startActivity(intent1);
-                break;
-        }
     }
 
     public static class BannerViewHolder implements MZViewHolder<Integer> {
