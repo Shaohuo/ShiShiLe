@@ -114,6 +114,9 @@ MZModeBannerFragment extends Fragment{
         });
         setAnyBarAlpha(0);
 
+        /**
+         * 点击事件
+         */
         final Intent intent = new Intent(view.getContext(), LotteryActivity.class);
         chongqingLiner.setOnClickListener(new NoDoubleClickListener() {
             @Override
@@ -199,9 +202,9 @@ MZModeBannerFragment extends Fragment{
         });
 
         mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
-        mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+        mMZBanner.setBannerPageClickListener(new NoMultiClickListener() {
             @Override
-            public void onPageClick(View view, int position) {
+            public void onNoMultiClick(View view, int position) {
                 if (position == 0) {
                     Intent intent3 = new Intent(view.getContext(),M_ForecastActivity.class);
                     startActivity(intent3);
