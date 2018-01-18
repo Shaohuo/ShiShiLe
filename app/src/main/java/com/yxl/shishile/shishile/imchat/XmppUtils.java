@@ -24,9 +24,13 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.jivesoftware.smackx.muc.MultiUserChatManager;
 import org.jivesoftware.smackx.vcardtemp.VCardManager;
 import org.jivesoftware.smackx.vcardtemp.packet.VCard;
+import org.jivesoftware.smackx.xdata.Form;
+import org.jivesoftware.smackx.xdata.FormField;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -286,6 +290,25 @@ public class XmppUtils {
                     getMultiUserChat(roomName + "@conference." + connection.getServiceName());
             // 用户加入聊天室
             muc.join(nickName);
+            return muc;
+        } catch (XMPPException | SmackException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public MultiUserChat createChatRoom(String roomName, String nickName) {
+        if (connection == null) {
+            throw new NullPointerException("服务器连接失败，请先连接服务器");
+        }
+        try {
+            MultiUserChat muc = MultiUserChatManager.getInstanceFor(connection).
+                    getMultiUserChat(roomName + "@conference." + connection.getServiceName());
+            muc.create("" + nickName);
+            Form form = muc.getConfigurationForm();
+            Form submitForm = form.createAnswerForm();
+            submitForm.setAnswer("muc#roomconfig_persistentroom",true);
+            muc.sendConfigurationForm(submitForm);
             return muc;
         } catch (XMPPException | SmackException e) {
             e.printStackTrace();
