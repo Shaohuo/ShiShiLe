@@ -44,6 +44,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
                 applicationStartMillisTime, tinkerResultIntent);
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -255,6 +256,7 @@ public class SampleApplicationLike extends DefaultApplicationLike {
         // 安装tinker
         // TinkerManager.installTinker(this); 替换成下面Bugly提供的方法
         Beta.installTinker(this);
+        AppContext.init(base);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

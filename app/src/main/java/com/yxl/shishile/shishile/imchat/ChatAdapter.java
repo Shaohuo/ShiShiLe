@@ -1,11 +1,12 @@
 package com.yxl.shishile.shishile.imchat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import com.yxl.shishile.shishile.activity.DragPhotoActivity;
 import com.yxl.shishile.shishile.app.Constant;
 import com.yxl.shishile.shishile.util.DisplayUtil;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int MESSAGE_LEFT_TEXT = 1;
     private final int MESSAGE_RIGHT_TEXT = 2;
     private RecyclerView mRecyclerView;
+    private MediaPlayer mMediaPlayer;
 
 
     public ChatAdapter(Context context, List<ChatMessageVo> mList, OnItemClickListener l) {
@@ -67,6 +69,15 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void setRecyclerView(RecyclerView recyclerView) {
         this.mRecyclerView = recyclerView;
+        if (mRecyclerView != null) {
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+
+                }
+            });
+        }
     }
 
     @Override
@@ -114,14 +125,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
-    private void bindChatHolderContent(final ChatHolder holder, ChatMessageVo vo) {
+    private void bindChatHolderContent(final ChatHolder holder, final ChatMessageVo vo) {
         if (vo.getChatType() == ChatType.text) {
             holder.mContent.setVisibility(View.VISIBLE);
             holder.mImage.setVisibility(View.GONE);
+            holder.mAudio.setVisibility(View.GONE);
+            holder.mContent.setText(vo.getContent());
         } else if (vo.getChatType() == ChatType.image) {
             holder.mContent.setVisibility(View.GONE);
             holder.mImage.setVisibility(View.VISIBLE);
-            final String imgUrl = vo.getContent().replace("Image:", "");
+            holder.mAudio.setVisibility(View.GONE);
+            final String imgUrl = vo.getContent().replace("Image://", "");
             holder.mImage.setImageDrawable(null);
             holder.mImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,11 +144,98 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
             loadImage(holder, imgUrl);
+        } else if (vo.getChatType() == ChatType.audio) {
+            holder.mContent.setVisibility(View.GONE);
+            holder.mImage.setVisibility(View.GONE);
+            holder.mAudio.setVisibility(View.VISIBLE);
+            holder.mAudio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playVoice(holder.mAudio, vo);
+                }
+            });
+
         }
         holder.mTime.setText(JacenUtils.parseChatTimer(vo.getSendTime()));
         holder.mTime.setVisibility(vo.isShowTime() ? View.VISIBLE : View.GONE);
-        holder.mContent.setText(vo.getContent());
         holder.mUserName.setText(vo.getSender());
+    }
+
+    /**
+     * 播放语音信息
+     *
+     * @param iv
+     * @param message
+     */
+    private void playVoice(final ImageView iv, final ChatMessageVo message) {
+        if (message.isMe()) {
+            iv.setImageResource(R.drawable.anim_chat_voice_right);
+        } else {
+            iv.setImageResource(R.drawable.anim_chat_voice_left);
+        }
+        final AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+        iv.post(new Runnable() {
+            @Override
+            public void run() {
+
+                animationDrawable.start();
+            }
+        });
+        if (mMediaPlayer == null || !mMediaPlayer.isPlaying()) {//点击播放，再次点击停止播放
+            mMediaPlayer = new MediaPlayer();
+            // 开始播放录音
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayer.start();
+                }
+
+            });
+            mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    animationDrawable.stop();
+                    // 恢复语音消息图标背景
+                    if (message.isMe()) {
+                        iv.setImageResource(R.drawable.gxu);
+                    } else {
+                        iv.setImageResource(R.drawable.gxx);
+                    }
+                }
+            });
+            try {
+                mMediaPlayer.reset();
+                String audioUrl = message.getContent().replace("Audio://", "");
+                mMediaPlayer.setDataSource(audioUrl);
+                mMediaPlayer.prepareAsync();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            stopPlayVoice(iv, message);
+        }
+    }
+
+    private void stopPlayVoice(ImageView iv, ChatMessageVo message) {
+        Drawable drawable = iv.getDrawable();
+        if (drawable instanceof AnimationDrawable) {
+            ((AnimationDrawable) drawable).stop();
+        }
+        // 恢复语音消息图标背景
+        if (message.isMe()) {
+            iv.setImageResource(R.drawable.gxu);
+        } else {
+            iv.setImageResource(R.drawable.gxx);
+        }
+        if (mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 
     private void loadImage(final ChatHolder holder, final String imgUrl) {
@@ -175,6 +276,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView mUserName;
         ImageView mAvatar;
         ImageView mImage;
+        ImageView mAudio;
         OnItemClickListener l;
 
         ChatHolder(final View view, OnItemClickListener l) {
@@ -186,6 +288,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mTime = (TextView) view.findViewById(R.id.time);
             mUserName = (TextView) view.findViewById(R.id.username);
             mImage = (ImageView) view.findViewById(R.id.image);
+            mAudio = (ImageView) view.findViewById(R.id.audio);
         }
 
         @Override

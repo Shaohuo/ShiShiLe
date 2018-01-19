@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_toLeftOf="@id/send"
-        android:background="@mipmap/icon_rectangle_white"
+        android:layout_toRightOf="@+id/voice"
+        android:background="@drawable/keyboard_input_edittext_bg"
         android:maxLines="6"
         android:padding="8dp"
         android:textColor="@color/black"
@@ -52,6 +53,32 @@
         android:focusableInTouchMode="true"
         />
 
+        <Button
+            android:id="@+id/btn_voice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_toLeftOf="@id/send"
+            android:layout_toRightOf="@+id/voice"
+            android:layout_alignTop="@+id/content"
+            android:layout_alignBottom="@+id/content"
+            android:background="@drawable/keyboard_record_voice_button_bg"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:text="按住 说话"
+            android:visibility="gone"
+            />
+
+
+        <ImageView
+            android:id="@+id/voice"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_keyboard_voice"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            />
     </RelativeLayout>
 
     <include

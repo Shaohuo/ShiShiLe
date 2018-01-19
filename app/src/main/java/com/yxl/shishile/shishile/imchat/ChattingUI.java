@@ -1,13 +1,20 @@
 package com.yxl.shishile.shishile.imchat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,15 +24,25 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 import com.yxl.shishile.shishile.BuildConfig;
 import com.yxl.shishile.shishile.R;
+import com.yxl.shishile.shishile.activity.MainActivity;
+import com.yxl.shishile.shishile.activity.WelcomeActivity;
 import com.yxl.shishile.shishile.api.ApiManager;
 import com.yxl.shishile.shishile.api.ApiServer;
 import com.yxl.shishile.shishile.api.FileRequestBody;
@@ -34,9 +51,13 @@ import com.yxl.shishile.shishile.app.AppDataManager;
 import com.yxl.shishile.shishile.event.XmppGrounpChatMessageEvent;
 import com.yxl.shishile.shishile.model.CountDownModel;
 import com.yxl.shishile.shishile.model.UploadResultModel;
+import com.yxl.shishile.shishile.util.DisplayUtils;
 import com.yxl.shishile.shishile.util.KeyBordStateUtil;
 import com.yxl.shishile.shishile.util.ProviderUtil;
+import com.yxl.shishile.shishile.util.RecordVoiceManager;
+import com.yxl.shishile.shishile.util.UIUtil;
 import com.yxl.shishile.shishile.util.UriUtil;
+import com.yxl.shishile.shishile.widgets.RecordingVoiceView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -45,6 +66,7 @@ import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +79,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
+
+import static android.widget.RelativeLayout.CENTER_IN_PARENT;
 
 /**
  * Created by Jacen on 2017/10/19 18:02.
@@ -101,6 +125,13 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
     private static File mCameraOutFile;
     private boolean isCanAutoScrollToBottom = true;
     private KeyBordStateUtil mKeyBordStateUtil;
+    private ImageView mVoice;
+    private float mDownY;
+    private RecordVoiceManager mRecordVoiceManager;
+    private RecordingVoiceView mRecordingVoiceView;
+    private Button mBtnVoice;
+    private RelativeLayout mRootLayout;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,6 +155,9 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         mAddCamera = findViewById(R.id.ll_add_camera);
         mAddPic = findViewById(R.id.ll_add_pic);
         mBtnMoreItem = findViewById(R.id.btn_more_item);
+        mVoice = findViewById(R.id.voice);
+        mBtnVoice = findViewById(R.id.btn_voice);
+        mRootLayout = findViewById(R.id.root_layout);
         ImageView mIvAddCamera = findViewById(R.id.iv_add_camera);
         ImageView mIvAddPic = findViewById(R.id.iv_add_pic);
 
@@ -193,47 +227,37 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                     public void onSuccess(File file) {
                         // TODO 压缩成功后调用，返回压缩后的图片文件
                         Log.e("ChattingUI", "" + file.getAbsolutePath());
-                        RequestBody requestFile = RequestBody.create(MediaType.parse
-                                ("image/jpeg"), file);
                         RetrofitCallback retrofitCallback = new
                                 RetrofitCallback<UploadResultModel>() {
 
-                            @Override
-                            public void onFailure(Call<UploadResultModel> call, Throwable
-                                    t) {
-                                Log.e("ChattingUI", "" + t.getMessage());
-                            }
+                                    @Override
+                                    public void onFailure(Call<UploadResultModel> call, Throwable
+                                            t) {
+                                        Log.e("ChattingUI", "onFailure " + t.getMessage());
+                                        UIUtil.showToast(ChattingUI.this, "发送图片失败");
+                                    }
 
-                            @Override
-                            public void onSuccess(Call<UploadResultModel> call,
-                                                  Response<UploadResultModel> response) {
-                                if (response.isSuccessful() && response.body() != null) {
-                                    //允许消息滚动到底部
-                                    isCanAutoScrollToBottom = true;
-                                    UploadResultModel.DataBean data = response.body()
-                                            .getData();
-                                    Log.e("ChattingUI", "" + data.getUrl());
-                                    XmppUtils.getInstance().sendChatRoomImage(chatRoomId,
-                                            "Image:" + ApiManager.BASE_URL + data.getUrl());
-                                }
-                            }
+                                    @Override
+                                    public void onSuccess(Call<UploadResultModel> call,
+                                                          Response<UploadResultModel> response) {
+                                        if (response.isSuccessful() && response.body() != null) {
+                                            //允许消息滚动到底部
+                                            isCanAutoScrollToBottom = true;
+                                            UploadResultModel.DataBean data = response.body()
+                                                    .getData();
+                                            Log.e("ChattingUI", "" + data.getUrl());
+                                            XmppUtils.getInstance().sendChatRoomImage(chatRoomId,
+                                                    "Image://" + ApiManager.BASE_URL + data.getUrl());
+                                        }
+                                    }
 
-                            @Override
-                            public void onLoading(long total, long progress) {
-                                Log.e("ChattingUI", progress + "/" + total);
-                            }
-                        };
-                        FileRequestBody requestBody = new FileRequestBody(requestFile,
-                                retrofitCallback);
+                                    @Override
+                                    public void onLoading(long total, long progress) {
+                                        Log.e("ChattingUI", progress + "/" + total);
+                                    }
+                                };
 
-                        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file
-                                .getName(), requestBody);
-                        RequestBody description = RequestBody.create(MediaType.parse
-                                ("multipart/form-data"), "This is a description");
-                        Call<UploadResultModel> call = ApiManager.getInstance().create(ApiServer
-                                .class).uploadFile(description, body);
-                        call.enqueue(retrofitCallback);
-
+                        uploadFile(file, retrofitCallback);
                     }
 
                     @Override
@@ -241,6 +265,20 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                         // TODO 当压缩过程出现问题时调用
                     }
                 }).launch();    //启动压缩
+    }
+
+    private void uploadFile(File file, RetrofitCallback retrofitCallback) {
+        RequestBody requestFile = RequestBody.create(MediaType.parse
+                ("application/octet-stream"), file);
+        FileRequestBody requestBody = new FileRequestBody(requestFile,
+                retrofitCallback);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file
+                .getName(), requestBody);
+        RequestBody description = RequestBody.create(MediaType.parse
+                ("multipart/form-data"), "This is a description");
+        Call<UploadResultModel> call = ApiManager.getInstance().create(ApiServer
+                .class).uploadFile(description, body);
+        call.enqueue(retrofitCallback);
     }
 
     public void loadLotteryCountDown() {
@@ -358,7 +396,67 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
         isCanAutoScrollToBottom = canAutoScrollToBottom;
     }
 
+    private RecordingVoiceView getRecordingVoiceView() {
+
+        if (mRecordingVoiceView == null) {
+            int screenWidth = DisplayUtils.getScreenWidthPixels(ChattingUI.this);
+            mRecordingVoiceView = new RecordingVoiceView(ChattingUI.this);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(screenWidth / 2,
+                    screenWidth / 2);
+            params.addRule(CENTER_IN_PARENT);
+            mRecordingVoiceView.setLayoutParams(params);
+            mRootLayout.addView(mRecordingVoiceView);
+        }
+        return mRecordingVoiceView;
+    }
+
     private void setListener() {
+        mRecordVoiceManager = new RecordVoiceManager();
+        mVoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBtnVoice.isShown()) {
+                    mBtnVoice.setVisibility(View.GONE);
+                } else {
+                    mBtnVoice.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        mBtnVoice.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                float distance = Math.abs(event.getRawY() - mDownY);
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mDownY = event.getRawY();
+                        openVoicePermission();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mRecordVoiceManager.stopRecordVoice();
+                        File voiceFile = mRecordVoiceManager.getVoiceFile();
+                        Log.e("ChattingUI", "" + voiceFile.getAbsolutePath());
+                        if (distance > 80) {//滑动超过80则提示取消
+                            if (voiceFile != null) {
+                                voiceFile.deleteOnExit();
+                            }
+                            getRecordingVoiceView().hide();
+                        } else {
+                            getRecordingVoiceView().hide();
+                            Log.e("ChattingUI", "" + voiceFile.getAbsolutePath());
+                            uploadAudio(voiceFile);
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if (distance > 80) {//滑动超过80则提示取消
+                            getRecordingVoiceView().showCancelRecordingView();
+                        } else {
+                            getRecordingVoiceView().showStartRecordingView();
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
         mKeyBordStateUtil = new KeyBordStateUtil(this);
         mKeyBordStateUtil.addOnKeyBordStateListener(new KeyBordStateUtil.onKeyBordStateListener() {
             @Override
@@ -467,6 +565,65 @@ public class ChattingUI extends Activity implements OnItemClickListener, View.On
                 }
             }
         });
+    }
+
+    private void uploadAudio(File file) {
+        RetrofitCallback retrofitCallback = new
+                RetrofitCallback<UploadResultModel>() {
+
+                    @Override
+                    public void onFailure(Call<UploadResultModel> call, Throwable t) {
+                        Log.e("ChattingUI", "onFailure " + t.getMessage());
+                        UIUtil.showToast(ChattingUI.this, "发送语音失败");
+                    }
+
+                    @Override
+                    public void onSuccess(Call<UploadResultModel> call, Response<UploadResultModel> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            //允许消息滚动到底部
+                            isCanAutoScrollToBottom = true;
+                            UploadResultModel.DataBean data = response.body().getData();
+                            Log.e("ChattingUI", "" + data.getUrl());
+                            XmppUtils.getInstance().sendChatRoomMessage(chatRoomId, "Audio://" + ApiManager.BASE_URL +
+                                    data.getUrl());
+                        }
+                    }
+
+                    @Override
+                    public void onLoading(long total, long progress) {
+                        Log.e("ChattingUI", progress + "/" + total);
+                    }
+                };
+
+        uploadFile(file, retrofitCallback);
+    }
+
+    private void openVoicePermission() {
+        AndPermission.with(ChattingUI.this)
+                .requestCode(100)
+                .permission(Permission.MICROPHONE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        AndPermission.rationaleDialog(ChattingUI.this, rationale).show();
+                    }
+                })
+                .callback(new PermissionListener() {
+
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String>
+                            grantPermissions) {
+                        mRecordVoiceManager.startRecordVoice();
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String>
+                            deniedPermissions) {
+                        UIUtil.showToast(ChattingUI.this, "此应用录音权限已被禁止，请先打开");
+                    }
+                }).start();
     }
 
     private void initData() {
