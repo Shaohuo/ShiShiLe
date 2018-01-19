@@ -89,8 +89,7 @@ public class WelcomeActivity extends Activity {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context
                 .TELEPHONY_SERVICE);
         String imei = telephonyManager.getDeviceId();
-        Call<PostEaseUserModel> call = ApiManager.getInstance().create(ApiServer
-                .class).getEaseUser(imei);
+        Call<PostEaseUserModel> call = ApiManager.getInstance().create(ApiServer.class).getEaseUser(imei);
         call.enqueue(new Callback<PostEaseUserModel>() {
             @Override
             public void onResponse(Call<PostEaseUserModel> call,

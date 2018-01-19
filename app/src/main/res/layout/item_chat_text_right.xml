@@ -9,12 +9,12 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@mipmap/icon_chat_time"
         android:gravity="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,39 +25,54 @@
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="36dp"
-            android:src="@drawable/ease_default_avatar"
-            android:layout_alignParentRight="true"
             android:layout_height="36dp"
-            android:scaleType="centerCrop" />
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ease_default_avatar" />
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_toLeftOf="@id/avatar"
             android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/avatar"
             android:text="test"
-            />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/content"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:layout_toLeftOf="@id/avatar"
             android:layout_below="@+id/username"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:autoLink="email|web"
+            android:layout_toLeftOf="@id/avatar"
             android:background="@mipmap/icon_chat_right_bg"
-            android:gravity="left"
-            android:maxWidth="200dp"
-            android:minWidth="50dp"
-            android:padding="5dp"
-            />
+            >
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="email|web"
+                android:gravity="left"
+                android:maxWidth="200dp"
+                android:minWidth="50dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:padding="5dp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/audio"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:src="@drawable/gxu"
+                android:visibility="gone" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/image"
@@ -66,7 +81,6 @@
             android:layout_below="@+id/username"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/avatar"
-            />
+            android:layout_toLeftOf="@id/avatar" />
     </RelativeLayout>
 </LinearLayout>

@@ -144,8 +144,10 @@ public class XmppService extends Service {
                     ChatMessageVo chatMessageVo = new ChatMessageVo();
                     chatMessageVo.parseMessage(msg);
                     if (msg.getBody() != null) {
-                        if (msg.getBody().startsWith("Image:")) {
+                        if (msg.getBody().startsWith("Image://")) {
                             chatMessageVo.setChatType(ChatType.image.getId());
+                        } else if (msg.getBody().startsWith("Audio://")) {
+                            chatMessageVo.setChatType(ChatType.audio.getId());
                         } else {
                             chatMessageVo.setChatType(ChatType.text.getId());
                         }

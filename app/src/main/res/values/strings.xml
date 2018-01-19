@@ -7,4 +7,12 @@
     <string name="edittext_username"><font size="13">请输入账号</font></string>
     <string name="edittext_password"><font size="13">请输入密码</font></string>
     <string name="edittext_password_y"><font size="13">请确认密码</font></string>
+
+    <string name="chat_send">发送</string>
+    <string name="keyboard_press_record_voice">按住  说话</string>
+    <string name="keyboard_more_image">图片</string>
+    <string name="keyboard_more_take_photo">拍照</string>
+    <string name="recording_voice_text">手指上滑，取消发送</string>
+    <string name="cancel_recording_voice_text">松开手指，取消发送</string>
+
 </resources>
